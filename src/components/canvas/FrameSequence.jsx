@@ -192,7 +192,13 @@ export default function FrameSequence({
     <canvas
       ref={canvasRef}
       aria-hidden="true"
-      style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}
+      style={{
+        position: 'absolute',
+        inset: 0,
+        width: '100%',
+        height: '100%',
+        filter: 'contrast(1.05) saturate(1.08)',
+      }}
     />
   )
 }

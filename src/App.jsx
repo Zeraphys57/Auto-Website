@@ -9,6 +9,7 @@ import Cursor from './components/ui/Cursor'
 import Navbar from './components/ui/Navbar'
 import Footer from './components/ui/Footer'
 import SectionTransition from './components/ui/SectionTransition'
+import GrainOverlay from './components/ui/GrainOverlay'
 
 import Loader from './components/sections/Loader'
 import Hero from './components/sections/Hero'
@@ -87,6 +88,7 @@ function Experience() {
       <Loader />
 
       <div ref={bgRef} aria-hidden="true" className="fixed inset-0 -z-10" />
+      <GrainOverlay />
 
       <main>
         <Hero />
