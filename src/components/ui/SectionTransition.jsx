@@ -27,7 +27,7 @@ export default function SectionTransition({
 
     const sweep = gsap.to(overlayRef.current, {
       xPercent: 100,
-      ease: 'power2.inOut',
+      ease: 'veloxIn',
       duration: 0.9,
       paused: true,
     })

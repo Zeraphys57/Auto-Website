@@ -1,5 +1,11 @@
-// Site-wide film grain. Masks softness from the upscaled hero frames and adds
-// texture to the flat dark backgrounds. Pure CSS/SVG noise — no asset weight.
+// Site-wide film grain + cinematic vignette. Grain is animated (grainShift
+// keyframes in index.css) for a living-film feel; vignette darkens the frame
+// edges to draw the eye inward. Both are purely decorative overlays.
 export default function GrainOverlay() {
-  return <div aria-hidden="true" className="grain-overlay" />
+  return (
+    <>
+      <div aria-hidden="true" className="grain-overlay" />
+      <div aria-hidden="true" className="vignette-overlay" />
+    </>
+  )
 }

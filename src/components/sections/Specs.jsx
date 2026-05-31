@@ -5,16 +5,17 @@ import EngineParticles from '../canvas/EngineParticles'
 import { prefersReducedMotion } from '../../lib/prefersReducedMotion'
 
 const ROWS = [
-  { label: 'MESIN', value: '4.0L V8 BITURBO', fill: 0.78 },
-  { label: 'TENAGA', value: '580 HP', fill: 0.96 },
-  { label: 'TORSI', value: '720 NM', fill: 0.88 },
-  { label: 'TOP SPEED', value: '320 KM/H', fill: 0.8 },
-  { label: 'BOBOT', value: '1.420 KG', fill: 0.52 },
+  { label: 'MESIN',    value: '4.0L V8 BITURBO', fill: 0.78 },
+  { label: 'TENAGA',  value: '580 HP',           fill: 0.96 },
+  { label: 'TORSI',   value: '720 NM',           fill: 0.88 },
+  { label: 'TOP SPEED', value: '320 KM/H',       fill: 0.80 },
+  { label: 'BOBOT',   value: '1.420 KG',         fill: 0.52 },
 ]
 
 export default function Specs() {
   const sectionRef = useRef(null)
-  const bigRef = useRef(null)
+  const bigRef     = useRef(null)
+  const eyebrowRef = useRef(null)
   const rm = prefersReducedMotion
 
   useGSAP(
@@ -24,6 +25,15 @@ export default function Specs() {
         if (bigRef.current) bigRef.current.textContent = '3.2'
         return
       }
+
+      // Eyebrow fade — different technique from Specs table to vary reveals
+      gsap.from(eyebrowRef.current, {
+        autoAlpha: 0,
+        xPercent: -10,
+        duration: 0.9,
+        ease: 'velox',
+        scrollTrigger: { trigger: sectionRef.current, start: 'top 75%' },
+      })
 
       // Count-up 8.0 → 3.2
       const num = { v: 8.0 }
@@ -37,13 +47,13 @@ export default function Specs() {
         },
       })
 
-      // Readout rows — blur fade in, staggered
+      // Readout rows — blur fade in, staggered from center
       gsap.from('.spec-row', {
         autoAlpha: 0,
         filter: 'blur(10px)',
-        stagger: 0.1,
+        stagger: { each: 0.09, from: 'center' },
         duration: 0.9,
-        ease: 'power2.out',
+        ease: 'velox',
         scrollTrigger: { trigger: '.spec-table', start: 'top 78%' },
       })
 
@@ -51,7 +61,7 @@ export default function Specs() {
       gsap.to('.spec-bar', {
         scaleX: (i, el) => parseFloat(el.dataset.fill),
         duration: 1.2,
-        ease: 'power3.out',
+        ease: 'velox',
         stagger: 0.1,
         scrollTrigger: { trigger: '.spec-table', start: 'top 75%' },
       })
@@ -73,7 +83,10 @@ export default function Specs() {
       <div className="relative z-10 mx-auto grid w-full max-w-[1400px] grid-cols-1 gap-16 px-6 md:grid-cols-2 md:px-12">
         {/* Left — feature spec */}
         <div>
-          <div className="mb-12 font-mono text-sm font-light tracking-[0.2em] text-electric">
+          <div
+            ref={eyebrowRef}
+            className="mb-12 font-mono text-sm font-light tracking-[0.2em] text-electric"
+          >
             [ SPESIFIKASI ]
           </div>
 

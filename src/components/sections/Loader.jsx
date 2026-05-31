@@ -90,10 +90,10 @@ export default function Loader() {
       tl.to(contentRef.current, {
         autoAlpha: 0,
         duration: 0.4,
-        ease: 'power2.out',
+        ease: 'velox',
       }).to(
         rootRef.current,
-        { yPercent: -100, duration: 0.9, ease: 'power3.inOut' },
+        { yPercent: -100, duration: 0.9, ease: 'veloxIn' },
         '-=0.1'
       )
     }

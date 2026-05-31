@@ -1,19 +1,21 @@
 import { useRef } from 'react'
 import { useGSAP } from '@gsap/react'
 import { gsap } from 'gsap'
+import { SplitText } from 'gsap/SplitText'
 import { prefersReducedMotion } from '../../lib/prefersReducedMotion'
 
 const STATS = [
-  { target: 48, suffix: '', label: 'Tahun' },
+  { target: 48,   suffix: '',  label: 'Tahun' },
   { target: 1200, suffix: '+', label: 'Unit Terjual' },
-  { target: 32, suffix: '', label: 'Penghargaan' },
+  { target: 32,   suffix: '',  label: 'Penghargaan' },
 ]
 
 export default function Legacy() {
   const sectionRef = useRef(null)
-  const leftRef = useRef(null)
-  const rightRef = useRef(null)
-  const titleRef = useRef(null)
+  const leftRef    = useRef(null)
+  const rightRef   = useRef(null)
+  const titleRef   = useRef(null)
+  const bodyRef    = useRef(null)
   const rm = prefersReducedMotion
 
   useGSAP(
@@ -30,30 +32,56 @@ export default function Legacy() {
         return
       }
 
+      // Left image panel — slides from left (different from right's fade)
       gsap.from(leftRef.current, {
         xPercent: -5,
         autoAlpha: 0,
         duration: 1.2,
-        ease: 'power3.out',
+        ease: 'velox',
         scrollTrigger: { trigger: sectionRef.current, start: 'top 70%' },
       })
 
+      // Right block — slides from right
       gsap.from(rightRef.current, {
         xPercent: 5,
         autoAlpha: 0,
         duration: 1.2,
-        ease: 'power3.out',
+        ease: 'velox',
         scrollTrigger: { trigger: sectionRef.current, start: 'top 70%' },
       })
 
+      // Title — blur fade
       gsap.from(titleRef.current, {
         autoAlpha: 0,
         filter: 'blur(16px)',
         duration: 1.1,
-        ease: 'power2.out',
+        ease: 'velox',
         scrollTrigger: { trigger: sectionRef.current, start: 'top 65%' },
       })
 
+      // Body text — SplitText line-mask: each line rises through an overflow:hidden
+      // parent, giving a clean cinematic "curtain open" reveal per line.
+      if (bodyRef.current) {
+        const paras = Array.from(bodyRef.current.querySelectorAll('p'))
+        paras.forEach((para) => {
+          const split = new SplitText(para, { type: 'lines' })
+          split.lines.forEach((line) => {
+            const mask = document.createElement('div')
+            mask.style.overflow = 'hidden'
+            line.parentNode.insertBefore(mask, line)
+            mask.appendChild(line)
+          })
+          gsap.from(split.lines, {
+            yPercent: 110,
+            duration: 0.9,
+            ease: 'velox',
+            stagger: 0.08,
+            scrollTrigger: { trigger: para, start: 'top 78%' },
+          })
+        })
+      }
+
+      // Stats — count up
       gsap.utils.toArray('.stat-num').forEach((el) => {
         const target = parseFloat(el.dataset.target)
         const obj = { v: 0 }
@@ -85,7 +113,10 @@ export default function Legacy() {
               'linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 60%, #FF2D2D08 100%)',
           }}
         >
-          <div className="absolute bottom-6 left-6 flex h-28 w-28 items-center justify-center rounded-full border border-silver/40 text-center">
+          <div
+            data-speed="1.15"
+            className="absolute bottom-6 left-6 flex h-28 w-28 items-center justify-center rounded-full border border-silver/40 text-center"
+          >
             <span className="font-accent text-[0.6rem] font-extralight uppercase leading-tight tracking-[0.25em] text-silver">
               Since
               <br />
@@ -99,7 +130,10 @@ export default function Legacy() {
           {/* Eyebrow */}
           <div className="mb-8 flex items-center gap-4">
             <span className="h-px w-10 bg-silver/50" />
-            <span className="font-accent text-[0.62rem] font-extralight uppercase tracking-[0.3em] text-muted">
+            <span
+              data-speed="0.85"
+              className="font-accent text-[0.62rem] font-extralight uppercase tracking-[0.3em] text-muted"
+            >
               Warisan Kami
             </span>
           </div>
@@ -112,7 +146,11 @@ export default function Legacy() {
             Dibangun dengan Obsesi
           </h2>
 
-          <div className="mt-7 max-w-xl space-y-5 text-chrome/60" style={{ lineHeight: 1.9 }}>
+          <div
+            ref={bodyRef}
+            className="mt-7 max-w-xl space-y-5 text-chrome/60"
+            style={{ lineHeight: 1.9 }}
+          >
             <p>
               Sejak 1987, setiap Velox lahir dari ruang gerah tempat para insinyur
               menolak kata "cukup". Bukan mobil yang dibuat untuk dijual — melainkan

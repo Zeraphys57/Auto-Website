@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { prefersReducedMotion } from '../../lib/prefersReducedMotion'
 
@@ -46,13 +46,17 @@ export default function Testimonials() {
   return (
     <section className="testimonials-section relative flex min-h-screen items-center justify-center overflow-hidden px-6 py-28">
       {/* Eyebrow */}
-      <span className="absolute top-[14%] left-1/2 -translate-x-1/2 font-accent text-[0.62rem] font-extralight uppercase tracking-[0.7em] text-muted">
+      <span
+        data-speed="0.85"
+        className="absolute top-[14%] left-1/2 -translate-x-1/2 font-accent text-[0.62rem] font-extralight uppercase tracking-[0.7em] text-muted"
+      >
         Testimonial
       </span>
 
-      {/* Decorative quote mark */}
+      {/* Decorative quote mark — slight faster parallax */}
       <span
         aria-hidden="true"
+        data-speed="0.6"
         className="pointer-events-none absolute left-1/2 top-[20%] -translate-x-1/2 font-display leading-none text-crimson"
         style={{ fontSize: '12rem', opacity: 0.15 }}
       >
@@ -66,7 +70,7 @@ export default function Testimonials() {
             initial={prefersReducedMotion ? false : { opacity: 0, filter: 'blur(12px)' }}
             animate={{ opacity: 1, filter: 'blur(0px)' }}
             exit={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, filter: 'blur(12px)' }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
             <p
               className="font-serif italic text-offwhite"
@@ -93,13 +97,15 @@ export default function Testimonials() {
           </motion.blockquote>
         </AnimatePresence>
 
-        {/* Dot navigation */}
+        {/* Dot navigation — magnetic on each dot */}
         <div className="mt-12 flex items-center justify-center gap-3">
           {DATA.map((_, i) => (
             <button
               key={i}
               type="button"
               data-cursor="hover"
+              data-magnetic
+              data-magnetic-strength="0.6"
               aria-label={`Tampilkan testimoni ${i + 1}`}
               onClick={() => setIndex(i)}
               className="h-1.5 rounded-full transition-all duration-500"
@@ -107,6 +113,7 @@ export default function Testimonials() {
                 width: i === index ? 28 : 8,
                 backgroundColor:
                   i === index ? '#C9A96E' : 'rgba(201,169,110,0.3)',
+                transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)',
               }}
             />
           ))}

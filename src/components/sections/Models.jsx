@@ -35,9 +35,10 @@ const CARDS = [
 
 export default function Models() {
   const sectionRef = useRef(null)
-  const trackRef = useRef(null)
-  const loudRef = useRef(null)
-  const titleRef = useRef(null)
+  const trackRef   = useRef(null)
+  const loudRef    = useRef(null)
+  const titleRef   = useRef(null)
+  const bleedRef   = useRef(null)
   const rm = prefersReducedMotion
 
   useGSAP(
@@ -46,7 +47,7 @@ export default function Models() {
       const track = trackRef.current
       const end = () => `+=${track.scrollWidth}`
 
-      // Horizontal scroll pin
+      // Horizontal scroll pin — NOT in skew-wrap
       gsap.to(track, {
         x: () => -(track.scrollWidth - window.innerWidth + 96),
         ease: 'none',
@@ -60,7 +61,7 @@ export default function Models() {
         },
       })
 
-      // Loud background word — slow scale parallax across the pin
+      // PERFORMA text — slow scale + drift across the pinned scroll
       gsap.fromTo(
         loudRef.current,
         { scale: 1, xPercent: 0 },
@@ -83,7 +84,7 @@ export default function Models() {
         autoAlpha: 0,
         filter: 'blur(16px)',
         duration: 1,
-        ease: 'power2.out',
+        ease: 'velox',
         scrollTrigger: { trigger: sectionRef.current, start: 'top 75%' },
       })
 
@@ -95,10 +96,38 @@ export default function Models() {
           clipPath: 'inset(0 0 0% 0)',
           stagger: 0.12,
           duration: 1.1,
-          ease: 'power3.out',
+          ease: 'velox',
           scrollTrigger: { trigger: sectionRef.current, start: 'top 60%' },
         }
       )
+
+      // SIGNATURE MOMENT: color bleed — each card bleeds its accent color into
+      // the entire section background and PERFORMA text on hover, returning to
+      // neutral carbon2 on leave.
+      if (typeof window !== 'undefined' && !window.matchMedia('(pointer: coarse)').matches) {
+        const cardEls = Array.from(sectionRef.current.querySelectorAll('.model-card'))
+        const handlers = cardEls.map((cardEl, i) => {
+          const { edge } = CARDS[i]
+          const enter = () => {
+            bleedRef.current.style.backgroundColor = edge
+            gsap.to(bleedRef.current, { opacity: 0.07, duration: 0.8, ease: 'velox' })
+            gsap.to(loudRef.current, { color: edge, duration: 0.8, ease: 'velox' })
+          }
+          const leave = () => {
+            gsap.to(bleedRef.current, { opacity: 0, duration: 0.9, ease: 'velox' })
+            gsap.to(loudRef.current, { color: '#1A1A1A', duration: 0.9, ease: 'velox' })
+          }
+          cardEl.addEventListener('mouseenter', enter)
+          cardEl.addEventListener('mouseleave', leave)
+          return { cardEl, enter, leave }
+        })
+        return () => {
+          handlers.forEach(({ cardEl, enter, leave }) => {
+            cardEl.removeEventListener('mouseenter', enter)
+            cardEl.removeEventListener('mouseleave', leave)
+          })
+        }
+      }
     },
     { scope: sectionRef, dependencies: [rm] }
   )
@@ -111,15 +140,23 @@ export default function Models() {
         rm ? 'overflow-x-auto' : 'overflow-hidden'
       }`}
     >
-      {/* Loud background word */}
+      {/* Color-bleed overlay — fills with card accent on hover */}
       <div
-        ref={loudRef}
+        ref={bleedRef}
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 z-0"
+        style={{ opacity: 0, mixBlendMode: 'screen' }}
+      />
+
+      {/* Loud background word — slow parallax via data-speed */}
+      <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 flex items-center justify-center"
       >
         <span
-          className="font-display leading-none text-carbon3"
-          style={{ fontSize: 'clamp(8rem, 20vw, 18rem)', opacity: 0.12 }}
+          ref={loudRef}
+          className="font-display leading-none"
+          style={{ fontSize: 'clamp(8rem, 20vw, 18rem)', opacity: 0.12, color: '#1A1A1A' }}
         >
           PERFORMA
         </span>
@@ -186,12 +223,13 @@ export default function Models() {
               <p className="mt-4 font-serif text-2xl italic text-gold">{card.price}</p>
             </div>
 
-            {/* hover overlay — clip reveal from bottom (driven by card hover) */}
+            {/* hover overlay — clip reveal from bottom */}
             <div
-              className="absolute inset-0 z-20 flex items-end justify-center pb-10 transition-[clip-path] duration-500 ease-[cubic-bezier(0.65,0,0.35,1)] [clip-path:inset(100%_0_0_0)] group-hover:[clip-path:inset(0%_0_0_0)]"
+              className="absolute inset-0 z-20 flex items-end justify-center pb-10 transition-[clip-path] duration-500 [clip-path:inset(100%_0_0_0)] group-hover:[clip-path:inset(0%_0_0_0)]"
               style={{
                 background:
                   'linear-gradient(0deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.15) 60%, transparent 100%)',
+                transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)',
               }}
             >
               <span className="font-accent text-sm font-light uppercase tracking-[0.3em] text-chrome">

@@ -120,17 +120,61 @@
   }
 }
 
+/* Animated grain: 8 discrete steps shift background-position so the noise
+   texture drifts like real film grain rather than sitting static. */
+@keyframes grainShift {
+  0%   { background-position:   0px   0px; }
+  12%  { background-position: -30px  15px; }
+  25%  { background-position:  15px -25px; }
+  37%  { background-position: -20px  30px; }
+  50%  { background-position:  25px  10px; }
+  62%  { background-position: -15px -30px; }
+  75%  { background-position:  30px -15px; }
+  87%  { background-position: -25px  20px; }
+  100% { background-position:   0px   0px; }
+}
+
 /* Film grain overlay — fixed, full-bleed, sits above content but below the
-   navbar (100), loader (200) and cursor (9999). Static for performance. */
+   navbar (100), loader (200) and cursor (9999). Animated texture. */
 .grain-overlay {
   position: fixed;
   inset: 0;
-  z-index: 70;
+  z-index: 9000;
   pointer-events: none;
-  opacity: 0.09;
+  opacity: 0.045;
   mix-blend-mode: overlay;
   background-repeat: repeat;
   background-size: 200px 200px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grainShift 0.5s steps(8) infinite;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Scroll-velocity skew containers — GPU-promoted for transform compositing. */
+.skew-wrap {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* Promote R3F canvas containers and the hero frame canvas to their own GPU
+   compositing layers so rasterisation never blocks the main thread scroll. */
+.hero-section canvas,
+.specs-section canvas,
+.cta-section canvas {
+  transform: translateZ(0);
+}
+
+/* Cinematic vignette — darkens edges to focus attention on centre content. */
+.vignette-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 8999;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, 0.4) 100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .grain-overlay {
+    animation: none !important;
+  }
 }
 

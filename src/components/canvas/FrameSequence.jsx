@@ -181,6 +181,9 @@ export default function FrameSequence({
           if (index !== currentFrame.current) {
             currentFrame.current = index
             drawFrame(index)
+            window.dispatchEvent(
+              new CustomEvent('velox:frame', { detail: { index, total: frameCount } })
+            )
           }
         },
       })
@@ -197,7 +200,7 @@ export default function FrameSequence({
         inset: 0,
         width: '100%',
         height: '100%',
-        filter: 'contrast(1.05) saturate(1.08)',
+        filter: 'contrast(1.05) saturate(1.1)',
       }}
     />
   )

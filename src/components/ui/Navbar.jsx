@@ -28,7 +28,7 @@ export default function Navbar() {
         backdropFilter: solid ? 'blur(12px)' : 'blur(0px)',
         borderColor: solid ? 'rgba(255,255,255,0.06)' : 'rgba(255,255,255,0)',
         duration: 0.4,
-        ease: 'power2.out',
+        ease: 'velox',
       })
 
     const st = ScrollTrigger.create({
@@ -61,6 +61,7 @@ export default function Navbar() {
           href="#top"
           onClick={(e) => handleNav(e, '#top')}
           data-magnetic
+          data-magnetic-strength="0.4"
           data-cursor="hover"
           className="font-display text-[1.8rem] leading-none tracking-[0.1em] text-chrome transition-colors"
         >
@@ -88,6 +89,7 @@ export default function Navbar() {
           href="#cta"
           onClick={(e) => handleNav(e, '#cta')}
           data-magnetic
+          data-magnetic-strength="0.4"
           data-cursor="hover"
           className={`group relative hidden overflow-hidden border ${accentBorder} px-6 py-2.5 font-accent text-[0.7rem] font-light uppercase tracking-[0.22em] ${accent} transition-colors duration-300 sm:inline-block`}
         >

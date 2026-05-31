@@ -3,14 +3,17 @@ import { useGSAP } from '@gsap/react'
 import { gsap } from 'gsap'
 import { SplitText } from 'gsap/SplitText'
 import CTAOrb from '../canvas/CTAOrb'
+import { useMagnetic } from '../../hooks/useMagnetic'
 import { prefersReducedMotion } from '../../lib/prefersReducedMotion'
 
 export default function CTA() {
-  const sectionRef = useRef(null)
-  const line1Ref = useRef(null)
-  const line2Ref = useRef(null)
-  const subRef = useRef(null)
-  const btnRef = useRef(null)
+  const sectionRef  = useRef(null)
+  const line1Ref    = useRef(null)
+  const line2Ref    = useRef(null)
+  const subRef      = useRef(null)
+  const btnRef      = useRef(null)
+  const primaryBtn  = useMagnetic(0.4)
+  const secondaryBtn = useMagnetic(0.4)
 
   useGSAP(
     () => {
@@ -21,23 +24,35 @@ export default function CTA() {
       const tl = gsap.timeline({
         scrollTrigger: { trigger: sectionRef.current, start: 'top 65%' },
       })
+
+      // Headline chars — velox entrance with rotateX overshoot
       tl.from(split.chars, {
         autoAlpha: 0,
         rotateX: 90,
         transformOrigin: '50% 50% -24px',
         stagger: 0.02,
-        duration: 0.8,
-        ease: 'power3.out',
+        duration: 0.85,
+        ease: 'velox',
       })
+        .to(
+          split.chars,
+          { rotateX: -4, stagger: 0.008, duration: 0.18, ease: 'power2.out' },
+          '-=0.25'
+        )
+        .to(
+          split.chars,
+          { rotateX: 0, stagger: 0.008, duration: 0.25, ease: 'power2.inOut' },
+          '-=0.12'
+        )
         .from(
           line2Ref.current,
-          { autoAlpha: 0, filter: 'blur(16px)', duration: 1, ease: 'power2.out' },
-          '-=0.4'
+          { autoAlpha: 0, filter: 'blur(16px)', duration: 1, ease: 'velox' },
+          '-=0.5'
         )
         .from(
           [subRef.current, btnRef.current],
-          { autoAlpha: 0, filter: 'blur(12px)', stagger: 0.12, duration: 0.9, ease: 'power2.out' },
-          '-=0.6'
+          { autoAlpha: 0, filter: 'blur(12px)', stagger: 0.12, duration: 0.9, ease: 'velox' },
+          '-=0.7'
         )
     },
     { scope: sectionRef }
@@ -95,8 +110,8 @@ export default function CTA() {
 
         <div ref={btnRef} className="mt-12 flex flex-wrap items-center justify-center gap-5">
           <a
+            ref={primaryBtn}
             href="#cta"
-            data-magnetic
             data-cursor="cta"
             className="group inline-block bg-electric px-9 py-4"
           >
@@ -105,8 +120,8 @@ export default function CTA() {
             </span>
           </a>
           <a
+            ref={secondaryBtn}
             href="#cta"
-            data-magnetic
             data-cursor="hover"
             className="group inline-block border border-gold/40 px-9 py-4"
           >

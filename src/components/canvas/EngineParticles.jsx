@@ -1,6 +1,7 @@
 import { Suspense, useRef } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { AdditiveBlending, Color } from 'three'
+import { EffectComposer, Bloom, Vignette, Noise, ChromaticAberration } from '@react-three/postprocessing'
 import { useIntersectionPause } from '../../hooks/useIntersectionPause'
 import { prefersReducedMotion } from '../../lib/prefersReducedMotion'
 
@@ -77,6 +78,12 @@ export default function EngineParticles() {
       >
         <Suspense fallback={null}>
           <ParticleField />
+          <EffectComposer>
+            <Bloom luminanceThreshold={0.15} intensity={0.9} mipmapBlur radius={0.7} />
+            <ChromaticAberration offset={[0.0008, 0.0008]} />
+            <Vignette offset={0.3} darkness={0.6} />
+            <Noise opacity={0.025} />
+          </EffectComposer>
         </Suspense>
       </Canvas>
     </div>

@@ -18,18 +18,17 @@ const SPECS = [
 
 export default function Hero() {
   const { isLoaded } = useApp()
-  const sectionRef = useRef(null)
-  const pinRef = useRef(null)
-  const contentRef = useRef(null)
+  const sectionRef  = useRef(null)
+  const pinRef      = useRef(null)
+  const contentRef  = useRef(null)
   const headlineRef = useRef(null)
-  const subRef = useRef(null)
-  const ctaRef = useRef(null)
-  const topRef = useRef(null)
-  const specRef = useRef(null)
-  const hintRef = useRef(null)
+  const subRef      = useRef(null)
+  const ctaRef      = useRef(null)
+  const topRef      = useRef(null)
+  const specRef     = useRef(null)
+  const hintRef     = useRef(null)
 
-  // Intro choreography — runs only once the loader has lifted. The headline is
-  // split exactly once (in the loaded branch) to avoid double-wrapping the DOM.
+  // Intro choreography — runs only once the loader has lifted.
   useGSAP(
     () => {
       if (prefersReducedMotion) return
@@ -46,26 +45,39 @@ export default function Hero() {
       const split = new SplitText(headlineRef.current.querySelectorAll('.h-line'), {
         type: 'chars',
       })
+
       const tl = gsap.timeline({ delay: 0.15 })
+
+      // Chars: fly in from below with velox ease, then subtle rotateX overshoot-settle
       tl.from(split.chars, {
         autoAlpha: 0,
         rotateX: 90,
         transformOrigin: '50% 50% -24px',
         stagger: 0.015,
-        duration: 0.8,
-        ease: 'power3.out',
+        duration: 0.85,
+        ease: 'velox',
       })
+        .to(
+          split.chars,
+          { rotateX: -4, stagger: 0.008, duration: 0.18, ease: 'power2.out' },
+          '-=0.25'
+        )
+        .to(
+          split.chars,
+          { rotateX: 0, stagger: 0.008, duration: 0.28, ease: 'power2.inOut' },
+          '-=0.12'
+        )
         .from(
           [subRef.current, ctaRef.current],
-          { autoAlpha: 0, filter: 'blur(16px)', stagger: 0.12, duration: 0.9, ease: 'power2.out' },
-          '-=0.4'
+          { autoAlpha: 0, filter: 'blur(16px)', stagger: 0.12, duration: 0.9, ease: 'velox' },
+          '-=0.5'
         )
         .from(
           topRef.current,
-          { autoAlpha: 0, filter: 'blur(10px)', duration: 0.8, ease: 'power2.out' },
-          '-=0.8'
+          { autoAlpha: 0, filter: 'blur(10px)', duration: 0.8, ease: 'velox' },
+          '-=0.85'
         )
-        .from(hintRef.current, { autoAlpha: 0, duration: 0.8 }, '-=0.5')
+        .from(hintRef.current, { autoAlpha: 0, duration: 0.8, ease: 'velox' }, '-=0.5')
     },
     { dependencies: [isLoaded], scope: sectionRef }
   )
@@ -95,7 +107,7 @@ export default function Hero() {
           invalidateOnRefresh: true,
         },
       })
-      tl.to({}, { duration: 1, ease: 'none' }) // backbone → maps scroll 0–1
+      tl.to({}, { duration: 1, ease: 'none' })
       tl.fromTo(
         specRef.current,
         { autoAlpha: 0, yPercent: 70, filter: 'blur(12px)' },
@@ -105,7 +117,7 @@ export default function Hero() {
       tl.to(hintRef.current, { autoAlpha: 0, duration: 0.15 }, 0.45)
       tl.to(
         contentRef.current,
-        { autoAlpha: 0, filter: 'blur(16px)', scale: 1.06, ease: 'power2.in', duration: 0.24 },
+        { autoAlpha: 0, filter: 'blur(16px)', scale: 1.06, ease: 'veloxIn', duration: 0.24 },
         0.78
       )
     },
@@ -144,7 +156,7 @@ export default function Hero() {
             </span>
           </div>
 
-          {/* Headline — asymmetric, center-left */}
+          {/* Headline */}
           <div className="absolute left-6 top-1/2 -translate-y-1/2 md:left-12">
             <h1
               ref={headlineRef}
@@ -175,6 +187,7 @@ export default function Hero() {
               onClick={goToModels}
               data-cursor="hover"
               data-magnetic
+              data-magnetic-strength="0.4"
               className="group mt-8 inline-flex items-center gap-3 font-accent text-[0.78rem] font-light uppercase tracking-[0.25em] text-electric"
             >
               Jelajahi Model

@@ -85,6 +85,8 @@ export default function Footer() {
                 onClick={(e) => handleNav(e, '#cta')}
                 aria-label={s.label}
                 data-cursor="hover"
+                data-magnetic
+                data-magnetic-strength="0.5"
                 className="text-chrome/60 transition-colors duration-300 hover:text-gold"
               >
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
