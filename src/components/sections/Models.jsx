@@ -3,14 +3,19 @@ import { useGSAP } from '@gsap/react'
 import { gsap } from 'gsap'
 import { prefersReducedMotion } from '../../lib/prefersReducedMotion'
 
+const BASE = 'https://images.unsplash.com'
+
 const CARDS = [
   {
     name: 'VELOX GT',
     tag: 'Grand Tourer',
     specs: ['580 HP', '320 KM/H', '3.2s'],
     price: 'Rp 7,4 M',
-    grad: 'linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 40%, #00D4FF15 100%)',
-    rim: 'rgba(0,212,255,0.2)',
+    // Blue sports car parked in the dark — photo by Valeriia Neganova (Unsplash)
+    img: `${BASE}/photo-1681167816651-65c6c00264c4?w=1920&q=80&auto=format&fit=crop`,
+    grad: 'linear-gradient(135deg, rgba(10,10,10,0.65) 0%, rgba(10,10,10,0.35) 50%, rgba(0,212,255,0.07) 100%)',
+    floor: 'linear-gradient(0deg, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.4) 45%, transparent 100%)',
+    rim: 'rgba(0,212,255,0.25)',
     edge: '#00D4FF',
   },
   {
@@ -18,8 +23,11 @@ const CARDS = [
     tag: 'Track Weapon',
     specs: ['720 HP', '340 KM/H', '2.8s'],
     price: 'Rp 9,1 M',
-    grad: 'linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 40%, #FF2D2D15 100%)',
-    rim: 'rgba(255,45,45,0.2)',
+    // Red Ferrari in a dark studio — photo by Branislav Rodman (Unsplash)
+    img: `${BASE}/photo-1751467928515-14a3515b99a8?w=1920&q=80&auto=format&fit=crop`,
+    grad: 'linear-gradient(135deg, rgba(10,10,10,0.65) 0%, rgba(10,10,10,0.35) 50%, rgba(255,45,45,0.07) 100%)',
+    floor: 'linear-gradient(0deg, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.4) 45%, transparent 100%)',
+    rim: 'rgba(255,45,45,0.25)',
     edge: '#FF2D2D',
   },
   {
@@ -27,8 +35,11 @@ const CARDS = [
     tag: 'Signature',
     specs: ['620 HP', '330 KM/H', '3.0s'],
     price: 'Rp 8,2 M',
-    grad: 'linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 40%, #C9A96E15 100%)',
-    rim: 'rgba(201,169,110,0.2)',
+    // Gold Lamborghini Sian — photo by David von Diemar (Unsplash)
+    img: `${BASE}/photo-1570294646112-27ce4f174e38?w=1920&q=80&auto=format&fit=crop`,
+    grad: 'linear-gradient(135deg, rgba(10,10,10,0.65) 0%, rgba(10,10,10,0.35) 50%, rgba(201,169,110,0.07) 100%)',
+    floor: 'linear-gradient(0deg, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.4) 45%, transparent 100%)',
+    rim: 'rgba(201,169,110,0.25)',
     edge: '#C9A96E',
   },
 ]
@@ -191,18 +202,32 @@ export default function Models() {
           <article
             key={card.name}
             data-cursor="cta"
-            className="model-card group relative flex shrink-0 flex-col justify-end overflow-hidden"
+            className="model-card group relative flex shrink-0 flex-col justify-end overflow-hidden bg-carbon2"
             style={{
               width: 'clamp(480px, 55vw, 720px)',
-              background: card.grad,
               boxShadow: `inset 3px 0 20px ${card.rim}`,
             }}
           >
+            {/* Car photography layer */}
+            <img
+              src={card.img}
+              alt=""
+              aria-hidden="true"
+              loading="lazy"
+              decoding="async"
+              className="absolute inset-0 h-full w-full object-cover"
+              style={{ opacity: 0.55 }}
+            />
+            {/* Accent colour grade overlay */}
+            <div aria-hidden="true" className="absolute inset-0" style={{ background: card.grad }} />
+            {/* Bottom darkening floor for text legibility */}
+            <div aria-hidden="true" className="absolute inset-0" style={{ background: card.floor }} />
+
             {/* left edge accent */}
             <span
               aria-hidden="true"
               className="absolute left-0 top-0 h-full w-px"
-              style={{ background: card.edge, opacity: 0.5 }}
+              style={{ background: card.edge, opacity: 0.6 }}
             />
 
             {/* tag top-left */}

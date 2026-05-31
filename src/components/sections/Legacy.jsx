@@ -107,12 +107,27 @@ export default function Legacy() {
         {/* Left — visual */}
         <div
           ref={leftRef}
-          className="relative h-[56vh] w-full border border-crimson/30 md:h-[70vh]"
-          style={{
-            background:
-              'linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 60%, #FF2D2D08 100%)',
-          }}
+          className="relative h-[56vh] w-full overflow-hidden border border-crimson/30 md:h-[70vh]"
         >
+          {/* Garage atmosphere photo — old car in workshop (Unsplash) */}
+          <img
+            src="https://images.unsplash.com/photo-1649615084630-431b70a6e89a?w=1600&q=80&auto=format&fit=crop"
+            alt=""
+            aria-hidden="true"
+            loading="lazy"
+            decoding="async"
+            className="absolute inset-0 h-full w-full object-cover"
+            style={{ opacity: 0.45, filter: 'grayscale(0.25) contrast(1.05)' }}
+          />
+          {/* Dark overlay to maintain legibility and match section palette */}
+          <div
+            aria-hidden="true"
+            className="absolute inset-0"
+            style={{
+              background:
+                'linear-gradient(135deg, rgba(26,26,26,0.55) 0%, rgba(13,13,13,0.65) 60%, rgba(255,45,45,0.04) 100%)',
+            }}
+          />
           <div
             data-speed="1.15"
             className="absolute bottom-6 left-6 flex h-28 w-28 items-center justify-center rounded-full border border-silver/40 text-center"
