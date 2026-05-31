@@ -1,11 +1,12 @@
 import { lenis } from '../../main.jsx'
 
 const NAV = [
+  { label: 'Manifesto', target: '#manifesto' },
   { label: 'Model', target: '#models' },
-  { label: 'Spesifikasi', target: '#specs' },
+  { label: 'Filosofi', target: '#philosophy' },
+  { label: 'Performa', target: '#performance' },
   { label: 'Warisan', target: '#legacy' },
-  { label: 'Kontak', target: '#cta' },
-  { label: 'Test Drive', target: '#cta' },
+  { label: 'Pengalaman', target: '#experience' },
 ]
 
 const SOCIAL = [
@@ -40,7 +41,7 @@ export default function Footer() {
           <div>
             <div className="font-display text-3xl tracking-[0.1em] text-gold">VELOX</div>
             <p className="mt-3 max-w-xs font-serif text-sm italic text-chrome/40">
-              Kecepatan yang sempurna.
+              Untuk yang menolak biasa.
             </p>
           </div>
 
@@ -97,9 +98,17 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col justify-between gap-2 font-accent text-[0.62rem] font-extralight uppercase tracking-[0.2em] text-muted sm:flex-row">
-          <span>© 2026 VELOX AUTO. All rights reserved.</span>
-          <span>Jakarta · Bali</span>
+        {/* Quiet sign-off */}
+        <p
+          className="mt-16 font-serif text-2xl italic text-chrome/30 md:text-3xl"
+          style={{ lineHeight: 1.3 }}
+        >
+          VELOX. Untuk yang menolak biasa.
+        </p>
+
+        <div className="mt-10 flex flex-col justify-between gap-2 border-t border-gold/10 pt-8 font-accent text-[0.62rem] font-extralight uppercase tracking-[0.2em] text-muted sm:flex-row">
+          <span>© 2026 VELOX AUTO. Hak cipta dilindungi.</span>
+          <span>Bandung · Jakarta · Bali</span>
         </div>
       </div>
     </footer>

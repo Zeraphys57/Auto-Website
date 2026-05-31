@@ -14,26 +14,37 @@ import HUD from './components/ui/HUD'
 
 import Loader from './components/sections/Loader'
 import Hero from './components/sections/Hero'
+import Manifesto from './components/sections/Manifesto'
 import Marquee from './components/sections/Marquee'
 import Models from './components/sections/Models'
+import DesignPhilosophy from './components/sections/DesignPhilosophy'
 import Specs from './components/sections/Specs'
+import Performance from './components/sections/Performance'
 import Legacy from './components/sections/Legacy'
+import Heritage from './components/sections/Heritage'
+import Experience from './components/sections/Experience'
 import Testimonials from './components/sections/Testimonials'
 import CTA from './components/sections/CTA'
 
 // Each section morphs the fixed background toward its base color as it enters,
-// so the three acts blend with zero hard cuts.
+// so the acts blend with zero hard cuts. Warm tones creep in around Experience
+// where ACT 3 (gold) begins.
 const ACTS = [
   { sel: '.hero-section',         color: '#0A0A0A' },
+  { sel: '.manifesto-section',    color: '#080809' },
   { sel: '.marquee-section',      color: '#0C0C0C' },
   { sel: '.models-section',       color: '#111111' },
+  { sel: '.philosophy-section',   color: '#0F0F11' },
   { sel: '.specs-section',        color: '#121214' },
+  { sel: '.performance-section',  color: '#131318' },
   { sel: '.legacy-section',       color: '#171717' },
-  { sel: '.testimonials-section', color: '#0D0D0D' },
+  { sel: '.heritage-section',     color: '#141413' },
+  { sel: '.experience-section',   color: '#16110A' },
+  { sel: '.testimonials-section', color: '#110D09' },
   { sel: '.cta-section',          color: '#0D0D0D' },
 ]
 
-function Experience() {
+function Experience3Act() {
   const { setCurrentAct, isLoaded } = useApp()
   const bgRef = useRef(null)
 
@@ -62,30 +73,28 @@ function Experience() {
       onLeaveBack: () => setCurrentAct(1),
     })
     const a3 = ScrollTrigger.create({
-      trigger: '.testimonials-section',
+      trigger: '.experience-section',
       start: 'top 55%',
       onEnter: () => setCurrentAct(3),
       onLeaveBack: () => setCurrentAct(2),
     })
 
     // data-speed depth parallax — elements move at differential scroll rates
-    // to create natural Z-depth. Runs after DOM is ready via the useGSAP scope.
-    if (!prefersReducedMotion) {
-      gsap.utils.toArray('[data-speed]').forEach((el) => {
-        const speed = parseFloat(el.dataset.speed)
-        gsap.to(el, {
-          y: () => (1 - speed) * ScrollTrigger.maxScroll(window) * 0.1,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: el,
-            start: 'top bottom',
-            end: 'bottom top',
-            scrub: true,
-            invalidateOnRefresh: true,
-          },
-        })
+    // to create natural Z-depth. Excludes anything inside pinned sections.
+    gsap.utils.toArray('[data-speed]').forEach((el) => {
+      const speed = parseFloat(el.dataset.speed)
+      gsap.to(el, {
+        y: () => (1 - speed) * ScrollTrigger.maxScroll(window) * 0.1,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: el,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: true,
+          invalidateOnRefresh: true,
+        },
       })
-    }
+    })
 
     return () => {
       a2.kill()
@@ -119,27 +128,48 @@ function Experience() {
       <GrainOverlay />
 
       <main>
-        {/* Hero is pinned — excluded from skew-wrap to avoid pin conflicts */}
+        {/* ACT 1 — arrival. Hero is pinned, excluded from skew-wrap. */}
         <Hero />
 
+        <div className="skew-wrap">
+          <Manifesto />
+        </div>
+
         <SectionTransition trigger=".marquee-section" color="#0A0A0A" accent="#00D4FF" />
-        {/* Non-pinned sections wrapped for scroll-velocity skew */}
         <div className="skew-wrap">
           <Marquee />
         </div>
 
-        {/* Models is pinned — excluded from skew-wrap */}
+        {/* ACT 2 — the machine. Models is pinned, excluded from skew-wrap. */}
         <Models />
+
+        <div className="skew-wrap">
+          <DesignPhilosophy />
+        </div>
 
         <SectionTransition trigger=".specs-section" color="#111111" accent="#FF2D2D" />
         <div className="skew-wrap">
           <Specs />
+        </div>
+        <div className="skew-wrap">
+          <Performance />
+        </div>
+        <div className="skew-wrap">
           <Legacy />
         </div>
+        <div className="skew-wrap">
+          <Heritage />
+        </div>
 
-        <SectionTransition trigger=".testimonials-section" color="#1A1A1A" accent="#C9A96E" />
+        {/* ACT 3 — belonging. Gold warmth enters with Experience. */}
+        <SectionTransition trigger=".experience-section" color="#1A1A1A" accent="#C9A96E" />
+        <div className="skew-wrap">
+          <Experience />
+        </div>
         <div className="skew-wrap">
           <Testimonials />
+        </div>
+        <div className="skew-wrap">
           <CTA />
         </div>
       </main>
@@ -152,7 +182,7 @@ function Experience() {
 export default function App() {
   return (
     <AppProvider>
-      <Experience />
+      <Experience3Act />
     </AppProvider>
   )
 }

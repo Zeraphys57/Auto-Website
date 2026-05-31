@@ -7,7 +7,7 @@ import { lenis } from '../../main.jsx'
 
 const LINKS = [
   { label: 'Model', target: '#models' },
-  { label: 'Spesifikasi', target: '#specs' },
+  { label: 'Filosofi', target: '#philosophy' },
   { label: 'Warisan', target: '#legacy' },
   { label: 'Kontak', target: '#cta' },
 ]
@@ -86,15 +86,15 @@ export default function Navbar() {
 
         {/* Test Drive CTA */}
         <a
-          href="#cta"
-          onClick={(e) => handleNav(e, '#cta')}
+          href="#experience"
+          onClick={(e) => handleNav(e, '#experience')}
           data-magnetic
           data-magnetic-strength="0.4"
           data-cursor="hover"
           className={`group relative hidden overflow-hidden border ${accentBorder} px-6 py-2.5 font-accent text-[0.7rem] font-light uppercase tracking-[0.22em] ${accent} transition-colors duration-300 sm:inline-block`}
         >
           <span className="relative z-10 transition-colors duration-300 group-hover:text-carbon">
-            Test Drive
+            Pengalaman Privat
           </span>
           <span
             className={`absolute inset-0 origin-bottom scale-y-0 transition-transform duration-300 ease-[cubic-bezier(0.65,0,0.35,1)] group-hover:scale-y-100 ${

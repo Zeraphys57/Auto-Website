@@ -4,13 +4,19 @@ import { prefersReducedMotion } from '../../lib/prefersReducedMotion'
 
 const SECTIONS = [
   { sel: '.hero-section',         num: '01' },
-  { sel: '.marquee-section',      num: '02' },
-  { sel: '.models-section',       num: '03' },
-  { sel: '.specs-section',        num: '04' },
-  { sel: '.legacy-section',       num: '05' },
-  { sel: '.testimonials-section', num: '06' },
-  { sel: '.cta-section',          num: '07' },
+  { sel: '.manifesto-section',    num: '02' },
+  { sel: '.marquee-section',      num: '03' },
+  { sel: '.models-section',       num: '04' },
+  { sel: '.philosophy-section',   num: '05' },
+  { sel: '.specs-section',        num: '06' },
+  { sel: '.performance-section',  num: '07' },
+  { sel: '.legacy-section',       num: '08' },
+  { sel: '.heritage-section',     num: '09' },
+  { sel: '.experience-section',   num: '10' },
+  { sel: '.testimonials-section', num: '11' },
+  { sel: '.cta-section',          num: '12' },
 ]
+const TOTAL = String(SECTIONS.length).padStart(2, '0')
 
 // Engineered HUD overlay — progress bar, section counter, frame readout, est. label.
 // All elements are aria-hidden and respect prefers-reduced-motion (freeze, not remove).
@@ -44,7 +50,7 @@ export default function HUD() {
         end: 'bottom 55%',
         onToggle: (self) => {
           if (self.isActive && counterRef.current)
-            counterRef.current.textContent = `${num} / 07`
+            counterRef.current.textContent = `${num} / ${TOTAL}`
         },
       })
     }).filter(Boolean)
@@ -90,7 +96,7 @@ export default function HUD() {
         aria-hidden="true"
         className="pointer-events-none fixed bottom-8 right-8 z-[8990] font-mono text-[0.58rem] tracking-[0.22em] text-muted"
       >
-        <span ref={counterRef}>01 / 07</span>
+        <span ref={counterRef}>01 / {TOTAL}</span>
       </div>
 
       {/* Hero frame readout — top-right, electric, 0.6rem */}

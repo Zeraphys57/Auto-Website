@@ -5,30 +5,33 @@ import { prefersReducedMotion } from '../../lib/prefersReducedMotion'
 const DATA = [
   {
     quote: [
-      'Velox bukan pilihan pertama saya.',
-      'Tapi setelah test drive 10 menit,',
-      'tidak ada pilihan lain.',
+      'Orang bertanya mengapa, padahal sudah punya tiga.',
+      'Mereka memang tak akan mengerti.',
+      'Dan saya tak perlu menjelaskan.',
     ],
-    name: 'Arief Wibowo',
-    role: 'CEO, Jakarta Ventures',
+    name: 'Setiawan Halim',
+    role: 'Pendiri & Investor',
+    owned: 'VELOX RS · Pemilik sejak 2019',
   },
   {
     quote: [
-      'Saya memiliki lima mobil sport.',
-      'Hanya satu yang saya kemudikan',
-      'setiap pagi.',
+      'Dua belas mobil di garasi saya.',
+      'Hanya satu yang kuncinya selalu di saku.',
+      'Anda bisa menebak yang mana.',
     ],
-    name: 'Sari Dewanti',
-    role: 'Kolektor, Bali',
+    name: 'Maria Tjandra',
+    role: 'Kolektor Privat',
+    owned: 'VELOX S · Garasi pribadi, Jakarta',
   },
   {
     quote: [
-      'Di lintasan, mesin tidak bisa berbohong.',
-      'Velox mengatakan kebenaran',
-      'pada 300 kilometer per jam.',
+      'Di atas 250, mesin tidak bisa berbohong.',
+      'VELOX mengatakan kebenaran,',
+      'dan saya percaya setiap katanya.',
     ],
     name: 'Reza Mahendra',
-    role: 'Pembalap Profesional',
+    role: 'Pembalap & Pengusaha',
+    owned: 'VELOX GT · 40.000 km dalam dua tahun',
   },
 ]
 
@@ -90,8 +93,8 @@ export default function Testimonials() {
               <div className="mt-1 font-accent text-[0.7rem] font-extralight uppercase tracking-[0.2em] text-muted">
                 {active.role}
               </div>
-              <div className="mt-4 text-gold" style={{ letterSpacing: '0.3em' }}>
-                ★★★★★
+              <div className="mt-5 font-mono text-[0.6rem] uppercase tracking-[0.25em] text-gold/70">
+                {active.owned}
               </div>
             </footer>
           </motion.blockquote>

@@ -8,12 +8,12 @@ import { useApp } from '../../context/AppContext'
 import { prefersReducedMotion } from '../../lib/prefersReducedMotion'
 import { lenis } from '../../main.jsx'
 
-const HEADLINE = ['KECEPATAN', 'YANG', 'SEMPURNA']
+const HEADLINE = ['UNTUK YANG', 'TAK PERNAH', 'CUKUP']
 
 const SPECS = [
   { label: '0–100 KM/H', value: '3.2 DETIK' },
   { label: 'TOP SPEED', value: '320 KM/H' },
-  { label: 'ENGINE', value: '4.0L V8 BITURBO' },
+  { label: 'MESIN', value: '4.0L V8 BITURBO' },
 ]
 
 export default function Hero() {
@@ -23,6 +23,7 @@ export default function Hero() {
   const contentRef  = useRef(null)
   const headlineRef = useRef(null)
   const subRef      = useRef(null)
+  const identityRef = useRef(null)
   const ctaRef      = useRef(null)
   const topRef      = useRef(null)
   const specRef     = useRef(null)
@@ -35,7 +36,7 @@ export default function Hero() {
 
       if (!isLoaded) {
         gsap.set(
-          [headlineRef.current, subRef.current, ctaRef.current, topRef.current, hintRef.current],
+          [headlineRef.current, subRef.current, identityRef.current, ctaRef.current, topRef.current, hintRef.current],
           { autoAlpha: 0 }
         )
         return
@@ -68,7 +69,7 @@ export default function Hero() {
           '-=0.12'
         )
         .from(
-          [subRef.current, ctaRef.current],
+          [subRef.current, identityRef.current, ctaRef.current],
           { autoAlpha: 0, filter: 'blur(16px)', stagger: 0.12, duration: 0.9, ease: 'velox' },
           '-=0.5'
         )
@@ -178,7 +179,14 @@ export default function Hero() {
               ref={subRef}
               className="mt-6 max-w-md font-serif text-lg italic text-chrome/70 md:text-xl"
             >
-              Engineered for those who refuse to compromise.
+              Beberapa orang melihat jalan. Anda melihat undangan.
+            </p>
+
+            <p
+              ref={identityRef}
+              className="mt-4 max-w-sm font-accent text-[0.7rem] font-extralight uppercase leading-relaxed tracking-[0.28em] text-muted"
+            >
+              Bukan untuk semua orang. Dan justru itulah maksudnya.
             </p>
 
             <a
@@ -190,7 +198,7 @@ export default function Hero() {
               data-magnetic-strength="0.4"
               className="group mt-8 inline-flex items-center gap-3 font-accent text-[0.78rem] font-light uppercase tracking-[0.25em] text-electric"
             >
-              Jelajahi Model
+              Jelajahi Koleksi
               <span className="transition-transform duration-300 group-hover:translate-x-2">
                 →
               </span>

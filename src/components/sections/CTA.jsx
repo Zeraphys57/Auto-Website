@@ -84,7 +84,7 @@ export default function CTA() {
       <div className="relative z-10 mx-auto max-w-4xl">
         <div className="mb-8 flex items-center justify-center gap-2 font-accent text-[0.62rem] font-extralight uppercase tracking-[0.3em] text-gold">
           <span className="text-base leading-none">·</span>
-          Milik Anda Sekarang
+          Undangan Privat
         </div>
 
         <h2 className="font-display text-chrome" style={{ lineHeight: 0.9 }}>
@@ -93,19 +93,19 @@ export default function CTA() {
             className="block"
             style={{ fontSize: 'clamp(4rem, 10vw, 9rem)' }}
           >
-            KEMUDI ADA
+            BEBERAPA HAL
           </span>
           <span
             ref={line2Ref}
             className="mt-2 block font-serif italic text-gold"
             style={{ fontSize: 'clamp(3rem, 7vw, 6rem)' }}
           >
-            di tangan anda
+            tak perlu dipikir dua kali
           </span>
         </h2>
 
         <p ref={subRef} className="mx-auto mt-8 max-w-md text-offwhite/60">
-          Test drive tersedia setiap hari. Tanpa reservasi.
+          Datang. Rasakan. Sisanya akan jelas dengan sendirinya.
         </p>
 
         <div ref={btnRef} className="mt-12 flex flex-wrap items-center justify-center gap-5">
@@ -116,7 +116,7 @@ export default function CTA() {
             className="group inline-block bg-electric px-9 py-4"
           >
             <span className="block font-accent text-[0.72rem] font-medium uppercase tracking-[0.22em] text-carbon transition-transform duration-300 group-hover:scale-[1.02]">
-              Jadwalkan Test Drive
+              Rasakan Sendiri
             </span>
           </a>
           <a
@@ -126,7 +126,7 @@ export default function CTA() {
             className="group inline-block border border-gold/40 px-9 py-4"
           >
             <span className="block font-accent text-[0.72rem] font-light uppercase tracking-[0.22em] text-offwhite transition-transform duration-300 group-hover:scale-[1.02]">
-              Hubungi Kami
+              Mulai Percakapan
             </span>
           </a>
         </div>

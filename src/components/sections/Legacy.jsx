@@ -5,9 +5,9 @@ import { SplitText } from 'gsap/SplitText'
 import { prefersReducedMotion } from '../../lib/prefersReducedMotion'
 
 const STATS = [
-  { target: 48,   suffix: '',  label: 'Tahun' },
-  { target: 1200, suffix: '+', label: 'Unit Terjual' },
-  { target: 32,   suffix: '',  label: 'Penghargaan' },
+  { target: 39,   suffix: '',  label: 'Tahun Obsesi' },
+  { target: 1200, suffix: '+', label: 'Unit, Tak Pernah Massal' },
+  { target: 32,   suffix: '',  label: 'Gelar Juara' },
 ]
 
 export default function Legacy() {
@@ -167,13 +167,14 @@ export default function Legacy() {
             style={{ lineHeight: 1.9 }}
           >
             <p>
-              Sejak 1987, setiap Velox lahir dari ruang gerah tempat para insinyur
-              menolak kata "cukup". Bukan mobil yang dibuat untuk dijual — melainkan
-              untuk membuktikan sesuatu.
+              Tahun 1987, di sebuah bengkel sempit di pinggiran Bandung, Tan Wijaya
+              membongkar mesin yang menurut semua orang sudah sempurna. Baginya,
+              "cukup cepat" adalah sebuah penghinaan.
             </p>
             <p>
-              Empat dekade penyempurnaan. Ribuan jam di lintasan. Satu prinsip yang
-              tak pernah berubah: kesempurnaan bukan tujuan, melainkan titik awal.
+              Empat dekade kemudian, pertanyaannya tak pernah berubah. Bukan
+              "seberapa cepat", melainkan "seberapa dekat dengan sempurna". Jarak
+              di antara keduanya — itulah seluruh hidup kami.
             </p>
           </div>
 

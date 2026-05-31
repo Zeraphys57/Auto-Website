@@ -9,8 +9,11 @@ const CARDS = [
   {
     name: 'VELOX GT',
     tag: 'Grand Tourer',
+    descriptor: 'Menaklukkan jarak.',
     specs: ['580 HP', '320 KM/H', '3.2s'],
-    price: 'Rp 7,4 M',
+    price: 'Mulai dari Rp 7,4 Miliar',
+    story:
+      'Benua menyusut menjadi perjalanan akhir pekan. Setiap kilometer lintas negara terasa seperti milik Anda sendiri.',
     // Blue sports car parked in the dark — photo by Valeriia Neganova (Unsplash)
     img: `${BASE}/photo-1681167816651-65c6c00264c4?w=1920&q=80&auto=format&fit=crop`,
     grad: 'linear-gradient(135deg, rgba(10,10,10,0.65) 0%, rgba(10,10,10,0.35) 50%, rgba(0,212,255,0.07) 100%)',
@@ -21,8 +24,11 @@ const CARDS = [
   {
     name: 'VELOX RS',
     tag: 'Track Weapon',
+    descriptor: 'Lahir di sirkuit.',
     specs: ['720 HP', '340 KM/H', '2.8s'],
-    price: 'Rp 9,1 M',
+    price: 'Mulai dari Rp 9,1 Miliar',
+    story:
+      'Tidak ada yang ditambahkan demi kenyamanan. Semua yang tersisa, ada untuk satu hal — kecepatan.',
     // Red Ferrari in a dark studio — photo by Branislav Rodman (Unsplash)
     img: `${BASE}/photo-1751467928515-14a3515b99a8?w=1920&q=80&auto=format&fit=crop`,
     grad: 'linear-gradient(135deg, rgba(10,10,10,0.65) 0%, rgba(10,10,10,0.35) 50%, rgba(255,45,45,0.07) 100%)',
@@ -33,8 +39,11 @@ const CARDS = [
   {
     name: 'VELOX S',
     tag: 'Signature',
+    descriptor: 'Kemewahan setiap hari.',
     specs: ['620 HP', '330 KM/H', '3.0s'],
-    price: 'Rp 8,2 M',
+    price: 'Mulai dari Rp 8,2 Miliar',
+    story:
+      'Eksotis yang tak pernah melelahkan. Mobil yang Anda kemudikan setiap pagi, dan tak pernah berhenti mengagumi.',
     // Gold Lamborghini Sian — photo by David von Diemar (Unsplash)
     img: `${BASE}/photo-1570294646112-27ce4f174e38?w=1920&q=80&auto=format&fit=crop`,
     grad: 'linear-gradient(135deg, rgba(10,10,10,0.65) 0%, rgba(10,10,10,0.35) 50%, rgba(201,169,110,0.07) 100%)',
@@ -189,7 +198,7 @@ export default function Models() {
         className="absolute left-12 top-[14%] z-10 font-serif italic text-chrome"
         style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)' }}
       >
-        Koleksi Kami
+        Tiga watak, satu obsesi.
       </h2>
 
       {/* Track */}
@@ -240,25 +249,43 @@ export default function Models() {
               <h3 className="font-display text-[3rem] leading-none text-chrome">
                 {card.name}
               </h3>
-              <div className="mt-3 flex gap-5 font-mono text-xs text-silver/80">
+              <p className="mt-2 font-serif text-xl italic text-silver/80">
+                {card.descriptor}
+              </p>
+              <div className="mt-4 flex gap-5 font-mono text-xs text-silver/80">
                 {card.specs.map((s) => (
                   <span key={s}>{s}</span>
                 ))}
               </div>
-              <p className="mt-4 font-serif text-2xl italic text-gold">{card.price}</p>
+              <p className="mt-4 font-accent text-[0.78rem] font-light tracking-[0.12em] text-gold">
+                {card.price}
+              </p>
             </div>
 
-            {/* hover overlay — clip reveal from bottom */}
+            {/* hover overlay — clip reveal from bottom, reveals the car's story */}
             <div
-              className="absolute inset-0 z-20 flex items-end justify-center pb-10 transition-[clip-path] duration-500 [clip-path:inset(100%_0_0_0)] group-hover:[clip-path:inset(0%_0_0_0)]"
+              className="absolute inset-0 z-20 flex flex-col justify-end p-7 transition-[clip-path] duration-500 [clip-path:inset(100%_0_0_0)] group-hover:[clip-path:inset(0%_0_0_0)]"
               style={{
                 background:
-                  'linear-gradient(0deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.15) 60%, transparent 100%)',
+                  'linear-gradient(0deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.45) 55%, transparent 100%)',
                 transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)',
               }}
             >
-              <span className="font-accent text-sm font-light uppercase tracking-[0.3em] text-chrome">
-                Konfigurasi →
+              <span className="font-accent text-[0.6rem] font-extralight uppercase tracking-[0.3em] text-silver/70">
+                {card.tag}
+              </span>
+              <h3 className="mt-2 font-display text-[2.6rem] leading-none text-chrome">
+                {card.name}
+              </h3>
+              <p
+                className="mt-4 max-w-sm font-serif italic text-chrome/75"
+                style={{ fontSize: '1.05rem', lineHeight: 1.5 }}
+              >
+                {card.story}
+              </p>
+              <span className="mt-6 inline-flex items-center gap-2 font-accent text-sm font-light uppercase tracking-[0.3em] text-chrome">
+                Konfigurasi
+                <span aria-hidden="true">→</span>
               </span>
             </div>
           </article>

@@ -5,11 +5,11 @@ import EngineParticles from '../canvas/EngineParticles'
 import { prefersReducedMotion } from '../../lib/prefersReducedMotion'
 
 const ROWS = [
-  { label: 'MESIN',    value: '4.0L V8 BITURBO', fill: 0.78 },
-  { label: 'TENAGA',  value: '580 HP',           fill: 0.96 },
-  { label: 'TORSI',   value: '720 NM',           fill: 0.88 },
-  { label: 'TOP SPEED', value: '320 KM/H',       fill: 0.80 },
-  { label: 'BOBOT',   value: '1.420 KG',         fill: 0.52 },
+  { label: 'MESIN',     value: '4.0L V8 BITURBO', caption: 'Jantung yang dirakit dengan tangan.',     fill: 0.78 },
+  { label: 'TENAGA',    value: '580 HP',          caption: 'Cadangan yang tak pernah habis.',          fill: 0.96 },
+  { label: 'TORSI',     value: '720 NM',          caption: 'Dorongan yang menempel di punggung Anda.', fill: 0.88 },
+  { label: 'TOP SPEED', value: '320 KM/H',        caption: 'Tempat horizon datang lebih awal.',        fill: 0.80 },
+  { label: 'BOBOT',     value: '1.420 KG',        caption: 'Seni membuang yang tak perlu.',            fill: 0.52 },
 ]
 
 export default function Specs() {
@@ -104,6 +104,9 @@ export default function Specs() {
           <div className="mt-2 font-display text-[2rem] leading-none text-electric">
             DETIK
           </div>
+          <p className="mt-7 max-w-xs font-serif text-lg italic text-chrome/55">
+            Angka hanyalah awal cerita.
+          </p>
         </div>
 
         {/* Right — spec table */}
@@ -111,13 +114,18 @@ export default function Specs() {
           {ROWS.map((row) => (
             <div
               key={row.label}
-              className="spec-row grid grid-cols-[1fr_1.1fr_1fr] items-center gap-4 border-b border-silver/15 py-5 font-mono"
+              className="spec-row grid grid-cols-[1fr_1.2fr_1fr] items-center gap-4 border-b border-silver/15 py-5"
             >
-              <span className="text-xs uppercase tracking-[0.15em] text-muted">
+              <span className="self-start pt-1 font-mono text-xs uppercase tracking-[0.15em] text-muted">
                 {row.label}
               </span>
-              <span className="text-sm text-chrome">{row.value}</span>
-              <span className="relative block h-[2px] w-full bg-silver/10">
+              <div>
+                <span className="font-mono text-sm text-chrome">{row.value}</span>
+                <span className="mt-1.5 block max-w-[22ch] font-serif text-[0.92rem] italic leading-snug text-muted">
+                  {row.caption}
+                </span>
+              </div>
+              <span className="relative block h-[2px] w-full self-center bg-silver/10">
                 <span
                   data-fill={row.fill}
                   className="spec-bar absolute left-0 top-0 block h-full w-full origin-left bg-electric"
