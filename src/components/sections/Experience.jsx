@@ -1,6 +1,7 @@
 import { useRef } from 'react'
 import { useGSAP } from '@gsap/react'
 import { gsap } from 'gsap'
+import { applyTilt } from '../../lib/tilt'
 import { prefersReducedMotion } from '../../lib/prefersReducedMotion'
 
 // Ownership world — three pillars that justify the price emotionally. This is
@@ -60,6 +61,13 @@ export default function Experience() {
         stagger: 0.15,
         scrollTrigger: { trigger: '.exp-grid', start: 'top 74%' },
       })
+
+      // 3D tilt + glare on each pillar.
+      const cleanups = gsap.utils.toArray('.exp-pillar').map((p) => {
+        const glare = p.querySelector('.exp-glare')
+        return applyTilt(p, { max: 9, glare })
+      })
+      return () => cleanups.forEach((c) => c())
     },
     { scope: sectionRef, dependencies: [rm] }
   )
@@ -125,6 +133,11 @@ export default function Experience() {
                 aria-hidden="true"
                 className="absolute bottom-0 left-0 h-px w-0 bg-gold/50 transition-[width] duration-700 group-hover:w-full"
                 style={{ transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)' }}
+              />
+              <span
+                className="exp-glare pointer-events-none absolute inset-0 z-10"
+                aria-hidden="true"
+                style={{ opacity: 0, mixBlendMode: 'overlay' }}
               />
             </article>
           ))}

@@ -1,8 +1,10 @@
 import { useCallback, useEffect, useRef } from 'react'
 import { useGSAP } from '@gsap/react'
+import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useApp } from '../../context/AppContext'
 import { useFramePreloader } from '../../hooks/useFramePreloader'
+import { pointer, pointerEnabled } from '../../lib/pointer'
 import { prefersReducedMotion } from '../../lib/prefersReducedMotion'
 
 // Generate real frames when a hero video exists:
@@ -19,7 +21,9 @@ export default function FrameSequence({
   trigger = '.hero-section',
 }) {
   const canvasRef = useRef(null)
-  const currentFrame = useRef(0)
+  const currentFrame = useRef(0)   // base index, driven by scroll
+  const pointerOffset = useRef(0)  // ±2 frames, driven by cursor X
+  const drawnFrame = useRef(-1)
   const { frames, ready } = useFramePreloader(frameCount, basePath)
   const { setFramesReady } = useApp()
 
@@ -144,9 +148,36 @@ export default function FrameSequence({
     [frames, frameCount, drawPlaceholder]
   )
 
+  // Draw base(scroll) + offset(cursor), skipping redundant redraws.
+  const drawCombined = useCallback(
+    (force = false) => {
+      const idx = Math.min(frameCount - 1, Math.max(0, currentFrame.current + pointerOffset.current))
+      if (idx === drawnFrame.current && !force) return idx
+      drawnFrame.current = idx
+      drawFrame(idx)
+      return idx
+    },
+    [drawFrame, frameCount]
+  )
+
   useEffect(() => {
     if (ready) setFramesReady(true)
   }, [ready, setFramesReady])
+
+  // Cursor X nudges the hero frame ±2 — the car "shifts" as you move the mouse,
+  // making even the pinned hero feel hand-controlled. Core scrub is untouched.
+  useEffect(() => {
+    if (prefersReducedMotion || !pointerEnabled) return
+    const update = () => {
+      const off = Math.round(pointer.nx * 4) // nx ∈ [-0.5,0.5] → ±2
+      if (off !== pointerOffset.current) {
+        pointerOffset.current = off
+        drawCombined()
+      }
+    }
+    gsap.ticker.add(update)
+    return () => gsap.ticker.remove(update)
+  }, [drawCombined])
 
   // Size the canvas to the viewport (device-pixel sharp) and redraw.
   useEffect(() => {
@@ -155,19 +186,19 @@ export default function FrameSequence({
       if (!canvas) return
       canvas.width = Math.floor(window.innerWidth * DPR)
       canvas.height = Math.floor(window.innerHeight * DPR)
-      drawFrame(currentFrame.current)
+      drawCombined(true)
     }
     resize()
     window.addEventListener('resize', resize)
     return () => window.removeEventListener('resize', resize)
-  }, [drawFrame])
+  }, [drawCombined])
 
   // Scrub the sequence across the pinned hero. Reduced motion → static frame.
   useGSAP(
     () => {
       if (prefersReducedMotion) {
         currentFrame.current = Math.round(0.62 * (frameCount - 1))
-        drawFrame(currentFrame.current)
+        drawCombined(true)
         return
       }
       ScrollTrigger.create({
@@ -180,15 +211,15 @@ export default function FrameSequence({
           const index = Math.round(self.progress * (frameCount - 1))
           if (index !== currentFrame.current) {
             currentFrame.current = index
-            drawFrame(index)
+            const drawn = drawCombined()
             window.dispatchEvent(
-              new CustomEvent('velox:frame', { detail: { index, total: frameCount } })
+              new CustomEvent('velox:frame', { detail: { index: drawn, total: frameCount } })
             )
           }
         },
       })
     },
-    { dependencies: [ready, drawFrame, trigger, frameCount] }
+    { dependencies: [ready, drawCombined, trigger, frameCount] }
   )
 
   return (

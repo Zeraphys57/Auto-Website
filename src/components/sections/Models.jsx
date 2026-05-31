@@ -1,6 +1,7 @@
 import { useRef } from 'react'
 import { useGSAP } from '@gsap/react'
 import { gsap } from 'gsap'
+import { applyTilt } from '../../lib/tilt'
 import { prefersReducedMotion } from '../../lib/prefersReducedMotion'
 
 const BASE = 'https://images.unsplash.com'
@@ -121,33 +122,29 @@ export default function Models() {
         }
       )
 
-      // SIGNATURE MOMENT: color bleed — each card bleeds its accent color into
-      // the entire section background and PERFORMA text on hover, returning to
-      // neutral carbon2 on leave.
-      if (typeof window !== 'undefined' && !window.matchMedia('(pointer: coarse)').matches) {
-        const cardEls = Array.from(sectionRef.current.querySelectorAll('.model-card'))
-        const handlers = cardEls.map((cardEl, i) => {
-          const { edge } = CARDS[i]
-          const enter = () => {
+      // SIGNATURE MOMENT: 3D tilt + glare + accent color-bleed. Hovering a card
+      // tilts it toward the cursor and sweeps a glare across it, while its accent
+      // bleeds into the whole section (bg tint + PERFORMA hue). One applyTilt per
+      // card carries all three — and no-ops on touch / reduced-motion.
+      const cardEls = Array.from(sectionRef.current.querySelectorAll('.model-card'))
+      const cleanups = cardEls.map((cardEl, i) => {
+        const { edge } = CARDS[i]
+        const glare = cardEl.querySelector('.card-glare')
+        return applyTilt(cardEl, {
+          max: 12,
+          glare,
+          onEnter: () => {
             bleedRef.current.style.backgroundColor = edge
             gsap.to(bleedRef.current, { opacity: 0.07, duration: 0.8, ease: 'velox' })
             gsap.to(loudRef.current, { color: edge, duration: 0.8, ease: 'velox' })
-          }
-          const leave = () => {
+          },
+          onLeave: () => {
             gsap.to(bleedRef.current, { opacity: 0, duration: 0.9, ease: 'velox' })
             gsap.to(loudRef.current, { color: '#1A1A1A', duration: 0.9, ease: 'velox' })
-          }
-          cardEl.addEventListener('mouseenter', enter)
-          cardEl.addEventListener('mouseleave', leave)
-          return { cardEl, enter, leave }
+          },
         })
-        return () => {
-          handlers.forEach(({ cardEl, enter, leave }) => {
-            cardEl.removeEventListener('mouseenter', enter)
-            cardEl.removeEventListener('mouseleave', leave)
-          })
-        }
-      }
+      })
+      return () => cleanups.forEach((c) => c())
     },
     { scope: sectionRef, dependencies: [rm] }
   )
@@ -231,6 +228,13 @@ export default function Models() {
             <div aria-hidden="true" className="absolute inset-0" style={{ background: card.grad }} />
             {/* Bottom darkening floor for text legibility */}
             <div aria-hidden="true" className="absolute inset-0" style={{ background: card.floor }} />
+
+            {/* Cursor glare — swept across the surface by applyTilt */}
+            <span
+              className="card-glare pointer-events-none absolute inset-0 z-30"
+              aria-hidden="true"
+              style={{ opacity: 0, mixBlendMode: 'overlay' }}
+            />
 
             {/* left edge accent */}
             <span

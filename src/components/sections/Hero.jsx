@@ -1,10 +1,11 @@
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { useGSAP } from '@gsap/react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { SplitText } from 'gsap/SplitText'
 import FrameSequence from '../canvas/FrameSequence'
 import { useApp } from '../../context/AppContext'
+import { registerParallax } from '../../lib/pointer'
 import { prefersReducedMotion } from '../../lib/prefersReducedMotion'
 import { lenis } from '../../main.jsx'
 
@@ -28,6 +29,7 @@ export default function Hero() {
   const topRef      = useRef(null)
   const specRef     = useRef(null)
   const hintRef     = useRef(null)
+  const frameWrapRef = useRef(null)
 
   // Intro choreography — runs only once the loader has lifted.
   useGSAP(
@@ -125,6 +127,37 @@ export default function Hero() {
     { scope: sectionRef }
   )
 
+  // Mouse-parallax — each layer drifts at its own rate for 3D depth. The frame
+  // canvas moves opposite (and is over-scanned 6% so edges never show).
+  useEffect(() => {
+    const cleanups = [
+      registerParallax(frameWrapRef.current, { strength: 14, invert: true, lerp: 0.08 }),
+      registerParallax(topRef.current, { strength: 10 }),
+      registerParallax(headlineRef.current, { strength: 8 }),
+      registerParallax(subRef.current, { strength: 16 }),
+      registerParallax(identityRef.current, { strength: 18 }),
+      registerParallax(ctaRef.current, { strength: 16 }),
+      registerParallax(specRef.current, { strength: 24 }),
+    ]
+    return () => cleanups.forEach((c) => c())
+  }, [])
+
+  // Live-readout flicker on the last glyph of each spec value.
+  useEffect(() => {
+    if (prefersReducedMotion) return
+    const tweens = gsap.utils.toArray('.spec-flicker').map((el) =>
+      gsap.to(el, {
+        opacity: 0.4,
+        duration: 0.5,
+        repeat: -1,
+        yoyo: true,
+        ease: 'steps(1)',
+        delay: Math.random() * 0.9,
+      })
+    )
+    return () => tweens.forEach((t) => t.kill())
+  }, [])
+
   const goToModels = (e) => {
     e.preventDefault()
     const el = document.querySelector('#models')
@@ -136,8 +169,12 @@ export default function Hero() {
   return (
     <section ref={sectionRef} id="top" className="hero-section relative">
       <div ref={pinRef} className="relative h-screen w-full overflow-hidden">
-        {/* Layer 1 — frame sequence */}
-        <FrameSequence frameCount={240} />
+        {/* Layer 1 — frame sequence (mouse-parallax wrapper, over-scanned) */}
+        <div ref={frameWrapRef} className="absolute inset-0">
+          <div className="absolute inset-0" style={{ transform: 'scale(1.06)' }}>
+            <FrameSequence frameCount={240} />
+          </div>
+        </div>
 
         {/* Layer 2 — content overlay */}
         <div
@@ -216,7 +253,8 @@ export default function Hero() {
                   {s.label}
                 </div>
                 <div className="mt-1 font-display text-[1.4rem] leading-none text-chrome">
-                  {s.value}
+                  {s.value.slice(0, -1)}
+                  <span className="spec-flicker text-electric">{s.value.slice(-1)}</span>
                 </div>
               </div>
             ))}

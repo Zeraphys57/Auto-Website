@@ -1,7 +1,8 @@
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { useGSAP } from '@gsap/react'
 import { gsap } from 'gsap'
 import { SplitText } from 'gsap/SplitText'
+import { registerParallax } from '../../lib/pointer'
 import { prefersReducedMotion } from '../../lib/prefersReducedMotion'
 
 // The emotional anchor — pure typography, no 3D. Each line rises through a mask
@@ -69,6 +70,20 @@ export default function Manifesto() {
     },
     { scope: sectionRef, dependencies: [rm] }
   )
+
+  // Mouse-parallax — lines drift at increasing rates for layered depth; the
+  // eyebrow moves horizontally only (its reveal owns the y axis).
+  useEffect(() => {
+    const lines = linesRef.current
+      ? Array.from(linesRef.current.querySelectorAll('.manifesto-line'))
+      : []
+    const cleanups = [
+      registerParallax(eyebrowRef.current, { strength: 22, strengthY: 0 }),
+      registerParallax(lineDrawRef.current, { strength: 30, invert: true }),
+      ...lines.map((el, i) => registerParallax(el, { strength: 8 + i * 5 })),
+    ]
+    return () => cleanups.forEach((c) => c())
+  }, [])
 
   return (
     <section

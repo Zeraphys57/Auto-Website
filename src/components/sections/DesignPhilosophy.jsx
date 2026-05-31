@@ -1,6 +1,7 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { useGSAP } from '@gsap/react'
 import { gsap } from 'gsap'
+import { applyTilt } from '../../lib/tilt'
 import { prefersReducedMotion } from '../../lib/prefersReducedMotion'
 
 // Craft showcase — 4 detail beats, panels wipe in via clip-path (alternating
@@ -40,6 +41,7 @@ const BEATS = [
 export default function DesignPhilosophy() {
   const sectionRef = useRef(null)
   const headRef = useRef(null)
+  const [hovered, setHovered] = useState(null)
   const rm = prefersReducedMotion
 
   useGSAP(
@@ -77,6 +79,13 @@ export default function DesignPhilosophy() {
           scrollTrigger: { trigger: beat, start: 'top 70%' },
         })
       })
+
+      // 3D tilt + glare on each visual panel.
+      const cleanups = gsap.utils.toArray('.philo-panel').map((panel) => {
+        const glare = panel.querySelector('.philo-glare')
+        return applyTilt(panel, { max: 10, glare })
+      })
+      return () => cleanups.forEach((c) => c())
     },
     { scope: sectionRef, dependencies: [rm] }
   )
@@ -106,10 +115,16 @@ export default function DesignPhilosophy() {
         <div className="space-y-24 md:space-y-32">
           {BEATS.map((b, i) => {
             const flip = i % 2 === 1
+            const dim = hovered !== null && hovered !== i
             return (
               <div
                 key={b.label}
-                className="philo-beat grid grid-cols-1 items-center gap-10 md:grid-cols-2 md:gap-16"
+                onMouseEnter={() => setHovered(i)}
+                onMouseLeave={() => setHovered(null)}
+                className={`philo-beat grid grid-cols-1 items-center gap-10 transition-[opacity,transform] duration-500 md:grid-cols-2 md:gap-16 ${
+                  dim ? 'opacity-45' : 'opacity-100'
+                } ${hovered === i ? 'md:scale-[1.015]' : ''}`}
+                style={{ transitionTimingFunction: 'cubic-bezier(0.16,1,0.3,1)' }}
               >
                 {/* Visual panel — replace gradient with real photography */}
                 <div
@@ -125,6 +140,11 @@ export default function DesignPhilosophy() {
                   <span
                     aria-hidden="true"
                     className="absolute bottom-0 left-0 h-px w-full bg-gradient-to-r from-transparent via-electric/40 to-transparent"
+                  />
+                  <span
+                    className="philo-glare pointer-events-none absolute inset-0 z-10"
+                    aria-hidden="true"
+                    style={{ opacity: 0, mixBlendMode: 'overlay' }}
                   />
                 </div>
 

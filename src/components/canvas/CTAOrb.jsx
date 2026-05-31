@@ -4,11 +4,13 @@ import { EffectComposer, Bloom, Vignette, Noise, ChromaticAberration } from '@re
 import vertexShader from '../../shaders/orb.vert.glsl?raw'
 import fragmentShader from '../../shaders/orb.frag.glsl?raw'
 import { useIntersectionPause } from '../../hooks/useIntersectionPause'
+import { pointer } from '../../lib/pointer'
 import { prefersReducedMotion } from '../../lib/prefersReducedMotion'
 
 function Orb() {
   const meshRef = useRef(null)
   const matRef = useRef(null)
+  const tilt = useRef({ x: 0, y: 0 })
   const uniforms = useMemo(() => ({ uTime: { value: 0 } }), [])
 
   useFrame((state, delta) => {
@@ -16,6 +18,12 @@ function Orb() {
     if (matRef.current) matRef.current.uniforms.uTime.value = t
     if (meshRef.current) {
       meshRef.current.rotation.y += delta * 0.15
+      // "Looks at" the cursor — tilts and drifts toward it.
+      tilt.current.x += (pointer.ny * 0.4 - tilt.current.x) * 0.05
+      tilt.current.y += (pointer.nx * 0.5 - tilt.current.y) * 0.05
+      meshRef.current.rotation.x = tilt.current.x
+      meshRef.current.position.x = pointer.nx * 0.5
+      meshRef.current.position.y = -pointer.ny * 0.35
       const pulse = 1.0 + (Math.sin(t * 1.5) * 0.5 + 0.5) * 0.05 // 1.0 → 1.05
       meshRef.current.scale.setScalar(pulse)
     }

@@ -1,8 +1,9 @@
-import { Suspense, useRef } from 'react'
+import { Suspense, useMemo, useRef } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { AdditiveBlending, Color } from 'three'
 import { EffectComposer, Bloom, Vignette, Noise, ChromaticAberration } from '@react-three/postprocessing'
 import { useIntersectionPause } from '../../hooks/useIntersectionPause'
+import { pointer } from '../../lib/pointer'
 import { prefersReducedMotion } from '../../lib/prefersReducedMotion'
 
 const COUNT = 300
@@ -32,13 +33,35 @@ const { positions: POSITIONS, colors: COLORS } = (() => {
   return { positions, colors }
 })()
 
-function ParticleField() {
+const WHITE = new Color('#ffffff')
+
+function ParticleField({ excite, accent }) {
   const ref = useRef(null)
+  const matRef = useRef(null)
+  const drift = useRef({ x: 0, z: 0 })
+  const target = useMemo(() => (accent ? new Color(accent) : WHITE.clone()), [accent])
 
   useFrame((state, delta) => {
     if (!ref.current) return
-    ref.current.rotation.y += delta * 0.16
+    // Base spin, faster when excited by a hovered spec.
+    ref.current.rotation.y += delta * (0.16 + (excite ? 0.34 : 0))
     ref.current.rotation.z = Math.sin(state.clock.elapsedTime * 0.2) * 0.08
+
+    // Drift toward the cursor — the field leans where you point.
+    drift.current.x += (pointer.ny * 0.35 - drift.current.x) * 0.04
+    drift.current.z += (pointer.nx * 0.35 - drift.current.z) * 0.04
+    ref.current.rotation.x = drift.current.x
+    ref.current.position.x = drift.current.z
+
+    // Tint + intensify toward the active spec's accent.
+    if (matRef.current) {
+      const dest = excite ? target : WHITE
+      matRef.current.color.lerp(dest, 0.08)
+      const sizeDest = excite ? 0.07 : 0.045
+      matRef.current.size += (sizeDest - matRef.current.size) * 0.1
+      const opDest = excite ? 1 : 0.9
+      matRef.current.opacity += (opDest - matRef.current.opacity) * 0.1
+    }
   })
 
   return (
@@ -48,6 +71,7 @@ function ParticleField() {
         <bufferAttribute attach="attributes-color" args={[COLORS, 3]} />
       </bufferGeometry>
       <pointsMaterial
+        ref={matRef}
         size={0.045}
         vertexColors
         transparent
@@ -60,7 +84,7 @@ function ParticleField() {
   )
 }
 
-export default function EngineParticles() {
+export default function EngineParticles({ excite = false, accent = null }) {
   const [ref, active] = useIntersectionPause()
 
   // Reduced motion: render nothing — the section reads fine without it.
@@ -77,7 +101,7 @@ export default function EngineParticles() {
         style={{ background: 'transparent' }}
       >
         <Suspense fallback={null}>
-          <ParticleField />
+          <ParticleField excite={excite} accent={accent} />
           <EffectComposer>
             <Bloom luminanceThreshold={0.15} intensity={0.9} mipmapBlur radius={0.7} />
             <ChromaticAberration offset={[0.0008, 0.0008]} />

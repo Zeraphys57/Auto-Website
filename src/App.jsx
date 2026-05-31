@@ -6,6 +6,7 @@ import { AppProvider, useApp } from './context/AppContext'
 import { prefersReducedMotion } from './lib/prefersReducedMotion'
 
 import Cursor from './components/ui/Cursor'
+import Spotlight from './components/ui/Spotlight'
 import Navbar from './components/ui/Navbar'
 import Footer from './components/ui/Footer'
 import SectionTransition from './components/ui/SectionTransition'
@@ -17,7 +18,9 @@ import Hero from './components/sections/Hero'
 import Manifesto from './components/sections/Manifesto'
 import Marquee from './components/sections/Marquee'
 import Models from './components/sections/Models'
+import Configurator from './components/sections/Configurator'
 import DesignPhilosophy from './components/sections/DesignPhilosophy'
+import DragExplore from './components/sections/DragExplore'
 import Specs from './components/sections/Specs'
 import Performance from './components/sections/Performance'
 import Legacy from './components/sections/Legacy'
@@ -34,7 +37,9 @@ const ACTS = [
   { sel: '.manifesto-section',    color: '#080809' },
   { sel: '.marquee-section',      color: '#0C0C0C' },
   { sel: '.models-section',       color: '#111111' },
+  { sel: '.configurator-section', color: '#0E0F13' },
   { sel: '.philosophy-section',   color: '#0F0F11' },
+  { sel: '.explore-section',      color: '#101012' },
   { sel: '.specs-section',        color: '#121214' },
   { sel: '.performance-section',  color: '#131318' },
   { sel: '.legacy-section',       color: '#171717' },
@@ -120,6 +125,7 @@ function Experience3Act() {
   return (
     <>
       <Cursor />
+      <Spotlight />
       <Navbar />
       <Loader />
       <HUD />
@@ -143,8 +149,18 @@ function Experience3Act() {
         {/* ACT 2 — the machine. Models is pinned, excluded from skew-wrap. */}
         <Models />
 
+        {/* CENTERPIECE 1 — live configurator */}
+        <div className="skew-wrap">
+          <Configurator />
+        </div>
+
         <div className="skew-wrap">
           <DesignPhilosophy />
+        </div>
+
+        {/* CENTERPIECE 2 — drag-to-explore */}
+        <div className="skew-wrap">
+          <DragExplore />
         </div>
 
         <SectionTransition trigger=".specs-section" color="#111111" accent="#FF2D2D" />
