@@ -1,6 +1,6 @@
 import { Suspense, useMemo, useRef } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
-import { EffectComposer, Bloom, Vignette, Noise, ChromaticAberration } from '@react-three/postprocessing'
+import { EffectComposer, Bloom, ChromaticAberration } from '@react-three/postprocessing'
 import vertexShader from '../../shaders/orb.vert.glsl?raw'
 import fragmentShader from '../../shaders/orb.frag.glsl?raw'
 import { useIntersectionPause } from '../../hooks/useIntersectionPause'
@@ -64,8 +64,6 @@ export default function CTAOrb() {
           <EffectComposer>
             <Bloom luminanceThreshold={0.1} intensity={1.2} mipmapBlur radius={0.8} />
             <ChromaticAberration offset={[0.0006, 0.0006]} />
-            <Vignette offset={0.3} darkness={0.7} />
-            <Noise opacity={0.02} />
           </EffectComposer>
         </Suspense>
       </Canvas>
