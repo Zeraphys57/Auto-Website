@@ -171,7 +171,7 @@ export default function Configurator() {
               </div>
             ) : (
               <div ref={carRef} className="absolute inset-0">
-                <Suspense fallback={null}>
+                <Suspense fallback={<ConfiguratorFallback />}>
                   <ConfiguratorCar
                     paintHex={PAINTS[paint].hex}
                     wheelIdx={wheel}
@@ -341,6 +341,19 @@ function SpecLine({ k, v, refEl, fallback }) {
       ) : (
         <span className="text-chrome">{v}</span>
       )}
+    </div>
+  )
+}
+
+function ConfiguratorFallback() {
+  return (
+    <div className="absolute inset-0 flex items-center justify-center">
+      <div className="flex flex-col items-center">
+        <div className="mb-4 h-5 w-5 animate-spin rounded-full border-2 border-electric border-t-transparent" />
+        <div className="font-accent text-[0.6rem] uppercase tracking-[0.2em] text-muted">
+          Menyiapkan 3D Engine...
+        </div>
+      </div>
     </div>
   )
 }

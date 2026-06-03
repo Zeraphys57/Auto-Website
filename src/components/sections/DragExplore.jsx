@@ -77,13 +77,14 @@ export default function DragExplore() {
     stage.addEventListener('pointerdown', down)
     window.addEventListener('pointermove', move, { passive: true })
     window.addEventListener('pointerup', up)
+    
+    const currentState = state.current
     return () => {
-      cancelAnimationFrame(state.current.raf)
+      cancelAnimationFrame(currentState.raf)
       stage.removeEventListener('pointerdown', down)
       window.removeEventListener('pointermove', move)
       window.removeEventListener('pointerup', up)
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [rm, hintGone])
 
   // Arrow controls (reduced-motion / keyboard / touch).

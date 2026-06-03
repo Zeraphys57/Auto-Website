@@ -8,7 +8,10 @@ export function useFramePreloader(frameCount, basePath, onProgress) {
   const [ready, setReady] = useState(false)
   const [placeholder, setPlaceholder] = useState(false)
   const onProgressRef = useRef(onProgress)
-  onProgressRef.current = onProgress
+  
+  useEffect(() => {
+    onProgressRef.current = onProgress
+  }, [onProgress])
 
   useEffect(() => {
     let cancelled = false

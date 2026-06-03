@@ -20,8 +20,11 @@ export default function Loader() {
   // Reduced motion: no loader theatre — flag loaded before first paint.
   useLayoutEffect(() => {
     if (prefersReducedMotion) {
-      setIsLoaded(true)
-      setDone(true)
+      const timer = setTimeout(() => {
+        setIsLoaded(true)
+        setDone(true)
+      }, 0)
+      return () => clearTimeout(timer)
     }
   }, [setIsLoaded])
 

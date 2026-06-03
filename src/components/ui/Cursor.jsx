@@ -160,8 +160,6 @@ export default function Cursor() {
 
   if (disabled) return null
 
-  const a = ACCENTS[accentRef.current || 'electric']
-
   return (
     <>
       {/* Layer 1 — trailing ghost, lerp 0.15 */}

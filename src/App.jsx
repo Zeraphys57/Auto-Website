@@ -114,6 +114,33 @@ function Experience3Act() {
     ScrollTrigger.refresh()
   }, [isLoaded])
 
+  // Global resize and image load listener to ensure ScrollTrigger stays accurate
+  useEffect(() => {
+    let timeoutId = null
+    const handleResize = () => {
+      clearTimeout(timeoutId)
+      timeoutId = setTimeout(() => {
+        ScrollTrigger.refresh()
+      }, 250)
+    }
+    
+    const handleImgLoad = (e) => {
+      if (e.target && e.target.tagName === 'IMG') {
+        handleResize()
+      }
+    }
+
+    window.addEventListener('resize', handleResize)
+    // Use capture phase to catch load events from all images
+    window.addEventListener('load', handleImgLoad, true)
+    
+    return () => {
+      window.removeEventListener('resize', handleResize)
+      window.removeEventListener('load', handleImgLoad, true)
+      clearTimeout(timeoutId)
+    }
+  }, [])
+
   useEffect(() => {
     if (document.fonts?.ready) {
       document.fonts.ready.then(() => ScrollTrigger.refresh())

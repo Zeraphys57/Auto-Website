@@ -21,7 +21,6 @@ if (typeof window !== 'undefined') {
 // Parallax registry — each target lerps toward (nx*sx, ny*sy).
 const targets = new Set()
 let listening = false
-let raf = 0
 
 const onMove = (e) => {
   pointer.x = e.clientX
@@ -38,14 +37,14 @@ const tick = () => {
     t.cy += (ty - t.cy) * t.lerp
     gsap.set(t.el, { x: t.cx, y: t.cy })
   }
-  raf = requestAnimationFrame(tick)
+  requestAnimationFrame(tick)
 }
 
 const ensureListening = () => {
   if (listening || !pointerEnabled) return
   listening = true
   window.addEventListener('mousemove', onMove, { passive: true })
-  raf = requestAnimationFrame(tick)
+  requestAnimationFrame(tick)
 }
 
 // Register an element for mouse-parallax. Returns an unregister cleanup.

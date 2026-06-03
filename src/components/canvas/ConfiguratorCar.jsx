@@ -1,6 +1,6 @@
 import { Suspense, useEffect, useRef } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
-import { RoundedBox, Environment, Lightformer, ContactShadows } from '@react-three/drei'
+import { RoundedBox, Environment, Lightformer, ContactShadows, Html, useProgress } from '@react-three/drei'
 import { EffectComposer, Bloom } from '@react-three/postprocessing'
 import { Color } from 'three'
 import { pointer } from '../../lib/pointer'
@@ -130,7 +130,7 @@ export default function ConfiguratorCar({ paintHex, wheelIdx, hasWing, active })
       gl={{ alpha: true, antialias: true }}
       style={{ background: 'transparent' }}
     >
-      <Suspense fallback={null}>
+      <Suspense fallback={<ConfiguratorLoader />}>
         <ambientLight intensity={0.35} />
         <spotLight position={[5, 8, 4]} angle={0.5} penumbra={0.8} intensity={2.2} castShadow />
         <Car paintHex={paintHex} wheelIdx={wheelIdx} hasWing={hasWing} />
@@ -146,5 +146,27 @@ export default function ConfiguratorCar({ paintHex, wheelIdx, hasWing, active })
         </EffectComposer>
       </Suspense>
     </Canvas>
+  )
+}
+
+function ConfiguratorLoader() {
+  const { progress } = useProgress()
+  return (
+    <Html center>
+      <div className="flex flex-col items-center">
+        <div className="mb-2 font-display text-2xl text-electric">
+          {Math.round(progress)}%
+        </div>
+        <div className="h-px w-32 overflow-hidden bg-white/10">
+          <div 
+            className="h-full bg-electric transition-all duration-300" 
+            style={{ width: `${progress}%` }} 
+          />
+        </div>
+        <div className="mt-3 font-accent text-[0.6rem] uppercase tracking-[0.2em] text-muted">
+          Mengunduh Model
+        </div>
+      </div>
+    </Html>
   )
 }
