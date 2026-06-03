@@ -2,11 +2,11 @@ import { lenis } from '../../main.jsx'
 
 const NAV = [
   { label: 'Manifesto', target: '#manifesto' },
-  { label: 'Model', target: '#models' },
-  { label: 'Filosofi', target: '#philosophy' },
-  { label: 'Performa', target: '#performance' },
-  { label: 'Warisan', target: '#legacy' },
-  { label: 'Pengalaman', target: '#experience' },
+  { label: 'Models', target: '#models' },
+  { label: 'Philosophy', target: '#philosophy' },
+  { label: 'Performance', target: '#performance' },
+  { label: 'Legacy', target: '#legacy' },
+  { label: 'Experience', target: '#experience' },
 ]
 
 const SOCIAL = [
@@ -41,7 +41,7 @@ export default function Footer() {
           <div>
             <div className="font-display text-3xl tracking-wide-caps text-gold">VELOX</div>
             <p className="mt-3 max-w-xs font-serif text-sm italic text-chrome/40">
-              Untuk yang menolak biasa.
+              For those who refuse the ordinary.
             </p>
           </div>
 
@@ -103,12 +103,12 @@ export default function Footer() {
           className="mt-16 font-serif text-2xl italic text-chrome/30 md:text-3xl"
           style={{ lineHeight: 1.3 }}
         >
-          VELOX. Untuk yang menolak biasa.
+          VELOX. For those who refuse the ordinary.
         </p>
 
         <div className="mt-10 flex flex-col justify-between gap-2 border-t border-gold/10 pt-8 font-accent text-micro font-extralight uppercase tracking-macro text-muted sm:flex-row">
-          <span>© 2026 VELOX AUTO. Hak cipta dilindungi.</span>
-          <span>Bandung · Jakarta · Bali</span>
+          <span>© 2026 VELOX AUTO. All rights reserved.</span>
+          <span>Sydney · Melbourne · Brisbane</span>
         </div>
       </div>
     </footer>

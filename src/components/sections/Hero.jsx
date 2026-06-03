@@ -9,12 +9,12 @@ import { registerParallax } from '../../lib/pointer'
 import { prefersReducedMotion } from '../../lib/prefersReducedMotion'
 import { lenis } from '../../main.jsx'
 
-const HEADLINE = ['UNTUK YANG', 'TAK PERNAH', 'CUKUP']
+const HEADLINE = ['FOR THOSE WHO', 'NEVER', 'SETTLE']
 
 const SPECS = [
-  { label: '0–100 KM/H', value: '3.2 DETIK' },
+  { label: '0–100 KM/H', value: '3.2 SEC' },
   { label: 'TOP SPEED', value: '320 KM/H' },
-  { label: 'MESIN', value: '4.0L V8 BITURBO' },
+  { label: 'ENGINE', value: '4.0L V8 BITURBO' },
 ]
 
 export default function Hero() {
@@ -194,7 +194,7 @@ export default function Hero() {
               <span className="h-px w-10 bg-electric" />
             </div>
             <span className="font-accent text-micro font-extralight uppercase tracking-macro text-chrome/50">
-              Jakarta · Indonesia
+              Sydney · Australia
             </span>
           </div>
 
@@ -220,14 +220,14 @@ export default function Hero() {
               ref={subRef}
               className="mt-6 max-w-md font-serif text-lg italic text-chrome/70 md:text-xl"
             >
-              Beberapa orang melihat jalan. Anda melihat undangan.
+              Some see a road. You see an invitation.
             </p>
 
             <p
               ref={identityRef}
               className="mt-4 max-w-sm font-accent text-caption font-extralight uppercase leading-relaxed tracking-macro text-muted"
             >
-              Bukan untuk semua orang. Dan justru itulah maksudnya.
+              Not for everyone. And that's exactly the point.
             </p>
 
             <a
@@ -239,7 +239,7 @@ export default function Hero() {
               data-magnetic-strength="0.4"
               className="group mt-8 inline-flex items-center gap-3 font-accent text-caption font-light uppercase tracking-macro text-electric"
             >
-              Jelajahi Koleksi
+              Explore Collection
               <span className="transition-transform duration-300 group-hover:translate-x-2">
                 →
               </span>
@@ -271,7 +271,7 @@ export default function Hero() {
             style={{ writingMode: 'vertical-rl' }}
           >
             <span className="font-accent text-micro font-extralight uppercase tracking-macro text-muted">
-              Scroll untuk menjelajahi
+              Scroll to explore
             </span>
           </div>
         </div>

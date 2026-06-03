@@ -8,10 +8,10 @@ import { prefersReducedMotion } from '../../lib/prefersReducedMotion'
 // The emotional anchor — pure typography, no 3D. Each line rises through a mask
 // as it enters. ACT 1 palette (electric), the single most quotable moment.
 const LINES = [
-  { text: 'Kami tidak membuat mobil.', accent: false },
-  { text: 'Kami membuat alasan untuk bangun lebih pagi.', accent: false },
-  { text: 'Alasan untuk memilih jalan yang lebih jauh.', accent: false },
-  { text: 'Untuk jatuh cinta pada perjalanan — bukan tujuannya.', accent: true },
+  { text: "We don't build cars.", accent: false },
+  { text: 'We engineer reasons to wake up earlier.', accent: false },
+  { text: 'Reasons to take the long way home.', accent: false },
+  { text: 'To fall in love with the drive — not the destination.', accent: true },
 ]
 
 export default function Manifesto() {

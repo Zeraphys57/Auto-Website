@@ -10,32 +10,32 @@ import { prefersReducedMotion } from '../../lib/prefersReducedMotion'
 // scrub. ACT 2 palette. Gradient placeholders await real photography.
 const BEATS = [
   {
-    label: 'AERODINAMIKA',
-    poetic: 'Setiap lekuk punya alasan.',
+    label: 'AERODYNAMICS',
+    poetic: 'Every curve has a purpose.',
     spec: 'CD 0.28 · DOWNFORCE 320 KG @ 300 KM/H',
     grad: 'linear-gradient(135deg, #15171b 0%, #0b0b0d 70%, rgba(0,212,255,0.07) 100%)',
-    note: 'IMAGE: profil aero eksterior / diffuser belakang',
+    note: 'IMAGE: exterior aero profile / rear diffuser',
   },
   {
     label: 'INTERIOR',
-    poetic: 'Ruang kerja bagi mereka yang mengemudi untuk hidup.',
-    spec: 'NAPPA · ALCANTARA · TENUN SERAT KARBON',
+    poetic: 'A workspace for those who live to drive.',
+    spec: 'NAPPA · ALCANTARA · WOVEN CARBON FIBRE',
     grad: 'linear-gradient(135deg, #1a1714 0%, #0b0a09 70%, rgba(201,169,110,0.07) 100%)',
-    note: 'IMAGE: kokpit / interior berpusat pada pengemudi',
+    note: 'IMAGE: cockpit / driver-centric interior',
   },
   {
-    label: 'MATERIAL',
-    poetic: 'Serat karbon, kulit, titanium. Tanpa kompromi.',
-    spec: 'MONOCOQUE SERAT KARBON · 1.420 KG KERING',
+    label: 'MATERIALS',
+    poetic: 'Carbon fibre, leather, titanium. Zero compromises.',
+    spec: 'CARBON FIBRE MONOCOQUE · 1,420 KG DRY',
     grad: 'linear-gradient(135deg, #161616 0%, #0a0a0a 70%, rgba(192,192,192,0.05) 100%)',
-    note: 'IMAGE: makro anyaman karbon / detail material',
+    note: 'IMAGE: macro carbon weave / material detail',
   },
   {
-    label: 'CAHAYA',
-    poetic: 'Tanda tangan dalam gelap.',
-    spec: 'MATRIX LED · 84 DIODA ADAPTIF',
+    label: 'ILLUMINATION',
+    poetic: 'A signature in the dark.',
+    spec: 'MATRIX LED · 84 ADAPTIVE DIODES',
     grad: 'linear-gradient(135deg, #14171a 0%, #0a0a0b 70%, rgba(0,212,255,0.06) 100%)',
-    note: 'IMAGE: DRL signature / lampu depan dalam gelap',
+    note: 'IMAGE: signature DRL / headlights in the dark',
   },
 ]
 
@@ -120,11 +120,11 @@ export default function DesignPhilosophy() {
           <div className="mb-6 flex items-center gap-4">
             <span className="h-px w-10 bg-electric/60" />
             <span className="font-accent text-micro font-extralight uppercase tracking-macro text-muted">
-              Filosofi Desain
+              Design Philosophy
             </span>
           </div>
           <h2 className="font-serif italic text-chrome text-fluid-h2 leading-snug">
-            Bentuk mengikuti kecepatan.
+            Form follows velocity.
           </h2>
         </div>
 

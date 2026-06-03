@@ -9,29 +9,29 @@ const FIGURES = [
   {
     value: 2.9,
     decimals: 1,
-    suffix: 'DETIK',
-    caption: '0–100. Lebih cepat dari Anda membaca kalimat ini.',
+    suffix: 'SEC',
+    caption: '0–100. Faster than you can read this sentence.',
     accent: 'electric',
   },
   {
     value: 1250,
     decimals: 0,
     suffix: 'KG',
-    caption: 'Ringan seperti niat. Kuat seperti tekad.',
+    caption: 'Light as intent. Strong as resolve.',
     accent: 'chrome',
   },
   {
     value: 640,
     decimals: 0,
     suffix: 'HP',
-    caption: 'Tenaga yang menuntut rasa hormat.',
+    caption: 'Power that demands respect.',
     accent: 'crimson',
   },
   {
     value: 6,
     decimals: 0,
-    suffix: 'GELAR',
-    caption: 'Podium bukan tujuan. Itu kebiasaan.',
+    suffix: 'TITLES',
+    caption: 'The podium is not a goal. It is a habit.',
     accent: 'gold',
   },
 ]
@@ -134,14 +134,14 @@ export default function Performance() {
           <div className="mb-6 flex items-center gap-4">
             <span className="h-px w-10 bg-crimson/60" />
             <span className="font-accent text-micro font-extralight uppercase tracking-macro text-muted">
-              Dalam Angka
+              By the Numbers
             </span>
           </div>
           <h2
             className="font-serif italic text-chrome"
             style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', lineHeight: 1.15 }}
           >
-            Saat angka menjadi perasaan.
+            When numbers become a feeling.
           </h2>
         </div>
 

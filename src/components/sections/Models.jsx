@@ -10,11 +10,11 @@ const CARDS = [
   {
     name: 'VELOX GT',
     tag: 'Grand Tourer',
-    descriptor: 'Menaklukkan jarak.',
+    descriptor: 'Conquering distances.',
     specs: ['580 HP', '320 KM/H', '3.2s'],
-    price: 'Mulai dari Rp 7,4 Miliar',
+    price: 'From $740,000 AUD',
     story:
-      'Benua menyusut menjadi perjalanan akhir pekan. Setiap kilometer lintas negara terasa seperti milik Anda sendiri.',
+      'Continents shrink to weekend drives. Every cross-country kilometre feels exclusively yours.',
     // Blue sports car parked in the dark — photo by Valeriia Neganova (Unsplash)
     img: `${BASE}/photo-1681167816651-65c6c00264c4?w=1920&q=80&auto=format&fit=crop`,
     grad: 'linear-gradient(135deg, rgba(10,10,10,0.65) 0%, rgba(10,10,10,0.35) 50%, rgba(0,212,255,0.07) 100%)',
@@ -25,11 +25,11 @@ const CARDS = [
   {
     name: 'VELOX RS',
     tag: 'Track Weapon',
-    descriptor: 'Lahir di sirkuit.',
+    descriptor: 'Born on the circuit.',
     specs: ['720 HP', '340 KM/H', '2.8s'],
-    price: 'Mulai dari Rp 9,1 Miliar',
+    price: 'From $910,000 AUD',
     story:
-      'Tidak ada yang ditambahkan demi kenyamanan. Semua yang tersisa, ada untuk satu hal — kecepatan.',
+      'Nothing added for comfort. Everything that remains exists for one purpose — speed.',
     // Red Ferrari in a dark studio — photo by Branislav Rodman (Unsplash)
     img: `${BASE}/photo-1751467928515-14a3515b99a8?w=1920&q=80&auto=format&fit=crop`,
     grad: 'linear-gradient(135deg, rgba(10,10,10,0.65) 0%, rgba(10,10,10,0.35) 50%, rgba(255,45,45,0.07) 100%)',
@@ -40,11 +40,11 @@ const CARDS = [
   {
     name: 'VELOX S',
     tag: 'Signature',
-    descriptor: 'Kemewahan setiap hari.',
+    descriptor: 'Everyday exotic.',
     specs: ['620 HP', '330 KM/H', '3.0s'],
-    price: 'Mulai dari Rp 8,2 Miliar',
+    price: 'From $820,000 AUD',
     story:
-      'Eksotis yang tak pernah melelahkan. Mobil yang Anda kemudikan setiap pagi, dan tak pernah berhenti mengagumi.',
+      'An exotic that never exhausts you. The machine you drive every morning, and never stop admiring.',
     // Gold Lamborghini Sian — photo by David von Diemar (Unsplash)
     img: `${BASE}/photo-1570294646112-27ce4f174e38?w=1920&q=80&auto=format&fit=crop`,
     grad: 'linear-gradient(135deg, rgba(10,10,10,0.65) 0%, rgba(10,10,10,0.35) 50%, rgba(201,169,110,0.07) 100%)',
@@ -175,7 +175,7 @@ export default function Models() {
           className="font-display leading-none"
           style={{ fontSize: 'clamp(8rem, 20vw, 18rem)', opacity: 0.12, color: '#1A1A1A' }}
         >
-          PERFORMA
+          PERFORMANCE
         </span>
       </div>
 
@@ -195,7 +195,7 @@ export default function Models() {
         className="absolute left-12 top-[14%] z-10 font-serif italic text-chrome"
         style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)' }}
       >
-        Tiga watak, satu obsesi.
+        Three characters, one obsession.
       </h2>
 
       {/* Track */}
@@ -288,7 +288,7 @@ export default function Models() {
                 {card.story}
               </p>
               <span className="mt-6 inline-flex items-center gap-2 font-accent text-sm font-light uppercase tracking-macro text-chrome">
-                Konfigurasi
+                Customise
                 <span aria-hidden="true">→</span>
               </span>
             </div>

@@ -36,7 +36,7 @@ const hexToRgba = (hex, a) => {
   const n = parseInt(hex.slice(1), 16)
   return `rgba(${(n >> 16) & 255}, ${(n >> 8) & 255}, ${n & 255}, ${a})`
 }
-const fmtBillion = (v) => `Rp ${v.toFixed(1).replace('.', ',')} Miliar`
+const fmtBillion = (v) => `$${(v * 100).toFixed(0)},000`
 
 export default function Configurator() {
   const sectionRef = useRef(null)
@@ -75,7 +75,7 @@ export default function Configurator() {
   // Variant drives the performance numbers.
   useEffect(() => {
     const v = VARIANTS[variant]
-    roll(accelRef.current, prev.current.accel, v.accel, (x) => x.toFixed(1).replace('.', ',') + ' DETIK')
+    roll(accelRef.current, prev.current.accel, v.accel, (x) => x.toFixed(1).replace('.', ',') + ' SEC')
     roll(hpRef.current, prev.current.hp, v.hp, (x) => Math.round(x) + ' HP')
     roll(topRef.current, prev.current.top, v.top, (x) => Math.round(x) + ' KM/H')
     prev.current.accel = v.accel
@@ -136,14 +136,14 @@ export default function Configurator() {
           <div className="mb-6 flex items-center gap-4">
             <span className="h-px w-10 bg-electric/60" />
             <span className="font-accent text-micro font-extralight uppercase tracking-macro text-muted">
-              Konfigurator
+              Configurator
             </span>
           </div>
           <h2 className="font-display text-chrome" style={{ fontSize: 'clamp(2.6rem, 6vw, 5rem)', lineHeight: 0.95 }}>
-            BANGUN VELOX ANDA
+            BUILD YOUR VELOX
           </h2>
           <p className="mt-4 font-serif text-lg italic text-chrome/60">
-            Setiap detail, keputusan Anda. Lihat berubah seketika.
+            Every detail is your decision. See it change instantly.
           </p>
         </div>
 
@@ -191,7 +191,7 @@ export default function Configurator() {
           {/* Control panel + spec sheet */}
           <div ref={panelRef}>
             {/* VARIANT */}
-            <ControlGroup label="Varian">
+            <ControlGroup label="Variant">
               <div className="flex gap-2">
                 {VARIANTS.map((vr, i) => (
                   <button
@@ -214,14 +214,14 @@ export default function Configurator() {
             </ControlGroup>
 
             {/* PAINT */}
-            <ControlGroup label={`Warna — ${PAINTS[paint].name}`}>
+            <ControlGroup label={`Paint — ${PAINTS[paint].name}`}>
               <div className="flex flex-wrap gap-3">
                 {PAINTS.map((p, i) => (
                   <button
                     key={p.name}
                     type="button"
                     data-cursor="hover"
-                    aria-label={`Warna ${p.name}`}
+                    aria-label={`Paint ${p.name}`}
                     aria-pressed={paint === i}
                     onClick={() => setPaint(i)}
                     className="relative h-9 w-9 rounded-full transition-transform duration-300 hover:scale-110"
@@ -239,7 +239,7 @@ export default function Configurator() {
             </ControlGroup>
 
             {/* WHEELS */}
-            <ControlGroup label="Velg">
+            <ControlGroup label="Wheels">
               <div className="flex gap-2">
                 {WHEELS.map((w, i) => (
                   <button
@@ -287,10 +287,10 @@ export default function Configurator() {
             {/* SPEC SHEET */}
             <div className="mt-8 border-t border-white/10 pt-6 font-mono text-caption tracking-[0.04em]">
               <SpecLine k="MODEL"     v={v.name} />
-              <SpecLine k="WARNA"     v={PAINTS[paint].name} />
-              <SpecLine k="VELG"      v={WHEELS[wheel].name} />
+              <SpecLine k="PAINT"     v={PAINTS[paint].name} />
+              <SpecLine k="WHEELS"      v={WHEELS[wheel].name} />
               <SpecLine k="INTERIOR"  v={INTERIORS[interior].name} />
-              <SpecLine k="0–100"     refEl={accelRef} fallback="2,8 DETIK" />
+              <SpecLine k="0–100"     refEl={accelRef} fallback="2.8 SEC" />
               <SpecLine k="TENAGA"    refEl={hpRef} fallback="720 HP" />
               <SpecLine k="TOP SPEED" refEl={topRef} fallback="340 KM/H" />
               <div className="mt-3 flex items-baseline justify-between border-t border-white/10 pt-3">
@@ -305,12 +305,12 @@ export default function Configurator() {
             <div className="mt-8 flex flex-wrap gap-4">
               <a ref={saveBtn} href="#cta" data-cursor="cta" className="bg-electric px-7 py-3.5">
                 <span className="font-accent text-caption font-medium uppercase tracking-macro text-carbon">
-                  Simpan Konfigurasi
+                  Save Configuration
                 </span>
               </a>
               <a ref={meetBtn} href="#experience" data-cursor="hover" className="border border-gold/40 px-7 py-3.5">
                 <span className="font-accent text-caption font-light uppercase tracking-macro text-offwhite">
-                  Atur Pertemuan
+                  Schedule a Meeting
                 </span>
               </a>
             </div>
@@ -351,7 +351,7 @@ function ConfiguratorFallback() {
       <div className="flex flex-col items-center">
         <div className="mb-4 h-5 w-5 animate-spin rounded-full border-2 border-electric border-t-transparent" />
         <div className="font-accent text-micro uppercase tracking-macro text-muted">
-          Menyiapkan 3D Engine...
+          Preparing 3D Engine...
         </div>
       </div>
     </div>

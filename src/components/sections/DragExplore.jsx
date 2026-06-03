@@ -7,9 +7,9 @@ import { prefersReducedMotion } from '../../lib/prefersReducedMotion'
 // with release momentum and a gentle snap back to centre. Contained to one
 // viewport. Reduced-motion / touch get arrow buttons instead of drag.
 const HOTSPOTS = [
-  { x: 30, y: 58, label: 'MESIN', detail: '4.0L V8 Biturbo · 720 HP' },
-  { x: 60, y: 34, label: 'AERODINAMIKA', detail: 'Downforce 320 kg @ 300 km/jam' },
-  { x: 72, y: 64, label: 'REM', detail: 'Cakram karbon-keramik 410 mm' },
+  { x: 30, y: 58, label: 'ENGINE', detail: '4.0L V8 Biturbo · 720 HP' },
+  { x: 60, y: 34, label: 'AERODYNAMICS', detail: 'Downforce 320 kg @ 300 km/h' },
+  { x: 72, y: 64, label: 'BRAKES', detail: '410 mm carbon-ceramic discs' },
 ]
 const CLAMP = 55
 
@@ -121,11 +121,11 @@ export default function DragExplore() {
           <div className="mb-6 flex items-center gap-4">
             <span className="h-px w-10 bg-electric/60" />
             <span className="font-accent text-micro font-extralight uppercase tracking-macro text-muted">
-              Eksplorasi
+              Explore
             </span>
           </div>
           <h2 className="font-serif italic text-chrome" style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)' }}>
-            Putar. Amati. Pahami.
+            Rotate. Observe. Understand.
           </h2>
         </div>
 
@@ -200,17 +200,17 @@ export default function DragExplore() {
               className="pointer-events-none absolute bottom-6 left-1/2 -translate-x-1/2 font-accent text-micro uppercase tracking-macro text-muted transition-opacity duration-500"
               style={{ opacity: hintGone ? 0 : 1 }}
             >
-              ← Geser untuk memutar →
+              ← Drag to rotate →
             </div>
           )}
 
           {/* Arrow controls (always present; the only control under reduced-motion) */}
           <div className="absolute bottom-5 right-5 flex gap-2">
-            <button type="button" data-cursor="hover" aria-label="Putar kiri" onClick={() => nudge(-1)}
+            <button type="button" data-cursor="hover" aria-label="Rotate left" onClick={() => nudge(-1)}
               className="flex h-9 w-9 items-center justify-center border border-white/15 text-chrome/70 transition-colors hover:border-electric hover:text-electric">
               ←
             </button>
-            <button type="button" data-cursor="hover" aria-label="Putar kanan" onClick={() => nudge(1)}
+            <button type="button" data-cursor="hover" aria-label="Rotate right" onClick={() => nudge(1)}
               className="flex h-9 w-9 items-center justify-center border border-white/15 text-chrome/70 transition-colors hover:border-electric hover:text-electric">
               →
             </button>

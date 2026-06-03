@@ -12,8 +12,8 @@ const ACCENTS = {
 const STATES = {
   default:  { dot: 1, ring: 32, bg: 0,    border: 0.5, label: '',      solid: false },
   hover:    { dot: 0, ring: 52, bg: 0.08, border: 0.5, label: '',      solid: false },
-  link:     { dot: 0, ring: 48, bg: 0.06, border: 0.45, label: 'LIHAT', solid: false },
-  drag:     { dot: 1, ring: 66, bg: 0.05, border: 0.6, label: 'GESER', solid: false },
+  link:     { dot: 0, ring: 48, bg: 0.06, border: 0.45, label: 'VIEW', solid: false },
+  drag:     { dot: 1, ring: 66, bg: 0.05, border: 0.6, label: 'DRAG', solid: false },
   cta:      { dot: 5, ring: 80, bg: 1,    border: 0,   label: 'DRIVE', solid: true  },
   external: { dot: 0, ring: 48, bg: 0.06, border: 0.45, label: '↗',    solid: false },
 }

@@ -173,7 +173,7 @@ export default function Loader() {
           className="mt-5 font-accent text-micro font-extralight uppercase tracking-macro text-muted"
           style={{ opacity: 0 }}
         >
-          Memuat Pengalaman
+          Loading Experience
         </div>
       </div>
     </div>

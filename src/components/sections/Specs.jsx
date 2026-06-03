@@ -6,11 +6,11 @@ const EngineParticles = lazy(() => import('../canvas/EngineParticles'))
 import { prefersReducedMotion } from '../../lib/prefersReducedMotion'
 
 const ROWS = [
-  { label: 'MESIN',     value: '4.0L V8 BITURBO', caption: 'Jantung yang dirakit dengan tangan.',     fill: 0.78, accent: '#FF2D2D' },
-  { label: 'TENAGA',    value: '580 HP',          caption: 'Cadangan yang tak pernah habis.',          fill: 0.96, accent: '#00D4FF' },
-  { label: 'TORSI',     value: '720 NM',          caption: 'Dorongan yang menempel di punggung Anda.', fill: 0.88, accent: '#FF2D2D' },
-  { label: 'TOP SPEED', value: '320 KM/H',        caption: 'Tempat horizon datang lebih awal.',        fill: 0.80, accent: '#00D4FF' },
-  { label: 'BOBOT',     value: '1.420 KG',        caption: 'Seni membuang yang tak perlu.',            fill: 0.52, accent: '#00D4FF' },
+  { label: 'ENGINE',    value: '4.0L V8 BITURBO', caption: 'A heart assembled by hand.',     fill: 0.78, accent: '#FF2D2D' },
+  { label: 'POWER',     value: '580 HP',          caption: 'Reserves that never run dry.',          fill: 0.96, accent: '#00D4FF' },
+  { label: 'TORQUE',    value: '720 NM',          caption: 'Thrust that pins you to the seat.', fill: 0.88, accent: '#FF2D2D' },
+  { label: 'TOP SPEED', value: '320 KM/H',        caption: 'Where the horizon arrives early.',        fill: 0.80, accent: '#00D4FF' },
+  { label: 'WEIGHT',    value: '1,420 KG',        caption: 'The art of discarding the unnecessary.',            fill: 0.52, accent: '#00D4FF' },
 ]
 
 export default function Specs() {
@@ -81,7 +81,7 @@ export default function Specs() {
             ref={eyebrowRef}
             className="mb-12 font-mono text-sm font-light tracking-macro text-electric"
           >
-            [ SPESIFIKASI ]
+            [ SPECIFICATIONS ]
           </div>
 
           <div className="font-accent text-caption font-extralight uppercase tracking-macro text-muted">
@@ -96,10 +96,10 @@ export default function Specs() {
             8.0
           </div>
           <div className="mt-2 font-display text-fluid-h2 leading-none text-electric">
-            DETIK
+            SEC
           </div>
           <p className="mt-7 max-w-xs font-serif text-lg italic text-chrome/55">
-            Angka hanyalah awal cerita.
+            Numbers are just the beginning of the story.
           </p>
         </div>
 

@@ -10,20 +10,20 @@ const PILLARS = [
   {
     n: '01',
     label: 'CONCIERGE',
-    line: 'Satu nomor. Kapan saja. Untuk apa saja.',
-    note: 'IMAGE: layanan concierge privat',
+    line: 'One number. Anytime. For anything.',
+    note: 'IMAGE: private concierge service',
   },
   {
     n: '02',
-    label: 'SIRKUIT PRIVAT',
-    line: 'Lepaskan sepenuhnya. Tanpa batas, tanpa penonton.',
-    note: 'IMAGE: lintasan privat saat fajar',
+    label: 'PRIVATE CIRCUIT',
+    line: 'Unleash it completely. No limits, no spectators.',
+    note: 'IMAGE: private track at dawn',
   },
   {
     n: '03',
     label: 'ATELIER',
-    line: 'Setiap VELOX dibuat untuk satu orang. Anda.',
-    note: 'IMAGE: atelier / perakitan bespoke',
+    line: 'Every VELOX is built for one person. You.',
+    note: 'IMAGE: atelier / bespoke assembly',
   },
 ]
 
@@ -83,16 +83,16 @@ export default function Experience() {
           <div className="mb-6 flex items-center gap-4">
             <span className="h-px w-10 bg-gold/60" />
             <span className="font-accent text-micro font-extralight uppercase tracking-macro text-gold/80">
-              Kepemilikan
+              Ownership
             </span>
           </div>
           <h2
             className="font-serif italic text-chrome"
             style={{ fontSize: 'clamp(2rem, 4.4vw, 3.8rem)', lineHeight: 1.12 }}
           >
-            Anda tidak membeli sebuah mobil.
+            You don't buy a car.
             <br />
-            Anda memasuki sebuah dunia.
+            You enter a world.
           </h2>
         </div>
 

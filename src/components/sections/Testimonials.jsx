@@ -6,33 +6,33 @@ import { prefersReducedMotion } from '../../lib/prefersReducedMotion'
 const DATA = [
   {
     quote: [
-      'Orang bertanya mengapa, padahal sudah punya tiga.',
-      'Mereka memang tak akan mengerti.',
-      'Dan saya tak perlu menjelaskan.',
+      'People ask why, when I already own three.',
+      'They will never understand.',
+      "And I don't need to explain.",
     ],
-    name: 'Setiawan Halim',
-    role: 'Pendiri & Investor',
-    owned: 'VELOX RS · Pemilik sejak 2019',
+    name: 'James Sterling',
+    role: 'Founder & Investor',
+    owned: 'VELOX RS · Owner since 2019',
   },
   {
     quote: [
-      'Dua belas mobil di garasi saya.',
-      'Hanya satu yang kuncinya selalu di saku.',
-      'Anda bisa menebak yang mana.',
+      'Twelve cars in my garage.',
+      'Only one key stays in my pocket.',
+      'You can guess which one.',
     ],
-    name: 'Maria Tjandra',
-    role: 'Kolektor Privat',
-    owned: 'VELOX S · Garasi pribadi, Jakarta',
+    name: 'Maria Chen',
+    role: 'Private Collector',
+    owned: 'VELOX S · Private Garage, Sydney',
   },
   {
     quote: [
-      'Di atas 250, mesin tidak bisa berbohong.',
-      'VELOX mengatakan kebenaran,',
-      'dan saya percaya setiap katanya.',
+      'Above 250, the engine cannot lie.',
+      'VELOX tells the truth,',
+      'and I believe every word of it.',
     ],
-    name: 'Reza Mahendra',
-    role: 'Pembalap & Pengusaha',
-    owned: 'VELOX GT · 40.000 km dalam dua tahun',
+    name: 'Oliver Wright',
+    role: 'Racer & Entrepreneur',
+    owned: 'VELOX GT · 40,000 km in two years',
   },
 ]
 
@@ -94,7 +94,7 @@ export default function Testimonials() {
         data-speed="0.85"
         className="absolute top-[14%] left-1/2 -translate-x-1/2 font-accent text-micro font-extralight uppercase tracking-macro text-muted"
       >
-        Testimonial
+        Testimonials
       </span>
 
       {/* Decorative quote mark — slight faster parallax */}
@@ -164,7 +164,7 @@ export default function Testimonials() {
               data-cursor="hover"
               data-magnetic
               data-magnetic-strength="0.6"
-              aria-label={`Tampilkan testimoni ${i + 1}`}
+              aria-label={`Show testimonial ${i + 1}`}
               onClick={() => setIndex(i)}
               className="h-1.5 rounded-full transition-all duration-500"
               style={{
@@ -178,7 +178,7 @@ export default function Testimonials() {
 
         {/* Swipe hint */}
         <div className="mt-5 font-accent text-micro uppercase tracking-macro text-muted/60">
-          Geser untuk berpindah
+          Swipe to navigate
         </div>
       </div>
     </section>

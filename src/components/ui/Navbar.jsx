@@ -7,10 +7,10 @@ import { lenis } from '../../main.jsx'
 import { prefersReducedMotion } from '../../lib/prefersReducedMotion'
 
 const LINKS = [
-  { label: 'Model',    target: '#models' },
-  { label: 'Filosofi', target: '#philosophy' },
-  { label: 'Warisan',  target: '#legacy' },
-  { label: 'Kontak',   target: '#cta' },
+  { label: 'Models',    target: '#models' },
+  { label: 'Philosophy', target: '#philosophy' },
+  { label: 'Legacy',  target: '#legacy' },
+  { label: 'Contact',   target: '#cta' },
 ]
 
 export default function Navbar() {
@@ -147,7 +147,7 @@ export default function Navbar() {
           className={`group relative hidden overflow-hidden border ${accentBorder} px-6 py-2.5 font-accent text-caption font-light uppercase tracking-macro ${accent} transition-colors duration-300 sm:inline-block`}
         >
           <span className="relative z-10 transition-colors duration-300 group-hover:text-carbon">
-            Pengalaman Privat
+            Private Experience
           </span>
           <span
             className={`absolute inset-0 origin-bottom scale-y-0 transition-transform duration-300 ease-[cubic-bezier(0.65,0,0.35,1)] group-hover:scale-y-100 ${

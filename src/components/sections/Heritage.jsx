@@ -7,11 +7,11 @@ import { prefersReducedMotion } from '../../lib/prefersReducedMotion'
 // enters, dot pops, text fades up. Reinforces the marque's history without a
 // second horizontal pin. Sits after Legacy, bridging toward ACT 3.
 const EVENTS = [
-  { year: '1987', text: 'Sebuah bengkel sempit di Bandung. Satu mesin. Satu obsesi.' },
-  { year: '1998', text: 'VELOX pertama melewati 300 km/jam. Dunia mulai memperhatikan.' },
-  { year: '2008', text: 'Gelar juara pertama. Ternyata bukan yang terakhir.' },
-  { year: '2016', text: 'Atelier dibuka. Satu mobil, satu pemilik, satu cerita.' },
-  { year: '2026', text: 'Empat dekade. Prinsip yang sama. Jalan masih panjang.' },
+  { year: '1987', text: 'A cramped workshop in Sydney. One engine. One obsession.' },
+  { year: '1998', text: 'The first VELOX breaks 300 km/h. The world takes notice.' },
+  { year: '2008', text: "First championship title. It wouldn't be the last." },
+  { year: '2016', text: 'The Atelier opens. One car, one owner, one story.' },
+  { year: '2026', text: 'Four decades. The same principles. The road goes on.' },
 ]
 
 export default function Heritage() {
@@ -87,14 +87,14 @@ export default function Heritage() {
           <div className="mb-6 flex items-center gap-4">
             <span className="h-px w-10 bg-gold/60" />
             <span className="font-accent text-micro font-extralight uppercase tracking-macro text-muted">
-              Perjalanan
+              The Journey
             </span>
           </div>
           <h2
             className="font-serif italic text-chrome"
             style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', lineHeight: 1.15 }}
           >
-            Empat dekade, satu garis lurus.
+            Four decades, one straight line.
           </h2>
         </div>
 

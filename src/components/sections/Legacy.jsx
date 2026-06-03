@@ -5,9 +5,9 @@ import { SplitText } from 'gsap/SplitText'
 import { prefersReducedMotion } from '../../lib/prefersReducedMotion'
 
 const STATS = [
-  { target: 39,   suffix: '',  label: 'Tahun Obsesi' },
-  { target: 1200, suffix: '+', label: 'Unit, Tak Pernah Massal' },
-  { target: 32,   suffix: '',  label: 'Gelar Juara' },
+  { target: 39,   suffix: '',  label: 'Years of Obsession' },
+  { target: 1200, suffix: '+', label: 'Units, Never Mass-Produced' },
+  { target: 32,   suffix: '',  label: 'Championships' },
 ]
 
 export default function Legacy() {
@@ -149,7 +149,7 @@ export default function Legacy() {
               data-speed="0.85"
               className="font-accent text-micro font-extralight uppercase tracking-macro text-muted"
             >
-              Warisan Kami
+              Our Legacy
             </span>
           </div>
 
@@ -158,7 +158,7 @@ export default function Legacy() {
             className="font-serif italic text-chrome"
             style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)' }}
           >
-            Dibangun dengan Obsesi
+            Built with Obsession
           </h2>
 
           <div
@@ -167,14 +167,14 @@ export default function Legacy() {
             style={{ lineHeight: 1.9 }}
           >
             <p>
-              Tahun 1987, di sebuah bengkel sempit di pinggiran Bandung, Tan Wijaya
-              membongkar mesin yang menurut semua orang sudah sempurna. Baginya,
-              "cukup cepat" adalah sebuah penghinaan.
+              In 1987, in a cramped workshop on the outskirts of Sydney, Tan Wijaya
+              disassembled an engine that everyone else deemed perfect. To him,
+              "fast enough" was an insult.
             </p>
             <p>
-              Empat dekade kemudian, pertanyaannya tak pernah berubah. Bukan
-              "seberapa cepat", melainkan "seberapa dekat dengan sempurna". Jarak
-              di antara keduanya — itulah seluruh hidup kami.
+              Four decades later, the question remains unchanged. Not "how fast",
+              but "how close to perfection". The distance between the two — that
+              is our entire life's work.
             </p>
           </div>
 

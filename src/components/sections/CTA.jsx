@@ -90,7 +90,7 @@ export default function CTA() {
       <div className="relative z-10 mx-auto max-w-4xl">
         <div className="mb-8 flex items-center justify-center gap-2 font-accent text-micro font-extralight uppercase tracking-macro text-gold">
           <span className="text-base leading-none">·</span>
-          Undangan Privat
+          Private Invitation
         </div>
 
         <h2 className="font-display text-chrome" style={{ lineHeight: 0.9 }}>
@@ -98,19 +98,19 @@ export default function CTA() {
             ref={line1Ref}
             className="block text-[clamp(4rem,10vw,9rem)]"
           >
-            BEBERAPA HAL
+            SOME THINGS
           </span>
           <span
             ref={line2Ref}
             className="mt-2 block font-serif italic text-gold text-[clamp(3rem,7vw,6rem)] leading-tight"
             style={{ lineHeight: 1.1 }}
           >
-            tak perlu dipikir dua kali
+            require no second thoughts
           </span>
         </h2>
 
         <p ref={subRef} className="mx-auto mt-8 max-w-md text-offwhite/60">
-          Datang. Rasakan. Sisanya akan jelas dengan sendirinya.
+          Arrive. Experience. The rest speaks for itself.
         </p>
 
         <div ref={btnRef} className="mt-12 flex flex-wrap items-center justify-center gap-5">
@@ -121,7 +121,7 @@ export default function CTA() {
             className="group inline-block bg-electric px-9 py-4"
           >
             <span className="block font-accent text-caption font-medium uppercase tracking-macro text-carbon transition-transform duration-300 group-hover:scale-[1.02]">
-              Rasakan Sendiri
+              Experience It
             </span>
           </a>
           <a
@@ -131,7 +131,7 @@ export default function CTA() {
             className="group inline-block border border-gold/40 px-9 py-4"
           >
             <span className="block font-accent text-caption font-light uppercase tracking-macro text-offwhite transition-transform duration-300 group-hover:scale-[1.02]">
-              Mulai Percakapan
+              Start a Conversation
             </span>
           </a>
         </div>
