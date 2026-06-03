@@ -106,12 +106,12 @@ function Car({ paintHex, wheelIdx, hasWing }) {
       {/* Headlight bar */}
       <mesh position={[1.74, 0.05, 0]}>
         <boxGeometry args={[0.05, 0.12, 1.1]} />
-        <meshStandardMaterial ref={headMat} color="#FFFFFF" emissive="#FFF8E7" emissiveIntensity={2.2} toneMapped={false} />
+        <meshStandardMaterial ref={headMat} color="#bfe9ff" emissive="#00D2FF" emissiveIntensity={2.2} toneMapped={false} />
       </mesh>
       {/* Tail bar */}
       <mesh position={[-1.76, 0.04, 0]}>
         <boxGeometry args={[0.04, 0.1, 1.2]} />
-        <meshStandardMaterial ref={tailMat} color="#ff6a6a" emissive="#E60000" emissiveIntensity={2.4} toneMapped={false} />
+        <meshStandardMaterial ref={tailMat} color="#ff6a6a" emissive="#FF2D2D" emissiveIntensity={2.4} toneMapped={false} />
       </mesh>
 
       <Wheel x={1.15} z={0.66} rim={rim} />
@@ -148,7 +148,7 @@ export default function ConfiguratorCar({ paintHex, wheelIdx, hasWing, active })
         <ContactShadows position={[0, -0.62, 0]} opacity={0.55} scale={11} blur={2.6} far={3} />
         <Environment resolution={128} frames={1}>
           <Lightformer intensity={2.2} position={[0, 5, -2]} scale={[10, 5, 1]} color="#ffffff" />
-          <Lightformer intensity={1.5} position={[-5, 1.5, 1]} scale={[3, 6, 1]} color="#E60000" />
+          <Lightformer intensity={1.3} position={[-5, 1.5, 1]} scale={[3, 6, 1]} color="#00D2FF" />
           <Lightformer intensity={1.1} position={[5, 1.5, 1]} scale={[3, 6, 1]} color="#D4AF37" />
           <Lightformer intensity={0.7} position={[0, -3, 2]} scale={[10, 3, 1]} color="#444444" />
         </Environment>
