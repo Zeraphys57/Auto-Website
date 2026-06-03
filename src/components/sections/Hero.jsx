@@ -52,23 +52,26 @@ export default function Hero() {
       const tl = gsap.timeline({ delay: 0.15 })
 
       // Chars: fly in from below with mechanical heavy ease, then rotateX overshoot-settle
+      const staggerIn  = { each: 0.022, ease: 'power2.in',  from: 'start' }
+      const staggerOut = { each: 0.016, ease: 'power2.out', from: 'start' }
+
       tl.from(split.chars, {
         autoAlpha: 0,
         rotateX: 90,
         y: 60,
         transformOrigin: '50% 50% -24px',
-        stagger: 0.02,
+        stagger: staggerIn,
         duration: 0.9,
-        ease: 'expo.out',
+        ease: 'velox',
       })
         .to(
           split.chars,
-          { rotateX: -6, y: 0, stagger: 0.02, duration: 0.25, ease: 'power2.out' },
+          { rotateX: -6, y: 0, stagger: staggerOut, duration: 0.25, ease: 'power2.out' },
           '-=0.3'
         )
         .to(
           split.chars,
-          { rotateX: 0, stagger: 0.02, duration: 0.35, ease: 'elastic.out(1, 0.5)' },
+          { rotateX: 0, stagger: staggerOut, duration: 0.35, ease: 'elastic.out(1, 0.5)' },
           '-=0.15'
         )
         .from(

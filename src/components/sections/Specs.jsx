@@ -1,7 +1,8 @@
 import { useRef, useState } from 'react'
 import { useGSAP } from '@gsap/react'
 import { gsap } from 'gsap'
-import EngineParticles from '../canvas/EngineParticles'
+import { lazy, Suspense } from 'react'
+const EngineParticles = lazy(() => import('../canvas/EngineParticles'))
 import { prefersReducedMotion } from '../../lib/prefersReducedMotion'
 
 const ROWS = [
@@ -68,7 +69,9 @@ export default function Specs() {
     >
       {/* Engine particles — react to the hovered spec row */}
       <div className="pointer-events-none absolute inset-y-0 right-0 z-0 hidden w-1/2 opacity-80 md:block">
-        <EngineParticles excite={hover !== null} accent={hover !== null ? ROWS[hover].accent : null} />
+        <Suspense fallback={null}>
+          <EngineParticles excite={hover !== null} accent={hover !== null ? ROWS[hover].accent : null} />
+        </Suspense>
       </div>
 
       <div className="relative z-10 mx-auto grid w-full max-w-[1400px] grid-cols-1 gap-16 px-6 md:grid-cols-2 md:px-12">

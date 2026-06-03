@@ -4,18 +4,18 @@ export default {
   theme: {
     extend: {
       colors: {
-        carbon: '#0A0E14',
-        carbon2: '#111111',
-        carbon3: '#1A1A1A',
-        electric: '#00D2FF',
-        'electric-dim': '#0099BB',
-        chrome: '#FFFFFF',
-        silver: '#E2E8F0',
-        crimson: '#FF2D2D',
-        'crimson-dim': '#CC1111',
+        carbon: '#FDFDFD', // Was dark, now Pearl White background
+        carbon2: '#F4F5F7', // Slightly darker (Grigio)
+        carbon3: '#E2E6EA',
+        electric: '#E60000', // Was cyan, now Monza Red (Primary Accent)
+        'electric-dim': '#B30000',
+        chrome: '#0F1115', // Was white, now deep Carbon Black text
+        silver: '#64748B', // Darker silver for borders
+        crimson: '#E60000',
+        'crimson-dim': '#B30000',
         gold: '#D4AF37',
-        offwhite: '#F0EDE8',
-        muted: '#8B98A5',
+        offwhite: '#1A1D24', // Was light, now dark
+        muted: '#475569', // Dark slate for readable muted text
       },
       fontFamily: {
         display: ['Oswald', 'sans-serif'],

@@ -33,20 +33,20 @@ import CTA from './components/sections/CTA'
 // so the acts blend with zero hard cuts. Warm tones creep in around Experience
 // where ACT 3 (gold) begins.
 const ACTS = [
-  { sel: '.hero-section',         color: '#0A0A0A' },
-  { sel: '.manifesto-section',    color: '#080809' },
-  { sel: '.marquee-section',      color: '#0C0C0C' },
-  { sel: '.models-section',       color: '#111111' },
-  { sel: '.configurator-section', color: '#0E0F13' },
-  { sel: '.philosophy-section',   color: '#0F0F11' },
-  { sel: '.explore-section',      color: '#101012' },
-  { sel: '.specs-section',        color: '#121214' },
-  { sel: '.performance-section',  color: '#131318' },
-  { sel: '.legacy-section',       color: '#171717' },
-  { sel: '.heritage-section',     color: '#141413' },
-  { sel: '.experience-section',   color: '#16110A' },
-  { sel: '.testimonials-section', color: '#110D09' },
-  { sel: '.cta-section',          color: '#0D0D0D' },
+  { sel: '.hero-section',         color: '#FDFDFD' },
+  { sel: '.manifesto-section',    color: '#F9FAFB' },
+  { sel: '.marquee-section',      color: '#F3F4F6' },
+  { sel: '.models-section',       color: '#E5E7EB' },
+  { sel: '.configurator-section', color: '#FDFDFD' },
+  { sel: '.philosophy-section',   color: '#F4F5F7' },
+  { sel: '.explore-section',      color: '#E5E7EB' },
+  { sel: '.specs-section',        color: '#FDFDFD' },
+  { sel: '.performance-section',  color: '#F9FAFB' },
+  { sel: '.legacy-section',       color: '#F3F4F6' },
+  { sel: '.heritage-section',     color: '#E5E7EB' },
+  { sel: '.experience-section',   color: '#FEF3C7' }, // Warm gold hint for ACT 3
+  { sel: '.testimonials-section', color: '#FFFBEB' },
+  { sel: '.cta-section',          color: '#FDFDFD' },
 ]
 
 function Experience3Act() {
@@ -168,7 +168,7 @@ function Experience3Act() {
           <Manifesto />
         </div>
 
-        <SectionTransition trigger=".marquee-section" color="#0A0A0A" accent="#00D4FF" />
+        <SectionTransition trigger=".marquee-section" color="#FDFDFD" accent="#E60000" />
         <div className="skew-wrap">
           <Marquee />
         </div>
@@ -190,7 +190,7 @@ function Experience3Act() {
           <DragExplore />
         </div>
 
-        <SectionTransition trigger=".specs-section" color="#111111" accent="#FF2D2D" />
+        <SectionTransition trigger=".specs-section" color="#E5E7EB" accent="#E60000" />
         <div className="skew-wrap">
           <Specs />
         </div>
@@ -205,7 +205,7 @@ function Experience3Act() {
         </div>
 
         {/* ACT 3 — belonging. Gold warmth enters with Experience. */}
-        <SectionTransition trigger=".experience-section" color="#1A1A1A" accent="#C9A96E" />
+        <SectionTransition trigger=".experience-section" color="#FDFDFD" accent="#D4AF37" />
         <div className="skew-wrap">
           <Experience />
         </div>
