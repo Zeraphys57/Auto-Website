@@ -29,7 +29,7 @@ export default function Manifesto() {
       gsap.from(lineDrawRef.current, {
         scaleX: 0,
         duration: 1.4,
-        ease: 'velox',
+        ease: 'expo.out',
         scrollTrigger: { trigger: sectionRef.current, start: 'top 70%' },
       })
       gsap.to(lineDrawRef.current, {
@@ -44,28 +44,31 @@ export default function Manifesto() {
       gsap.from(eyebrowRef.current, {
         autoAlpha: 0,
         y: 18,
-        duration: 1,
-        ease: 'velox',
+        duration: 1.2,
+        ease: 'expo.out',
         scrollTrigger: { trigger: sectionRef.current, start: 'top 75%' },
       })
 
-      // Line-mask reveal — each declarative line rises from behind a clip edge
+      // Scroll-Driven Illumination — words light up as you scroll
       const lineEls = Array.from(linesRef.current.querySelectorAll('.manifesto-line'))
       lineEls.forEach((el) => {
-        const split = new SplitText(el, { type: 'lines' })
-        split.lines.forEach((line) => {
-          const mask = document.createElement('div')
-          mask.style.overflow = 'hidden'
-          line.parentNode.insertBefore(mask, line)
-          mask.appendChild(line)
-        })
-        gsap.from(split.lines, {
-          yPercent: 115,
-          duration: 1,
-          ease: 'velox',
-          stagger: 0.09,
-          scrollTrigger: { trigger: el, start: 'top 88%' },
-        })
+        const split = new SplitText(el, { type: 'words' })
+        
+        gsap.fromTo(split.words, 
+          { opacity: 0.1, y: 15 },
+          { 
+            opacity: 1, 
+            y: 0,
+            ease: 'none',
+            stagger: 0.05,
+            scrollTrigger: { 
+              trigger: el, 
+              start: 'top 85%', 
+              end: 'bottom 45%', 
+              scrub: 1 // smooth scrubbing
+            }
+          }
+        )
       })
     },
     { scope: sectionRef, dependencies: [rm] }
@@ -110,15 +113,9 @@ export default function Manifesto() {
           {LINES.map((l, i) => (
             <p
               key={i}
-              className={`manifesto-line font-serif ${
-                l.accent ? 'italic text-gold' : 'text-chrome'
-              }`}
-              style={{
-                fontSize: 'clamp(1.7rem, 4.4vw, 3.7rem)',
-                lineHeight: 1.26,
-                fontWeight: l.accent ? 400 : 300,
-                marginTop: i === 0 ? 0 : '0.35em',
-              }}
+              className={`manifesto-line font-serif text-fluid-h2 leading-snug ${
+                l.accent ? 'italic text-gold font-normal mt-6' : 'text-chrome font-light mt-4'
+              } ${i === 0 ? '!mt-0' : ''}`}
             >
               {l.text}
             </p>

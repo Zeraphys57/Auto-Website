@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react'
 import { useGSAP } from '@gsap/react'
 import { gsap } from 'gsap'
+import { SplitText } from 'gsap/SplitText'
 import { applyTilt } from '../../lib/tilt'
 import { prefersReducedMotion } from '../../lib/prefersReducedMotion'
 
@@ -53,29 +54,47 @@ export default function DesignPhilosophy() {
         y: 28,
         filter: 'blur(8px)',
         stagger: 0.12,
-        duration: 1,
-        ease: 'velox',
+        duration: 1.2,
+        ease: 'expo.out',
         scrollTrigger: { trigger: headRef.current, start: 'top 80%' },
       })
 
       gsap.utils.toArray('.philo-beat').forEach((beat, i) => {
         const panel = beat.querySelector('.philo-panel')
+        const bg = beat.querySelector('.philo-panel-bg')
         const text = beat.querySelector('.philo-text')
+        const title = beat.querySelector('h3')
         const flip = i % 2 === 1
 
-        gsap.from(panel, {
-          clipPath: flip ? 'inset(0 0 0 100%)' : 'inset(0 100% 0 0)',
-          duration: 1.15,
-          ease: 'velox',
-          scrollTrigger: { trigger: beat, start: 'top 75%' },
+        gsap.fromTo(panel,
+          { clipPath: flip ? 'inset(0 0 0 100%)' : 'inset(0 100% 0 0)' },
+          { clipPath: 'inset(0 0 0 0)', duration: 1.4, ease: 'expo.inOut', scrollTrigger: { trigger: beat, start: 'top 75%' } }
+        )
+        
+        if (bg) {
+          gsap.from(bg, { scale: 1.2, duration: 1.4, ease: 'expo.inOut', scrollTrigger: { trigger: beat, start: 'top 75%' }})
+        }
+
+        const splitTitle = new SplitText(title, { type: 'chars' })
+        gsap.from(splitTitle.chars, {
+          y: 40,
+          opacity: 0,
+          rotateX: 90,
+          stagger: 0.02,
+          duration: 1,
+          ease: 'expo.out',
+          scrollTrigger: { trigger: beat, start: 'top 70%' },
         })
-        gsap.from(text.children, {
+
+        // Select all text elements except the title
+        const otherText = Array.from(text.children).filter(child => child !== title)
+        gsap.from(otherText, {
           autoAlpha: 0,
-          y: 30,
+          y: 20,
           filter: 'blur(8px)',
-          stagger: 0.08,
-          duration: 0.9,
-          ease: 'velox',
+          stagger: 0.1,
+          duration: 1,
+          ease: 'power3.out',
           scrollTrigger: { trigger: beat, start: 'top 70%' },
         })
       })
@@ -104,10 +123,7 @@ export default function DesignPhilosophy() {
               Filosofi Desain
             </span>
           </div>
-          <h2
-            className="font-serif italic text-chrome"
-            style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', lineHeight: 1.15 }}
-          >
+          <h2 className="font-serif italic text-chrome text-fluid-h2 leading-snug">
             Bentuk mengikuti kecepatan.
           </h2>
         </div>
@@ -131,10 +147,13 @@ export default function DesignPhilosophy() {
                   className={`philo-panel relative h-[42vh] w-full overflow-hidden border border-white/5 md:h-[56vh] ${
                     flip ? 'md:order-2' : ''
                   }`}
-                  style={{ background: b.grad, willChange: 'clip-path' }}
+                  style={{ willChange: 'clip-path' }}
                 >
+                  {/* Cinematic zoom background */}
+                  <div className="philo-panel-bg absolute inset-0 z-0" style={{ background: b.grad }} />
+                  
                   {/* IMAGE: {b.note} */}
-                  <span className="absolute left-6 top-6 font-mono text-micro tracking-wide-caps text-muted/40">
+                  <span className="absolute left-6 top-6 z-10 font-mono text-micro tracking-wide-caps text-muted/40">
                     {`// ${b.note}`}
                   </span>
                   <span
@@ -154,16 +173,10 @@ export default function DesignPhilosophy() {
                     <span className="font-accent text-micro font-extralight uppercase tracking-macro text-muted">
                       0{i + 1}
                     </span>
-                    <h3
-                      className="mt-3 font-display text-chrome"
-                      style={{ fontSize: 'clamp(2.4rem, 5vw, 4.2rem)', lineHeight: 0.95 }}
-                    >
+                    <h3 className="mt-3 font-display text-chrome text-fluid-h1 leading-none">
                       {b.label}
                     </h3>
-                    <p
-                      className="mt-5 max-w-md font-serif italic text-chrome/70"
-                      style={{ fontSize: 'clamp(1.1rem, 2vw, 1.6rem)', lineHeight: 1.4 }}
-                    >
+                    <p className="mt-5 max-w-md font-serif italic text-chrome/70 text-fluid-h3 leading-relaxed">
                       {b.poetic}
                     </p>
                     <p className="mt-6 font-mono text-caption tracking-wide-caps text-electric/70">
