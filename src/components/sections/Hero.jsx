@@ -51,24 +51,25 @@ export default function Hero() {
 
       const tl = gsap.timeline({ delay: 0.15 })
 
-      // Chars: fly in from below with velox ease, then subtle rotateX overshoot-settle
+      // Chars: fly in from below with mechanical heavy ease, then rotateX overshoot-settle
       tl.from(split.chars, {
         autoAlpha: 0,
         rotateX: 90,
+        y: 60,
         transformOrigin: '50% 50% -24px',
-        stagger: 0.015,
-        duration: 0.85,
-        ease: 'velox',
+        stagger: 0.02,
+        duration: 0.9,
+        ease: 'expo.out',
       })
         .to(
           split.chars,
-          { rotateX: -4, stagger: 0.008, duration: 0.18, ease: 'power2.out' },
-          '-=0.25'
+          { rotateX: -6, y: 0, stagger: 0.02, duration: 0.25, ease: 'power2.out' },
+          '-=0.3'
         )
         .to(
           split.chars,
-          { rotateX: 0, stagger: 0.008, duration: 0.28, ease: 'power2.inOut' },
-          '-=0.12'
+          { rotateX: 0, stagger: 0.02, duration: 0.35, ease: 'elastic.out(1, 0.5)' },
+          '-=0.15'
         )
         .from(
           [subRef.current, identityRef.current, ctaRef.current],
@@ -184,12 +185,12 @@ export default function Hero() {
           {/* Top bar */}
           <div ref={topRef} className="flex items-start justify-between">
             <div className="flex items-center gap-4">
-              <span className="font-display text-xl leading-none tracking-[0.12em] text-chrome">
+              <span className="font-display text-xl leading-none tracking-wide-caps text-chrome">
                 VELOX
               </span>
               <span className="h-px w-10 bg-electric" />
             </div>
-            <span className="font-accent text-[0.62rem] font-extralight uppercase tracking-[0.35em] text-chrome/50">
+            <span className="font-accent text-micro font-extralight uppercase tracking-macro text-chrome/50">
               Jakarta · Indonesia
             </span>
           </div>
@@ -221,7 +222,7 @@ export default function Hero() {
 
             <p
               ref={identityRef}
-              className="mt-4 max-w-sm font-accent text-[0.7rem] font-extralight uppercase leading-relaxed tracking-[0.28em] text-muted"
+              className="mt-4 max-w-sm font-accent text-caption font-extralight uppercase leading-relaxed tracking-macro text-muted"
             >
               Bukan untuk semua orang. Dan justru itulah maksudnya.
             </p>
@@ -233,7 +234,7 @@ export default function Hero() {
               data-cursor="hover"
               data-magnetic
               data-magnetic-strength="0.4"
-              className="group mt-8 inline-flex items-center gap-3 font-accent text-[0.78rem] font-light uppercase tracking-[0.25em] text-electric"
+              className="group mt-8 inline-flex items-center gap-3 font-accent text-caption font-light uppercase tracking-macro text-electric"
             >
               Jelajahi Koleksi
               <span className="transition-transform duration-300 group-hover:translate-x-2">
@@ -249,10 +250,10 @@ export default function Hero() {
           >
             {SPECS.map((s) => (
               <div key={s.label} className="px-5 first:pl-0">
-                <div className="font-accent text-[0.6rem] font-extralight uppercase tracking-[0.2em] text-muted">
+                <div className="font-accent text-micro font-extralight uppercase tracking-macro text-muted">
                   {s.label}
                 </div>
-                <div className="mt-1 font-display text-[1.4rem] leading-none text-chrome">
+                <div className="mt-1 font-display text-fluid-h3 leading-none text-chrome">
                   {s.value.slice(0, -1)}
                   <span className="spec-flicker text-electric">{s.value.slice(-1)}</span>
                 </div>
@@ -266,7 +267,7 @@ export default function Hero() {
             className="absolute bottom-10 right-8 hidden md:block"
             style={{ writingMode: 'vertical-rl' }}
           >
-            <span className="font-accent text-[0.6rem] font-extralight uppercase tracking-[0.35em] text-muted">
+            <span className="font-accent text-micro font-extralight uppercase tracking-macro text-muted">
               Scroll untuk menjelajahi
             </span>
           </div>

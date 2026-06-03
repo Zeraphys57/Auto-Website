@@ -66,7 +66,7 @@ function Experience3Act() {
           trigger: a.sel,
           start: 'top 80%',
           end: 'top 30%',
-          scrub: true,
+          scrub: 1.5,
         },
       })
     })
@@ -95,7 +95,7 @@ function Experience3Act() {
           trigger: el,
           start: 'top bottom',
           end: 'bottom top',
-          scrub: true,
+          scrub: 1.5,
           invalidateOnRefresh: true,
         },
       })

@@ -82,7 +82,7 @@ export default function CTA() {
       </div>
 
       <div className="relative z-10 mx-auto max-w-4xl">
-        <div className="mb-8 flex items-center justify-center gap-2 font-accent text-[0.62rem] font-extralight uppercase tracking-[0.3em] text-gold">
+        <div className="mb-8 flex items-center justify-center gap-2 font-accent text-micro font-extralight uppercase tracking-macro text-gold">
           <span className="text-base leading-none">·</span>
           Undangan Privat
         </div>
@@ -115,7 +115,7 @@ export default function CTA() {
             data-cursor="cta"
             className="group inline-block bg-electric px-9 py-4"
           >
-            <span className="block font-accent text-[0.72rem] font-medium uppercase tracking-[0.22em] text-carbon transition-transform duration-300 group-hover:scale-[1.02]">
+            <span className="block font-accent text-caption font-medium uppercase tracking-macro text-carbon transition-transform duration-300 group-hover:scale-[1.02]">
               Rasakan Sendiri
             </span>
           </a>
@@ -125,7 +125,7 @@ export default function CTA() {
             data-cursor="hover"
             className="group inline-block border border-gold/40 px-9 py-4"
           >
-            <span className="block font-accent text-[0.72rem] font-light uppercase tracking-[0.22em] text-offwhite transition-transform duration-300 group-hover:scale-[1.02]">
+            <span className="block font-accent text-caption font-light uppercase tracking-macro text-offwhite transition-transform duration-300 group-hover:scale-[1.02]">
               Mulai Percakapan
             </span>
           </a>

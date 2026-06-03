@@ -100,7 +100,7 @@ export default function DesignPhilosophy() {
         <div ref={headRef} className="mb-20 max-w-2xl md:mb-28">
           <div className="mb-6 flex items-center gap-4">
             <span className="h-px w-10 bg-electric/60" />
-            <span className="font-accent text-[0.62rem] font-extralight uppercase tracking-[0.4em] text-muted">
+            <span className="font-accent text-micro font-extralight uppercase tracking-macro text-muted">
               Filosofi Desain
             </span>
           </div>
@@ -134,7 +134,7 @@ export default function DesignPhilosophy() {
                   style={{ background: b.grad, willChange: 'clip-path' }}
                 >
                   {/* IMAGE: {b.note} */}
-                  <span className="absolute left-6 top-6 font-mono text-[0.55rem] tracking-[0.18em] text-muted/40">
+                  <span className="absolute left-6 top-6 font-mono text-micro tracking-wide-caps text-muted/40">
                     {`// ${b.note}`}
                   </span>
                   <span
@@ -151,7 +151,7 @@ export default function DesignPhilosophy() {
                 {/* Text */}
                 <div className={flip ? 'md:order-1' : ''}>
                   <div className="philo-text">
-                    <span className="font-accent text-[0.6rem] font-extralight uppercase tracking-[0.3em] text-muted">
+                    <span className="font-accent text-micro font-extralight uppercase tracking-macro text-muted">
                       0{i + 1}
                     </span>
                     <h3
@@ -166,7 +166,7 @@ export default function DesignPhilosophy() {
                     >
                       {b.poetic}
                     </p>
-                    <p className="mt-6 font-mono text-[0.7rem] tracking-[0.15em] text-electric/70">
+                    <p className="mt-6 font-mono text-caption tracking-wide-caps text-electric/70">
                       {b.spec}
                     </p>
                   </div>

@@ -9,12 +9,12 @@ export default function Marquee() {
       {/* Row 1 — drifts left, large condensed */}
       <div className="marquee-row flex w-full select-none overflow-hidden">
         <div className="animate-marquee-left flex shrink-0 flex-nowrap">
-          <span className="whitespace-nowrap font-display text-[3rem] leading-none tracking-[0.04em] text-chrome/20">
+          <span className="whitespace-nowrap font-display text-fluid-h1 leading-none tracking-[0.04em] text-chrome/20">
             {ROW1}
           </span>
           <span
             aria-hidden="true"
-            className="whitespace-nowrap font-display text-[3rem] leading-none tracking-[0.04em] text-chrome/20"
+            className="whitespace-nowrap font-display text-fluid-h1 leading-none tracking-[0.04em] text-chrome/20"
           >
             {ROW1}
           </span>
@@ -24,12 +24,12 @@ export default function Marquee() {
       {/* Row 2 — drifts right, fine spaced accent */}
       <div className="marquee-row flex w-full select-none overflow-hidden">
         <div className="animate-marquee-right flex shrink-0 flex-nowrap">
-          <span className="whitespace-nowrap font-accent text-[0.8rem] font-extralight uppercase tracking-[0.4em] text-electric/40">
+          <span className="whitespace-nowrap font-accent text-caption font-extralight uppercase tracking-macro text-electric/40">
             {ROW2}
           </span>
           <span
             aria-hidden="true"
-            className="whitespace-nowrap font-accent text-[0.8rem] font-extralight uppercase tracking-[0.4em] text-electric/40"
+            className="whitespace-nowrap font-accent text-caption font-extralight uppercase tracking-macro text-electric/40"
           >
             {ROW2}
           </span>

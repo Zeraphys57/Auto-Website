@@ -136,7 +136,7 @@ export default function Loader() {
             stroke="#00D4FF"
             strokeWidth="1.2"
             style={{
-              fontFamily: "'Bebas Neue', Impact, sans-serif",
+              fontFamily: "'Oswald', sans-serif",
               fontSize: '92px',
               letterSpacing: '0.14em',
             }}
@@ -170,7 +170,7 @@ export default function Loader() {
         {/* Sub-text */}
         <div
           ref={subRef}
-          className="mt-5 font-accent text-[0.6rem] font-extralight uppercase tracking-[0.4em] text-muted"
+          className="mt-5 font-accent text-micro font-extralight uppercase tracking-macro text-muted"
           style={{ opacity: 0 }}
         >
           Memuat Pengalaman

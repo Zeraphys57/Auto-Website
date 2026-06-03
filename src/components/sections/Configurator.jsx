@@ -135,7 +135,7 @@ export default function Configurator() {
         <div ref={headRef} className="mb-12 max-w-2xl md:mb-16">
           <div className="mb-6 flex items-center gap-4">
             <span className="h-px w-10 bg-electric/60" />
-            <span className="font-accent text-[0.62rem] font-extralight uppercase tracking-[0.4em] text-muted">
+            <span className="font-accent text-micro font-extralight uppercase tracking-macro text-muted">
               Konfigurator
             </span>
           </div>
@@ -183,7 +183,7 @@ export default function Configurator() {
             )}
 
             {/* Stage label */}
-            <div className="pointer-events-none absolute bottom-5 left-6 font-mono text-[0.6rem] uppercase tracking-[0.2em] text-muted">
+            <div className="pointer-events-none absolute bottom-5 left-6 font-mono text-micro uppercase tracking-macro text-muted">
               {v.name} · {PAINTS[paint].name}
             </div>
           </div>
@@ -248,7 +248,7 @@ export default function Configurator() {
                     data-cursor="hover"
                     aria-pressed={wheel === i}
                     onClick={() => setWheel(i)}
-                    className={`flex-1 border px-3 py-2.5 font-accent text-[0.7rem] uppercase tracking-[0.15em] transition-colors duration-300 ${
+                    className={`flex-1 border px-3 py-2.5 font-accent text-caption uppercase tracking-wide-caps transition-colors duration-300 ${
                       wheel === i
                         ? 'border-electric bg-electric/10 text-chrome'
                         : 'border-white/10 text-muted hover:border-white/30 hover:text-chrome'
@@ -271,7 +271,7 @@ export default function Configurator() {
                     data-cursor="hover"
                     aria-pressed={interior === i}
                     onClick={() => setInterior(i)}
-                    className={`flex-1 border px-3 py-2.5 font-accent text-[0.62rem] uppercase tracking-[0.12em] transition-colors duration-300 ${
+                    className={`flex-1 border px-3 py-2.5 font-accent text-micro uppercase tracking-wide-caps transition-colors duration-300 ${
                       interior === i
                         ? 'border-gold bg-gold/10 text-chrome'
                         : 'border-white/10 text-muted hover:border-white/30 hover:text-chrome'
@@ -285,7 +285,7 @@ export default function Configurator() {
             </ControlGroup>
 
             {/* SPEC SHEET */}
-            <div className="mt-8 border-t border-white/10 pt-6 font-mono text-[0.72rem] tracking-[0.04em]">
+            <div className="mt-8 border-t border-white/10 pt-6 font-mono text-caption tracking-[0.04em]">
               <SpecLine k="MODEL"     v={v.name} />
               <SpecLine k="WARNA"     v={PAINTS[paint].name} />
               <SpecLine k="VELG"      v={WHEELS[wheel].name} />
@@ -304,12 +304,12 @@ export default function Configurator() {
             {/* CTA */}
             <div className="mt-8 flex flex-wrap gap-4">
               <a ref={saveBtn} href="#cta" data-cursor="cta" className="bg-electric px-7 py-3.5">
-                <span className="font-accent text-[0.7rem] font-medium uppercase tracking-[0.2em] text-carbon">
+                <span className="font-accent text-caption font-medium uppercase tracking-macro text-carbon">
                   Simpan Konfigurasi
                 </span>
               </a>
               <a ref={meetBtn} href="#experience" data-cursor="hover" className="border border-gold/40 px-7 py-3.5">
-                <span className="font-accent text-[0.7rem] font-light uppercase tracking-[0.2em] text-offwhite">
+                <span className="font-accent text-caption font-light uppercase tracking-macro text-offwhite">
                   Atur Pertemuan
                 </span>
               </a>
@@ -324,7 +324,7 @@ export default function Configurator() {
 function ControlGroup({ label, children }) {
   return (
     <div className="mb-7">
-      <div className="mb-3 font-accent text-[0.6rem] font-extralight uppercase tracking-[0.3em] text-muted">
+      <div className="mb-3 font-accent text-micro font-extralight uppercase tracking-macro text-muted">
         {label}
       </div>
       {children}
@@ -350,7 +350,7 @@ function ConfiguratorFallback() {
     <div className="absolute inset-0 flex items-center justify-center">
       <div className="flex flex-col items-center">
         <div className="mb-4 h-5 w-5 animate-spin rounded-full border-2 border-electric border-t-transparent" />
-        <div className="font-accent text-[0.6rem] uppercase tracking-[0.2em] text-muted">
+        <div className="font-accent text-micro uppercase tracking-macro text-muted">
           Menyiapkan 3D Engine...
         </div>
       </div>

@@ -82,7 +82,7 @@ export default function Experience() {
         <div ref={headRef} className="mb-16 max-w-3xl md:mb-24">
           <div className="mb-6 flex items-center gap-4">
             <span className="h-px w-10 bg-gold/60" />
-            <span className="font-accent text-[0.62rem] font-extralight uppercase tracking-[0.4em] text-gold/80">
+            <span className="font-accent text-micro font-extralight uppercase tracking-macro text-gold/80">
               Kepemilikan
             </span>
           </div>
@@ -109,7 +109,7 @@ export default function Experience() {
               }}
             >
               <div className="exp-inner">
-                <span className="font-mono text-[0.65rem] tracking-[0.25em] text-gold/50">
+                <span className="font-mono text-micro tracking-macro text-gold/50">
                   {p.n}
                 </span>
                 <h3
@@ -125,7 +125,7 @@ export default function Experience() {
                   {p.line}
                 </p>
                 {/* IMAGE: {p.note} */}
-                <span className="mt-8 block font-mono text-[0.5rem] tracking-[0.18em] text-muted/40">
+                <span className="mt-8 block font-mono text-micro tracking-wide-caps text-muted/40">
                   {`// ${p.note}`}
                 </span>
               </div>

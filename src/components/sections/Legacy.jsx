@@ -132,7 +132,7 @@ export default function Legacy() {
             data-speed="1.15"
             className="absolute bottom-6 left-6 flex h-28 w-28 items-center justify-center rounded-full border border-silver/40 text-center"
           >
-            <span className="font-accent text-[0.6rem] font-extralight uppercase leading-tight tracking-[0.25em] text-silver">
+            <span className="font-accent text-micro font-extralight uppercase leading-tight tracking-macro text-silver">
               Since
               <br />
               1987
@@ -147,7 +147,7 @@ export default function Legacy() {
             <span className="h-px w-10 bg-silver/50" />
             <span
               data-speed="0.85"
-              className="font-accent text-[0.62rem] font-extralight uppercase tracking-[0.3em] text-muted"
+              className="font-accent text-micro font-extralight uppercase tracking-macro text-muted"
             >
               Warisan Kami
             </span>
@@ -190,7 +190,7 @@ export default function Legacy() {
                 >
                   0
                 </div>
-                <div className="mt-2 font-accent text-[0.6rem] font-extralight uppercase tracking-[0.2em] text-muted">
+                <div className="mt-2 font-accent text-micro font-extralight uppercase tracking-macro text-muted">
                   {s.label}
                 </div>
               </div>

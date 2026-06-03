@@ -120,7 +120,7 @@ export default function DragExplore() {
         <div ref={headRef} className="mb-10 max-w-2xl md:mb-14">
           <div className="mb-6 flex items-center gap-4">
             <span className="h-px w-10 bg-electric/60" />
-            <span className="font-accent text-[0.62rem] font-extralight uppercase tracking-[0.4em] text-muted">
+            <span className="font-accent text-micro font-extralight uppercase tracking-macro text-muted">
               Eksplorasi
             </span>
           </div>
@@ -185,8 +185,8 @@ export default function DragExplore() {
               <span className="pointer-events-none absolute left-1/2 top-1/2 hidden w-max -translate-y-1/2 translate-x-4 group-hover:block group-focus-visible:block">
                 <span className="block h-px w-8 bg-electric/60" />
                 <span className="mt-[-1px] block border border-electric/30 bg-carbon/90 px-3 py-2 text-left backdrop-blur">
-                  <span className="block font-accent text-[0.6rem] uppercase tracking-[0.2em] text-electric">{h.label}</span>
-                  <span className="mt-1 block font-mono text-[0.62rem] text-chrome/80">{h.detail}</span>
+                  <span className="block font-accent text-micro uppercase tracking-macro text-electric">{h.label}</span>
+                  <span className="mt-1 block font-mono text-micro text-chrome/80">{h.detail}</span>
                 </span>
               </span>
             </button>
@@ -197,7 +197,7 @@ export default function DragExplore() {
             <div
               ref={hintRef}
               aria-hidden="true"
-              className="pointer-events-none absolute bottom-6 left-1/2 -translate-x-1/2 font-accent text-[0.6rem] uppercase tracking-[0.35em] text-muted transition-opacity duration-500"
+              className="pointer-events-none absolute bottom-6 left-1/2 -translate-x-1/2 font-accent text-micro uppercase tracking-macro text-muted transition-opacity duration-500"
               style={{ opacity: hintGone ? 0 : 1 }}
             >
               ← Geser untuk memutar →

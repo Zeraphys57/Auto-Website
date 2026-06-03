@@ -92,7 +92,7 @@ export default function Testimonials() {
       {/* Eyebrow */}
       <span
         data-speed="0.85"
-        className="absolute top-[14%] left-1/2 -translate-x-1/2 font-accent text-[0.62rem] font-extralight uppercase tracking-[0.7em] text-muted"
+        className="absolute top-[14%] left-1/2 -translate-x-1/2 font-accent text-micro font-extralight uppercase tracking-macro text-muted"
       >
         Testimonial
       </span>
@@ -141,13 +141,13 @@ export default function Testimonials() {
               </p>
 
               <footer className="mt-10">
-                <div className="font-accent text-sm font-light tracking-[0.1em] text-gold">
+                <div className="font-accent text-sm font-light tracking-wide-caps text-gold">
                   — {active.name}
                 </div>
-                <div className="mt-1 font-accent text-[0.7rem] font-extralight uppercase tracking-[0.2em] text-muted">
+                <div className="mt-1 font-accent text-caption font-extralight uppercase tracking-macro text-muted">
                   {active.role}
                 </div>
-                <div className="mt-5 font-mono text-[0.6rem] uppercase tracking-[0.25em] text-gold/70">
+                <div className="mt-5 font-mono text-micro uppercase tracking-macro text-gold/70">
                   {active.owned}
                 </div>
               </footer>
@@ -177,7 +177,7 @@ export default function Testimonials() {
         </div>
 
         {/* Swipe hint */}
-        <div className="mt-5 font-accent text-[0.55rem] uppercase tracking-[0.3em] text-muted/60">
+        <div className="mt-5 font-accent text-micro uppercase tracking-macro text-muted/60">
           Geser untuk berpindah
         </div>
       </div>

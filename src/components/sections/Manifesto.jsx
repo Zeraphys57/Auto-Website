@@ -101,7 +101,7 @@ export default function Manifesto() {
 
       <div className="mx-auto w-full max-w-[1400px] px-6 md:px-12">
         <div ref={eyebrowRef} className="mb-10 md:mb-14">
-          <span className="font-accent text-[0.62rem] font-extralight uppercase tracking-[0.55em] text-electric">
+          <span className="font-accent text-micro font-extralight uppercase tracking-macro text-electric">
             Manifesto
           </span>
         </div>

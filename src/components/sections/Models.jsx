@@ -184,7 +184,7 @@ export default function Models() {
         className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 md:left-6"
         style={{ writingMode: 'vertical-rl' }}
       >
-        <span className="font-accent text-xs font-extralight tracking-[0.5em] text-muted">
+        <span className="font-accent text-xs font-extralight tracking-macro text-muted">
           02
         </span>
       </div>
@@ -244,13 +244,13 @@ export default function Models() {
             />
 
             {/* tag top-left */}
-            <span className="absolute left-7 top-7 font-accent text-[0.62rem] font-extralight uppercase tracking-[0.3em] text-silver/70">
+            <span className="absolute left-7 top-7 font-accent text-micro font-extralight uppercase tracking-macro text-silver/70">
               {card.tag}
             </span>
 
             {/* bottom content */}
             <div className="relative z-10 p-7">
-              <h3 className="font-display text-[3rem] leading-none text-chrome">
+              <h3 className="font-display text-fluid-h1 leading-none text-chrome">
                 {card.name}
               </h3>
               <p className="mt-2 font-serif text-xl italic text-silver/80">
@@ -261,7 +261,7 @@ export default function Models() {
                   <span key={s}>{s}</span>
                 ))}
               </div>
-              <p className="mt-4 font-accent text-[0.78rem] font-light tracking-[0.12em] text-gold">
+              <p className="mt-4 font-accent text-caption font-light tracking-wide-caps text-gold">
                 {card.price}
               </p>
             </div>
@@ -275,10 +275,10 @@ export default function Models() {
                 transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)',
               }}
             >
-              <span className="font-accent text-[0.6rem] font-extralight uppercase tracking-[0.3em] text-silver/70">
+              <span className="font-accent text-micro font-extralight uppercase tracking-macro text-silver/70">
                 {card.tag}
               </span>
-              <h3 className="mt-2 font-display text-[2.6rem] leading-none text-chrome">
+              <h3 className="mt-2 font-display text-fluid-h2 leading-none text-chrome">
                 {card.name}
               </h3>
               <p
@@ -287,7 +287,7 @@ export default function Models() {
               >
                 {card.story}
               </p>
-              <span className="mt-6 inline-flex items-center gap-2 font-accent text-sm font-light uppercase tracking-[0.3em] text-chrome">
+              <span className="mt-6 inline-flex items-center gap-2 font-accent text-sm font-light uppercase tracking-macro text-chrome">
                 Konfigurasi
                 <span aria-hidden="true">→</span>
               </span>

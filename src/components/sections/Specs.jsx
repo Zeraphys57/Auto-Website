@@ -76,12 +76,12 @@ export default function Specs() {
         <div className="group">
           <div
             ref={eyebrowRef}
-            className="mb-12 font-mono text-sm font-light tracking-[0.2em] text-electric"
+            className="mb-12 font-mono text-sm font-light tracking-macro text-electric"
           >
             [ SPESIFIKASI ]
           </div>
 
-          <div className="font-accent text-[0.8rem] font-extralight uppercase tracking-[0.2em] text-muted">
+          <div className="font-accent text-caption font-extralight uppercase tracking-macro text-muted">
             0–100 KM/H
           </div>
           <div className="my-5 h-px w-16 bg-electric/50" />
@@ -92,7 +92,7 @@ export default function Specs() {
           >
             8.0
           </div>
-          <div className="mt-2 font-display text-[2rem] leading-none text-electric">
+          <div className="mt-2 font-display text-fluid-h2 leading-none text-electric">
             DETIK
           </div>
           <p className="mt-7 max-w-xs font-serif text-lg italic text-chrome/55">
@@ -116,14 +116,14 @@ export default function Specs() {
                 style={{ transitionTimingFunction: 'cubic-bezier(0.16,1,0.3,1)' }}
               >
                 <span
-                  className="self-start pt-1 font-mono text-xs uppercase tracking-[0.15em] transition-colors duration-300"
+                  className="self-start pt-1 font-mono text-xs uppercase tracking-wide-caps transition-colors duration-300"
                   style={{ color: active ? row.accent : '#666666' }}
                 >
                   {row.label}
                 </span>
                 <div>
                   <span className="font-mono text-sm text-chrome">{row.value}</span>
-                  <span className="mt-1.5 block max-w-[22ch] font-serif text-[0.92rem] italic leading-snug text-muted">
+                  <span className="mt-1.5 block max-w-[22ch] font-serif text-base italic leading-snug text-muted">
                     {row.caption}
                   </span>
                 </div>

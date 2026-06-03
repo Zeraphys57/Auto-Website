@@ -63,7 +63,7 @@ export default function Navbar() {
           data-magnetic
           data-magnetic-strength="0.4"
           data-cursor="hover"
-          className="font-display text-[1.8rem] leading-none tracking-[0.1em] text-chrome transition-colors"
+          className="font-display text-fluid-h3 leading-none tracking-wide-caps text-chrome transition-colors"
         >
           VELOX
         </a>
@@ -76,7 +76,7 @@ export default function Navbar() {
                 href={link.target}
                 onClick={(e) => handleNav(e, link.target)}
                 data-cursor="hover"
-                className={`group relative font-accent text-[0.72rem] font-light uppercase tracking-[0.2em] text-chrome/70 transition-colors duration-300 hover:text-chrome after:absolute after:-bottom-1.5 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:transition-transform after:duration-300 group-hover:after:scale-x-100 hover:after:scale-x-100 ${accentBg}`}
+                className={`group relative font-accent text-caption font-light uppercase tracking-macro text-chrome/70 transition-colors duration-300 hover:text-chrome after:absolute after:-bottom-1.5 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:transition-transform after:duration-300 group-hover:after:scale-x-100 hover:after:scale-x-100 ${accentBg}`}
               >
                 {link.label}
               </a>
@@ -91,7 +91,7 @@ export default function Navbar() {
           data-magnetic
           data-magnetic-strength="0.4"
           data-cursor="hover"
-          className={`group relative hidden overflow-hidden border ${accentBorder} px-6 py-2.5 font-accent text-[0.7rem] font-light uppercase tracking-[0.22em] ${accent} transition-colors duration-300 sm:inline-block`}
+          className={`group relative hidden overflow-hidden border ${accentBorder} px-6 py-2.5 font-accent text-caption font-light uppercase tracking-macro ${accent} transition-colors duration-300 sm:inline-block`}
         >
           <span className="relative z-10 transition-colors duration-300 group-hover:text-carbon">
             Pengalaman Privat

@@ -39,7 +39,7 @@ export default function Footer() {
         <div className="flex flex-col justify-between gap-12 border-t border-gold/20 pt-12 md:flex-row">
           {/* Wordmark */}
           <div>
-            <div className="font-display text-3xl tracking-[0.1em] text-gold">VELOX</div>
+            <div className="font-display text-3xl tracking-wide-caps text-gold">VELOX</div>
             <p className="mt-3 max-w-xs font-serif text-sm italic text-chrome/40">
               Untuk yang menolak biasa.
             </p>
@@ -54,7 +54,7 @@ export default function Footer() {
                     href={l.target}
                     onClick={(e) => handleNav(e, l.target)}
                     data-cursor="hover"
-                    className="font-accent text-[0.72rem] font-extralight uppercase tracking-[0.2em] text-chrome/60 transition-colors duration-300 hover:text-gold"
+                    className="font-accent text-caption font-extralight uppercase tracking-macro text-chrome/60 transition-colors duration-300 hover:text-gold"
                   >
                     {l.label}
                   </a>
@@ -68,7 +68,7 @@ export default function Footer() {
                     href={l.target}
                     onClick={(e) => handleNav(e, l.target)}
                     data-cursor="hover"
-                    className="font-accent text-[0.72rem] font-extralight uppercase tracking-[0.2em] text-chrome/60 transition-colors duration-300 hover:text-gold"
+                    className="font-accent text-caption font-extralight uppercase tracking-macro text-chrome/60 transition-colors duration-300 hover:text-gold"
                   >
                     {l.label}
                   </a>
@@ -106,7 +106,7 @@ export default function Footer() {
           VELOX. Untuk yang menolak biasa.
         </p>
 
-        <div className="mt-10 flex flex-col justify-between gap-2 border-t border-gold/10 pt-8 font-accent text-[0.62rem] font-extralight uppercase tracking-[0.2em] text-muted sm:flex-row">
+        <div className="mt-10 flex flex-col justify-between gap-2 border-t border-gold/10 pt-8 font-accent text-micro font-extralight uppercase tracking-macro text-muted sm:flex-row">
           <span>© 2026 VELOX AUTO. Hak cipta dilindungi.</span>
           <span>Bandung · Jakarta · Bali</span>
         </div>

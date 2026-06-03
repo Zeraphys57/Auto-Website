@@ -133,7 +133,7 @@ export default function Performance() {
         <div ref={headRef} className="mb-16 max-w-2xl md:mb-24">
           <div className="mb-6 flex items-center gap-4">
             <span className="h-px w-10 bg-crimson/60" />
-            <span className="font-accent text-[0.62rem] font-extralight uppercase tracking-[0.4em] text-muted">
+            <span className="font-accent text-micro font-extralight uppercase tracking-macro text-muted">
               Dalam Angka
             </span>
           </div>

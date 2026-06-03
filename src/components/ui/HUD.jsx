@@ -96,7 +96,7 @@ export default function HUD() {
       {/* Section counter — bottom-right, mono, muted */}
       <div
         aria-hidden="true"
-        className="pointer-events-none fixed bottom-8 right-8 z-[8990] font-mono text-[0.58rem] tracking-[0.22em] text-muted"
+        className="pointer-events-none fixed bottom-8 right-8 z-[8990] font-mono text-micro tracking-macro text-muted"
       >
         <span ref={counterRef}>01 / {TOTAL}</span>
       </div>
@@ -104,7 +104,7 @@ export default function HUD() {
       {/* Hero frame readout — top-right, electric, 0.6rem */}
       <div
         aria-hidden="true"
-        className="pointer-events-none fixed right-6 z-[8990] font-mono text-[0.58rem] tracking-[0.15em]"
+        className="pointer-events-none fixed right-6 z-[8990] font-mono text-micro tracking-wide-caps"
         style={{ top: 88, color: 'rgba(0,212,255,0.45)' }}
       >
         <span ref={frameReadoutRef}>FRAME 001 / 240</span>
@@ -113,7 +113,7 @@ export default function HUD() {
       {/* EST. corner label — top-left, Jost 200, very muted */}
       <div
         aria-hidden="true"
-        className="pointer-events-none fixed left-6 z-[8990] font-accent text-[0.55rem] tracking-[0.3em] text-muted"
+        className="pointer-events-none fixed left-6 z-[8990] font-accent text-micro tracking-macro text-muted"
         style={{ top: 88, fontWeight: 200 }}
       >
         EST. 1987
