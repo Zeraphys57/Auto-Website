@@ -1,32 +1,51 @@
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { useGSAP } from '@gsap/react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useApp } from '../../context/AppContext'
 import { lenis } from '../../main.jsx'
+import { prefersReducedMotion } from '../../lib/prefersReducedMotion'
 
 const LINKS = [
-  { label: 'Model', target: '#models' },
+  { label: 'Model',    target: '#models' },
   { label: 'Filosofi', target: '#philosophy' },
-  { label: 'Warisan', target: '#legacy' },
-  { label: 'Kontak', target: '#cta' },
+  { label: 'Warisan',  target: '#legacy' },
+  { label: 'Kontak',   target: '#cta' },
 ]
 
 export default function Navbar() {
-  const navRef = useRef(null)
-  const { currentAct } = useApp()
+  const navRef    = useRef(null)
+  const hiddenRef = useRef(false)
+  const { currentAct, isLoaded } = useApp()
   const isAct3 = currentAct === 3
-  const accent = isAct3 ? 'text-gold' : 'text-electric'
-  const accentBorder = isAct3 ? 'border-gold/60' : 'border-electric/60'
-  const accentBg = isAct3 ? 'after:bg-gold' : 'after:bg-electric'
+  const accent       = isAct3 ? 'text-gold'          : 'text-electric'
+  const accentBorder = isAct3 ? 'border-gold/60'     : 'border-electric/60'
+  const accentBg     = isAct3 ? 'after:bg-gold'      : 'after:bg-electric'
 
+  // Entrance — slides down after loader lifts
+  useGSAP(() => {
+    if (prefersReducedMotion) return
+    if (!isLoaded) {
+      gsap.set(navRef.current, { yPercent: -110, autoAlpha: 0 })
+      return
+    }
+    gsap.to(navRef.current, {
+      yPercent: 0,
+      autoAlpha: 1,
+      duration: 1,
+      ease: 'velox',
+      delay: 0.25,
+    })
+  }, { dependencies: [isLoaded] })
+
+  // Background solidify on scroll depth
   useGSAP(() => {
     const nav = navRef.current
     const setSolid = (solid) =>
       gsap.to(nav, {
         backgroundColor: solid ? 'rgba(10,10,10,0.85)' : 'rgba(10,10,10,0)',
-        backdropFilter: solid ? 'blur(12px)' : 'blur(0px)',
-        borderColor: solid ? 'rgba(255,255,255,0.06)' : 'rgba(255,255,255,0)',
+        backdropFilter:  solid ? 'blur(12px)'          : 'blur(0px)',
+        borderColor:     solid ? 'rgba(255,255,255,0.06)' : 'rgba(255,255,255,0)',
         duration: 0.4,
         ease: 'velox',
       })
@@ -35,16 +54,50 @@ export default function Navbar() {
       trigger: document.body,
       start: 'top -80',
       end: 'max',
-      onEnter: () => setSolid(true),
+      onEnter:     () => setSolid(true),
       onLeaveBack: () => setSolid(false),
     })
     return () => st.kill()
+  }, [])
+
+  // Hide on scroll-down, reveal on scroll-up — classic luxury nav behaviour
+  useEffect(() => {
+    if (prefersReducedMotion || !lenis) return
+
+    const onScroll = ({ scroll, velocity }) => {
+      const goingDown = velocity > 0.8
+      const goingUp   = velocity < -0.8
+      const nearTop   = scroll < 120
+
+      if (nearTop && hiddenRef.current) {
+        hiddenRef.current = false
+        gsap.to(navRef.current, { yPercent: 0, duration: 0.5, ease: 'velox' })
+        return
+      }
+      if (goingDown && !hiddenRef.current && !nearTop) {
+        hiddenRef.current = true
+        gsap.to(navRef.current, { yPercent: -110, duration: 0.35, ease: 'veloxIn' })
+        return
+      }
+      if (goingUp && hiddenRef.current) {
+        hiddenRef.current = false
+        gsap.to(navRef.current, { yPercent: 0, duration: 0.5, ease: 'velox' })
+      }
+    }
+
+    lenis.on('scroll', onScroll)
+    return () => lenis.off('scroll', onScroll)
   }, [])
 
   const handleNav = (e, target) => {
     e.preventDefault()
     const el = document.querySelector(target)
     if (!el) return
+    // Reveal navbar before scrolling so user doesn't lose orientation
+    if (hiddenRef.current) {
+      hiddenRef.current = false
+      gsap.to(navRef.current, { yPercent: 0, duration: 0.4, ease: 'velox' })
+    }
     if (lenis) lenis.scrollTo(el, { offset: -40, duration: 1.4 })
     else el.scrollIntoView({ behavior: 'auto', block: 'start' })
   }

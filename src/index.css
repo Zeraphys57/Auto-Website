@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    color-scheme: dark;
+    color-scheme: light;
   }
 
   * {
@@ -21,8 +21,8 @@
   body {
     margin: 0;
     padding: 0;
-    background-color: #0a0a0a;
-    color: #e8e8e8;
+    background-color: theme('colors.carbon');
+    color: theme('colors.chrome');
     overflow-x: hidden;
   }
 
@@ -42,12 +42,12 @@
   }
 
   ::selection {
-    background: rgba(0, 212, 255, 0.25);
-    color: #f0ede8;
+    background: rgba(230, 0, 0, 0.25);
+    color: theme('colors.carbon');
   }
 
   :focus-visible {
-    outline: 1px solid #00d4ff;
+    outline: 1px solid theme('colors.crimson');
     outline-offset: 3px;
   }
 
@@ -55,14 +55,14 @@
     width: 8px;
   }
   ::-webkit-scrollbar-track {
-    background: #0a0a0a;
+    background: theme('colors.carbon');
   }
   ::-webkit-scrollbar-thumb {
-    background: #1a1a1a;
+    background: theme('colors.silver');
     border-radius: 8px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #00d4ff;
+    background: theme('colors.electric');
   }
 
   /* Reduced motion: neutralize CSS animations/transitions and show end states. */
@@ -169,7 +169,7 @@
   inset: 0;
   z-index: 8999;
   pointer-events: none;
-  background: radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, 0.4) 100%);
+  background: radial-gradient(ellipse at center, transparent 55%, rgba(255, 255, 255, 0.2) 100%);
 }
 
 @media (prefers-reduced-motion: reduce) {
