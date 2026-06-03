@@ -36,7 +36,7 @@ export default function CTA() {
         transformOrigin: '50% 50% -24px',
         stagger: staggerIn,
         duration: 0.9,
-        ease: 'velox',
+        ease: 'expo.out',
       })
         .to(
           split.chars,
@@ -96,13 +96,13 @@ export default function CTA() {
         <h2 className="font-display text-chrome" style={{ lineHeight: 0.9 }}>
           <span
             ref={line1Ref}
-            className="block text-fluid-display"
+            className="block text-[clamp(4rem,10vw,9rem)]"
           >
             BEBERAPA HAL
           </span>
           <span
             ref={line2Ref}
-            className="mt-2 block font-serif italic text-gold text-fluid-h1"
+            className="mt-2 block font-serif italic text-gold text-[clamp(3rem,7vw,6rem)]"
           >
             tak perlu dipikir dua kali
           </span>
