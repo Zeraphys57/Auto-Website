@@ -209,7 +209,7 @@ export default function Hero() {
                 <span
                   key={line}
                   className="h-line block"
-                  style={{ fontSize: 'clamp(5rem, 14vw, 13rem)' }}
+                  style={{ fontSize: 'clamp(4rem, 11vw, 10rem)' }}
                 >
                   {line}
                 </span>
