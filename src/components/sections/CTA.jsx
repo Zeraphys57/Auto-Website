@@ -102,7 +102,8 @@ export default function CTA() {
           </span>
           <span
             ref={line2Ref}
-            className="mt-2 block font-serif italic text-gold text-[clamp(3rem,7vw,6rem)]"
+            className="mt-2 block font-serif italic text-gold text-[clamp(3rem,7vw,6rem)] leading-tight"
+            style={{ lineHeight: 1.1 }}
           >
             tak perlu dipikir dua kali
           </span>
