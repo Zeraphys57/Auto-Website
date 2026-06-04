@@ -6,6 +6,25 @@ export function AppProvider({ children }) {
   const [isLoaded, setIsLoaded] = useState(false)
   const [framesReady, setFramesReady] = useState(false)
   const [currentAct, setCurrentAct] = useState(1)
+  const [toasts, setToasts] = useState([])
+
+  // Use a ref for unique IDs to keep the render pure while avoiding Date.now() / Math.random() directly in the render flow context
+  const toastIdRef = useRef(0)
+
+  const addToast = (message, type = 'info') => {
+    toastIdRef.current += 1
+    const id = toastIdRef.current.toString()
+    setToasts((prev) => [...prev, { id, message, type }])
+
+    // Auto-remove after 5s
+    setTimeout(() => {
+      removeToast(id)
+    }, 5000)
+  }
+
+  const removeToast = (id) => {
+    setToasts((prev) => prev.filter((t) => t.id !== id))
+  }
 
   return (
     <AppContext.Provider
@@ -16,6 +35,9 @@ export function AppProvider({ children }) {
         setFramesReady,
         currentAct,
         setCurrentAct,
+        toasts,
+        addToast,
+        removeToast,
       }}
     >
       {children}

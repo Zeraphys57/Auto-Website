@@ -114,9 +114,9 @@ export default function Navbar() {
           href="#top"
           onClick={(e) => handleNav(e, '#top')}
           data-magnetic
-          data-magnetic-strength="0.4"
-          data-cursor="hover"
-          className="font-display text-fluid-h3 leading-none tracking-wide-caps text-chrome transition-colors"
+          data-magnetic-strength="0.6"
+          data-cursor="link"
+          className="font-display text-fluid-h3 leading-none tracking-wide-caps text-chrome transition-colors hover:text-electric"
         >
           VELOX
         </a>
@@ -128,7 +128,9 @@ export default function Navbar() {
               <a
                 href={link.target}
                 onClick={(e) => handleNav(e, link.target)}
-                data-cursor="hover"
+                data-magnetic
+                data-magnetic-strength="0.3"
+                data-cursor="link"
                 className={`group relative font-accent text-caption font-light uppercase tracking-macro text-chrome/70 transition-colors duration-300 hover:text-chrome after:absolute after:-bottom-1.5 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:transition-transform after:duration-300 group-hover:after:scale-x-100 hover:after:scale-x-100 ${accentBg}`}
               >
                 {link.label}
@@ -142,8 +144,8 @@ export default function Navbar() {
           href="#experience"
           onClick={(e) => handleNav(e, '#experience')}
           data-magnetic
-          data-magnetic-strength="0.4"
-          data-cursor="hover"
+          data-magnetic-strength="0.5"
+          data-cursor="cta"
           className={`group relative hidden overflow-hidden border ${accentBorder} px-6 py-2.5 font-accent text-caption font-light uppercase tracking-macro ${accent} transition-colors duration-300 sm:inline-block`}
         >
           <span className="relative z-10 transition-colors duration-300 group-hover:text-carbon">

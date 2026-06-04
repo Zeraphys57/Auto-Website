@@ -12,6 +12,7 @@ import Footer from './components/ui/Footer'
 import SectionTransition from './components/ui/SectionTransition'
 import GrainOverlay from './components/ui/GrainOverlay'
 import HUD from './components/ui/HUD'
+import Toast from './components/ui/Toast'
 
 import Loader from './components/sections/Loader'
 import Hero from './components/sections/Hero'
@@ -159,6 +160,7 @@ function Experience3Act() {
 
       <div ref={bgRef} aria-hidden="true" className="fixed inset-0 -z-10" />
       <GrainOverlay />
+      <Toast />
 
       <main>
         {/* ACT 1 — arrival. Hero is pinned, excluded from skew-wrap. */}

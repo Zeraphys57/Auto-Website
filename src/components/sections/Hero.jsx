@@ -49,42 +49,43 @@ export default function Hero() {
         type: 'chars',
       })
 
-      const tl = gsap.timeline({ delay: 0.15 })
+      const tl = gsap.timeline({ delay: 0.2 })
 
       // Chars: fly in from below with mechanical heavy ease, then rotateX overshoot-settle
-      const staggerIn  = { each: 0.022, ease: 'power2.in',  from: 'start' }
-      const staggerOut = { each: 0.016, ease: 'power2.out', from: 'start' }
+      const staggerIn  = { each: 0.035, ease: 'power3.in',  from: 'start' }
+      const staggerOut = { each: 0.02, ease: 'power3.out', from: 'start' }
 
       tl.from(split.chars, {
         autoAlpha: 0,
-        rotateX: 90,
-        y: 60,
-        transformOrigin: '50% 50% -24px',
+        rotateX: -90,
+        y: 80,
+        scale: 1.1,
+        transformOrigin: '50% 50% -50px',
         stagger: staggerIn,
-        duration: 0.9,
-        ease: 'velox',
+        duration: 1.1,
+        ease: 'power4.out',
       })
         .to(
           split.chars,
-          { rotateX: -6, y: 0, stagger: staggerOut, duration: 0.25, ease: 'power2.out' },
-          '-=0.3'
+          { rotateX: 8, y: -5, stagger: staggerOut, duration: 0.3, ease: 'power2.out' },
+          '-=0.5'
         )
         .to(
           split.chars,
-          { rotateX: 0, stagger: staggerOut, duration: 0.35, ease: 'elastic.out(1, 0.5)' },
-          '-=0.15'
+          { rotateX: 0, y: 0, scale: 1, stagger: staggerOut, duration: 0.5, ease: 'elastic.out(1, 0.4)' },
+          '-=0.2'
         )
         .from(
           [subRef.current, identityRef.current, ctaRef.current],
-          { autoAlpha: 0, filter: 'blur(16px)', stagger: 0.12, duration: 0.9, ease: 'velox' },
-          '-=0.5'
+          { autoAlpha: 0, y: 20, filter: 'blur(12px)', stagger: 0.15, duration: 1.2, ease: 'power3.out' },
+          '-=0.6'
         )
         .from(
           topRef.current,
-          { autoAlpha: 0, filter: 'blur(10px)', duration: 0.8, ease: 'velox' },
-          '-=0.85'
+          { autoAlpha: 0, y: -10, filter: 'blur(10px)', duration: 1.0, ease: 'power3.out' },
+          '-=1.0'
         )
-        .from(hintRef.current, { autoAlpha: 0, duration: 0.8, ease: 'velox' }, '-=0.5')
+        .from(hintRef.current, { autoAlpha: 0, y: 10, duration: 1.0, ease: 'power3.out' }, '-=0.8')
     },
     { dependencies: [isLoaded], scope: sectionRef }
   )
