@@ -10,11 +10,11 @@ const CARDS = [
   {
     name: 'VELOX GT',
     tag: 'Grand Tourer',
-    descriptor: 'Conquering distances.',
+    descriptor: 'The apex of grand touring.',
     specs: ['580 HP', '320 KM/H', '3.2s'],
     price: 'From $740,000 AUD',
     story:
-      'Continents shrink to weekend drives. Every cross-country kilometre feels exclusively yours.',
+      'Engineered to devour continents in a single sitting. The GT is an unwavering statement of both brutal power and supreme refinement.',
     // Blue sports car parked in the dark — photo by Valeriia Neganova (Unsplash)
     img: `${BASE}/photo-1681167816651-65c6c00264c4?w=1920&q=80&auto=format&fit=crop`,
     grad: 'linear-gradient(135deg, rgba(10,10,10,0.65) 0%, rgba(10,10,10,0.35) 50%, rgba(0,212,255,0.07) 100%)',
@@ -25,11 +25,11 @@ const CARDS = [
   {
     name: 'VELOX RS',
     tag: 'Track Weapon',
-    descriptor: 'Born on the circuit.',
+    descriptor: 'Aerodynamic supremacy.',
     specs: ['720 HP', '340 KM/H', '2.8s'],
     price: 'From $910,000 AUD',
     story:
-      'Nothing added for comfort. Everything that remains exists for one purpose — speed.',
+      'Stripped of compromise. A street-legal track instrument forged in the wind tunnel to bend physics to your absolute will.',
     // Red Ferrari in a dark studio — photo by Branislav Rodman (Unsplash)
     img: `${BASE}/photo-1751467928515-14a3515b99a8?w=1920&q=80&auto=format&fit=crop`,
     grad: 'linear-gradient(135deg, rgba(10,10,10,0.65) 0%, rgba(10,10,10,0.35) 50%, rgba(255,45,45,0.07) 100%)',

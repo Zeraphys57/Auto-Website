@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react'
+import { createContext, useContext, useState, useRef } from 'react'
 
 const AppContext = createContext(null)
 
@@ -16,9 +16,18 @@ export function AppProvider({ children }) {
     const id = toastIdRef.current.toString()
     setToasts((prev) => [...prev, { id, message, type }])
 
-    // Auto-remove after 5s
+    // Auto-trigger the exit animation after 5s instead of unmounting immediately
     setTimeout(() => {
-      removeToast(id)
+      const el = document.getElementById(`toast-${id}`)
+      if (el) {
+        // Assume GSAP is globally available or use a custom event, but since we rely on the component
+        // it's safer to just trigger the removal and let the component handle unmount logic,
+        // OR trigger the animation directly. We'll trigger the CSS transition here if GSAP is complex,
+        // but for simplicity, we dispatch a custom event.
+        window.dispatchEvent(new CustomEvent('dismiss-toast', { detail: { id } }))
+      } else {
+        removeToast(id)
+      }
     }, 5000)
   }
 

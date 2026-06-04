@@ -1,7 +1,7 @@
 const ROW1 =
-  'VELOCITY · PRECISION · INNOVATION · PERFORMANCE · ENGINEERING · DESIGN · '.repeat(3)
+  'UNYIELDING POWER · AERODYNAMIC SUPREMACY · CARBON FIBRE SCULPTURE · APEX ENGINEERING · '.repeat(3)
 const ROW2 =
-  'PERFORMANCE · PRECISION · INNOVATION · ENGINEERING · '.repeat(4)
+  'UNCOMPROMISING · AGGRESSIVE · ELEGANT · FUTURISTIC · '.repeat(4)
 
 export default function Marquee() {
   return (
@@ -9,12 +9,12 @@ export default function Marquee() {
       {/* Row 1 — drifts left, large condensed */}
       <div className="marquee-row flex w-full select-none overflow-hidden">
         <div className="animate-marquee-left flex shrink-0 flex-nowrap">
-          <span className="whitespace-nowrap font-display text-fluid-h1 leading-none tracking-[0.04em] text-chrome/20">
+          <span className="whitespace-nowrap font-display text-fluid-h1 leading-none tracking-[0.06em] text-chrome/10 transition-colors duration-500 hover:text-chrome/30">
             {ROW1}
           </span>
           <span
             aria-hidden="true"
-            className="whitespace-nowrap font-display text-fluid-h1 leading-none tracking-[0.04em] text-chrome/20"
+            className="whitespace-nowrap font-display text-fluid-h1 leading-none tracking-[0.06em] text-chrome/10 transition-colors duration-500 hover:text-chrome/30"
           >
             {ROW1}
           </span>
@@ -24,12 +24,12 @@ export default function Marquee() {
       {/* Row 2 — drifts right, fine spaced accent */}
       <div className="marquee-row flex w-full select-none overflow-hidden">
         <div className="animate-marquee-right flex shrink-0 flex-nowrap">
-          <span className="whitespace-nowrap font-accent text-caption font-extralight uppercase tracking-macro text-electric/40">
+          <span className="whitespace-nowrap font-accent text-caption font-light uppercase tracking-[0.3em] text-electric/30 transition-colors duration-500 hover:text-electric/60">
             {ROW2}
           </span>
           <span
             aria-hidden="true"
-            className="whitespace-nowrap font-accent text-caption font-extralight uppercase tracking-macro text-electric/40"
+            className="whitespace-nowrap font-accent text-caption font-light uppercase tracking-[0.3em] text-electric/30 transition-colors duration-500 hover:text-electric/60"
           >
             {ROW2}
           </span>
