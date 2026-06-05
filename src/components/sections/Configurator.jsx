@@ -4,6 +4,7 @@ import { gsap } from 'gsap'
 import { useIntersectionPause } from '../../hooks/useIntersectionPause'
 import { useMagnetic } from '../../hooks/useMagnetic'
 import { prefersReducedMotion } from '../../lib/prefersReducedMotion'
+import { useApp } from '../../context/AppContext'
 
 // Lazy — keeps drei / the configurator scene out of the initial bundle.
 const ConfiguratorCar = lazy(() => import('../canvas/ConfiguratorCar'))
@@ -49,6 +50,8 @@ export default function Configurator() {
   const hpRef = useRef(null)
   const topRef = useRef(null)
   const priceRef = useRef(null)
+
+  const { showToast } = useApp()
   const prev = useRef({ accel: 3.2, hp: 580, top: 320, price: 7.4 })
 
   const [paint, setPaint] = useState(0)
@@ -303,12 +306,21 @@ export default function Configurator() {
 
             {/* CTA */}
             <div className="mt-8 flex flex-wrap gap-4">
-              <a ref={saveBtn} href="#cta" data-cursor="cta" className="bg-electric px-7 py-3.5">
+              <a
+                ref={saveBtn}
+                href="#cta"
+                onClick={(e) => {
+                  // We let the default routing happen, but trigger the toast as well
+                  showToast('Configuration saved successfully');
+                }}
+                data-cursor="cta"
+                className="bg-electric px-7 py-3.5 transition-transform duration-300 hover:scale-[1.02]"
+              >
                 <span className="font-accent text-caption font-medium uppercase tracking-macro text-carbon">
                   Save Configuration
                 </span>
               </a>
-              <a ref={meetBtn} href="#experience" data-cursor="hover" className="border border-gold/40 px-7 py-3.5">
+              <a ref={meetBtn} href="#experience" data-cursor="hover" className="border border-gold/40 px-7 py-3.5 transition-transform duration-300 hover:scale-[1.02]">
                 <span className="font-accent text-caption font-light uppercase tracking-macro text-offwhite">
                   Schedule a Meeting
                 </span>
