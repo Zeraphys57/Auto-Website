@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { useApp } from '../../context/AppContext'
+import { prefersReducedMotion } from '../../lib/prefersReducedMotion'
 
 export default function Toast() {
   const { toast, hideToast, currentAct } = useApp()
@@ -9,14 +10,26 @@ export default function Toast() {
   const timelineRef = useRef(null)
 
   // Decide the accent color based on act. ACT 3 uses gold, otherwise electric.
-  const accentColor = currentAct === 3 ? 'rgb(201, 169, 110)' : 'rgb(0, 212, 255)'
-  const accentBgColor = currentAct === 3 ? 'rgba(201, 169, 110, 0.1)' : 'rgba(0, 212, 255, 0.1)'
+  // Values mirror the `gold` / `electric` tokens in tailwind.config.js.
+  const accentColor = currentAct === 3 ? '#D4AF37' : '#00D2FF'
+  const accentBgColor = currentAct === 3 ? 'rgba(212, 175, 55, 0.1)' : 'rgba(0, 210, 255, 0.1)'
 
   useEffect(() => {
     if (toast.isVisible) {
       // Clear previous timeline if it exists
       if (timelineRef.current) {
         timelineRef.current.kill()
+      }
+
+      // Reduced motion: show the toast instantly and auto-dismiss after a
+      // beat, with no slide / scale / countdown animation.
+      if (prefersReducedMotion) {
+        gsap.set(toastRef.current, { y: 0, autoAlpha: 1, scale: 1 })
+        gsap.set(progressRef.current, { scaleX: 1 })
+        timelineRef.current = gsap.delayedCall(3, hideToast)
+        return () => {
+          if (timelineRef.current) timelineRef.current.kill()
+        }
       }
 
       // Initial state
@@ -59,13 +72,17 @@ export default function Toast() {
        if (timelineRef.current) {
          timelineRef.current.kill()
        }
-       gsap.to(toastRef.current, {
-           y: 50,
-           autoAlpha: 0,
-           scale: 0.95,
-           duration: 0.3,
-           ease: 'power3.in'
-       })
+       if (prefersReducedMotion) {
+         gsap.set(toastRef.current, { autoAlpha: 0 })
+       } else {
+         gsap.to(toastRef.current, {
+             y: 50,
+             autoAlpha: 0,
+             scale: 0.95,
+             duration: 0.3,
+             ease: 'power3.in'
+         })
+       }
     }
 
     return () => {
@@ -80,6 +97,9 @@ export default function Toast() {
   return (
     <div
       ref={toastRef}
+      role="status"
+      aria-live="polite"
+      aria-atomic="true"
       className="fixed bottom-8 left-1/2 z-[10000] flex -translate-x-1/2 flex-col overflow-hidden border backdrop-blur-md"
       style={{
         backgroundColor: 'rgba(10, 10, 10, 0.85)',
