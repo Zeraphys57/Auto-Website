@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useRef } from 'react'
+import { createContext, useContext, useState } from 'react'
 
 const AppContext = createContext(null)
 
@@ -6,34 +6,6 @@ export function AppProvider({ children }) {
   const [isLoaded, setIsLoaded] = useState(false)
   const [framesReady, setFramesReady] = useState(false)
   const [currentAct, setCurrentAct] = useState(1)
-  const [toasts, setToasts] = useState([])
-
-  // Use a ref for unique IDs to keep the render pure while avoiding Date.now() / Math.random() directly in the render flow context
-  const toastIdRef = useRef(0)
-
-  const addToast = (message, type = 'info') => {
-    toastIdRef.current += 1
-    const id = toastIdRef.current.toString()
-    setToasts((prev) => [...prev, { id, message, type }])
-
-    // Auto-trigger the exit animation after 5s instead of unmounting immediately
-    setTimeout(() => {
-      const el = document.getElementById(`toast-${id}`)
-      if (el) {
-        // Assume GSAP is globally available or use a custom event, but since we rely on the component
-        // it's safer to just trigger the removal and let the component handle unmount logic,
-        // OR trigger the animation directly. We'll trigger the CSS transition here if GSAP is complex,
-        // but for simplicity, we dispatch a custom event.
-        window.dispatchEvent(new CustomEvent('dismiss-toast', { detail: { id } }))
-      } else {
-        removeToast(id)
-      }
-    }, 5000)
-  }
-
-  const removeToast = (id) => {
-    setToasts((prev) => prev.filter((t) => t.id !== id))
-  }
 
   return (
     <AppContext.Provider
@@ -44,9 +16,6 @@ export function AppProvider({ children }) {
         setFramesReady,
         currentAct,
         setCurrentAct,
-        toasts,
-        addToast,
-        removeToast,
       }}
     >
       {children}
