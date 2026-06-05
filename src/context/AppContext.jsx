@@ -6,6 +6,15 @@ export function AppProvider({ children }) {
   const [isLoaded, setIsLoaded] = useState(false)
   const [framesReady, setFramesReady] = useState(false)
   const [currentAct, setCurrentAct] = useState(1)
+  const [toast, setToast] = useState({ isVisible: false, message: '', type: 'success' })
+
+  const showToast = (message, type = 'success') => {
+    setToast({ isVisible: true, message, type })
+  }
+
+  const hideToast = () => {
+    setToast((prev) => prev.isVisible ? { ...prev, isVisible: false } : prev)
+  }
 
   return (
     <AppContext.Provider
@@ -16,6 +25,9 @@ export function AppProvider({ children }) {
         setFramesReady,
         currentAct,
         setCurrentAct,
+        toast,
+        showToast,
+        hideToast,
       }}
     >
       {children}
