@@ -309,7 +309,7 @@ export default function Configurator() {
               <a
                 ref={saveBtn}
                 href="#cta"
-                onClick={(e) => {
+                onClick={() => {
                   // We let the default routing happen, but trigger the toast as well
                   showToast('Configuration saved successfully');
                 }}
