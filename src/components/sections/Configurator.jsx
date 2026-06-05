@@ -10,12 +10,12 @@ import { useApp } from '../../context/AppContext'
 const ConfiguratorCar = lazy(() => import('../canvas/ConfiguratorCar'))
 
 const PAINTS = [
-  { name: 'Nero',          hex: '#16171B' },
-  { name: 'Bianco',        hex: '#E8E8EA' },
-  { name: 'Rosso Corsa',   hex: '#D81E34' },
-  { name: 'Electric Blue', hex: '#12B0E8' },
-  { name: 'Verde Mistico', hex: '#1E6B47' },
-  { name: 'Grigio Titanio',hex: '#5B6068' },
+  { name: 'Nero Assoluto',   hex: '#0A0A0C' },
+  { name: 'Bianco Avus',     hex: '#F2F3F4' },
+  { name: 'Rosso Scuderia',  hex: '#C8102E' },
+  { name: 'Azzurro Dino',    hex: '#00548F' },
+  { name: 'Verde Pino',      hex: '#0F2C23' },
+  { name: 'Grigio Scuro',    hex: '#3E424B' },
 ]
 const WHEELS = [
   { name: 'Sport',       add: 0 },

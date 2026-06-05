@@ -11,11 +11,11 @@ const ACCENTS = {
 // dotScale, ring size (px), ring fill alpha, ring border alpha, label, solid fill
 const STATES = {
   default:  { dot: 1, ring: 32, bg: 0,    border: 0.5, label: '',      solid: false },
-  hover:    { dot: 0, ring: 52, bg: 0.08, border: 0.5, label: '',      solid: false },
-  link:     { dot: 0, ring: 48, bg: 0.06, border: 0.45, label: 'VIEW', solid: false },
-  drag:     { dot: 1, ring: 66, bg: 0.05, border: 0.6, label: 'DRAG', solid: false },
-  cta:      { dot: 5, ring: 80, bg: 1,    border: 0,   label: 'DRIVE', solid: true  },
-  external: { dot: 0, ring: 48, bg: 0.06, border: 0.45, label: '↗',    solid: false },
+  hover:    { dot: 0, ring: 58, bg: 0.12, border: 0.6, label: '',      solid: false },
+  link:     { dot: 0, ring: 52, bg: 0.1,  border: 0.5, label: 'VIEW',  solid: false },
+  drag:     { dot: 1, ring: 72, bg: 0.08, border: 0.7, label: 'DRAG',  solid: false },
+  cta:      { dot: 0, ring: 88, bg: 1,    border: 0,   label: 'DRIVE', solid: true  },
+  external: { dot: 0, ring: 52, bg: 0.1,  border: 0.5, label: '↗',     solid: false },
 }
 
 export default function Cursor() {
@@ -126,8 +126,11 @@ export default function Cursor() {
       prevMouseX = mouseX
       prevMouseY = mouseY
       const speed = Math.hypot(vx, vy)
-      const stretch = Math.min(1.4, 1 + speed * 0.022)
-      gsap.set(ring, { scaleX: stretch, scaleY: 1 / Math.sqrt(stretch) })
+      const stretch = Math.min(1.6, 1 + speed * 0.028)
+
+      // Calculate rotation based on velocity vector
+      const angle = Math.atan2(vy, vx) * (180 / Math.PI)
+      gsap.set(ring, { scaleX: stretch, scaleY: 1 / Math.sqrt(stretch), rotation: angle })
 
       // Magnetic elements — per-element strength via data-magnetic-strength
       for (const el of getMagnets()) {
@@ -136,12 +139,19 @@ export default function Cursor() {
         const cy = r.top  + r.height / 2
         const dx = mouseX - cx
         const dy = mouseY - cy
-        const within = Math.hypot(dx, dy) < 80
-        const strength = parseFloat(el.dataset.magneticStrength || '0.3')
+
+        // Dynamic influence radius based on element size
+        const radius = Math.max(80, Math.min(r.width, r.height) * 1.2)
+        const within = Math.hypot(dx, dy) < radius
+
+        const strength = parseFloat(el.dataset.magneticStrength || '0.4')
+        const easeAmount = within ? 0.1 : 0.05 // Smoother return to center
+
         const tx = within ? dx * strength : 0
         const ty = within ? dy * strength : 0
-        el._mx = (el._mx || 0) + (tx - (el._mx || 0)) * 0.15
-        el._my = (el._my || 0) + (ty - (el._my || 0)) * 0.15
+
+        el._mx = (el._mx || 0) + (tx - (el._mx || 0)) * easeAmount
+        el._my = (el._my || 0) + (ty - (el._my || 0)) * easeAmount
         gsap.set(el, { x: el._mx, y: el._my })
       }
 
@@ -173,11 +183,12 @@ export default function Cursor() {
       <div
         ref={ringRef}
         aria-hidden="true"
-        className="pointer-events-none fixed left-0 top-0 z-[9998] flex items-center justify-center rounded-full border"
+        className="pointer-events-none fixed left-0 top-0 z-[9998] flex items-center justify-center rounded-full border backdrop-invert-[0.05]"
         style={{
           width: 32, height: 32,
           borderColor: 'rgba(0,212,255,0.5)',
           backgroundColor: 'rgba(0,212,255,0)',
+          mixBlendMode: 'difference'
         }}
       >
         <span

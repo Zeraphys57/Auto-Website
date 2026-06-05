@@ -44,13 +44,13 @@ export default function Loader() {
       const tl = gsap.timeline()
       tl.to(logoRef.current, {
         strokeDashoffset: 0,
-        duration: 1.6,
-        ease: 'power2.inOut',
+        duration: 2.2,
+        ease: 'power3.inOut',
       }, 0)
         .to(counter, {
           v: 100,
-          duration: 2.3,
-          ease: 'power1.inOut',
+          duration: 3.0,
+          ease: 'power3.inOut',
           onUpdate: () => {
             if (counterRef.current)
               counterRef.current.textContent = String(
@@ -61,14 +61,14 @@ export default function Loader() {
         .fromTo(
           barRef.current,
           { scaleX: 0 },
-          { scaleX: 1, duration: 2.3, ease: 'power1.inOut' },
+          { scaleX: 1, duration: 3.0, ease: 'power3.inOut' },
           0
         )
         .fromTo(
           subRef.current,
-          { autoAlpha: 0, y: 8 },
-          { autoAlpha: 1, y: 0, duration: 0.7, ease: 'power2.out' },
-          0.7
+          { autoAlpha: 0, y: 12, letterSpacing: '0.15em' },
+          { autoAlpha: 1, y: 0, letterSpacing: '0.25em', duration: 1.2, ease: 'power2.out' },
+          0.5
         )
         .eventCallback('onComplete', () => setCountDone(true))
     },

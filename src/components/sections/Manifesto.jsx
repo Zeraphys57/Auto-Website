@@ -8,10 +8,10 @@ import { prefersReducedMotion } from '../../lib/prefersReducedMotion'
 // The emotional anchor — pure typography, no 3D. Each line rises through a mask
 // as it enters. ACT 1 palette (electric), the single most quotable moment.
 const LINES = [
-  { text: "We don't build cars.", accent: false },
-  { text: 'We engineer reasons to wake up earlier.', accent: false },
-  { text: 'Reasons to take the long way home.', accent: false },
-  { text: 'To fall in love with the drive — not the destination.', accent: true },
+  { text: "We don't merely manufacture machines.", accent: false },
+  { text: 'We engineer apex predators for the asphalt.', accent: false },
+  { text: 'Uncompromising physics. Unyielding acceleration.', accent: false },
+  { text: 'Command the road. Devour the distance.', accent: true },
 ]
 
 export default function Manifesto() {
@@ -28,24 +28,24 @@ export default function Manifesto() {
       // Thin electric line — draws in, then breathes
       gsap.from(lineDrawRef.current, {
         scaleX: 0,
-        duration: 1.4,
-        ease: 'expo.out',
+        duration: 2.0,
+        ease: 'power3.out',
         scrollTrigger: { trigger: sectionRef.current, start: 'top 70%' },
       })
       gsap.to(lineDrawRef.current, {
-        opacity: 0.4,
-        duration: 2.6,
-        delay: 1.4,
+        opacity: 0.3,
+        duration: 3.0,
+        delay: 2.0,
         repeat: -1,
         yoyo: true,
-        ease: 'sine.inOut',
+        ease: 'power1.inOut',
       })
 
       gsap.from(eyebrowRef.current, {
         autoAlpha: 0,
-        y: 18,
-        duration: 1.2,
-        ease: 'expo.out',
+        y: 24,
+        duration: 1.6,
+        ease: 'power3.out',
         scrollTrigger: { trigger: sectionRef.current, start: 'top 75%' },
       })
 
