@@ -203,7 +203,7 @@ export default function Configurator() {
                     data-cursor="hover"
                     aria-pressed={variant === i}
                     onClick={() => setVariant(i)}
-                    className={`flex-1 border px-4 py-3 font-display text-xl tracking-wide transition-colors duration-300 ${
+                    className={`flex-1 border px-4 py-3 font-display text-xl tracking-wide transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-electric focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] ${
                       variant === i
                         ? 'border-electric bg-electric/10 text-chrome'
                         : 'border-white/10 text-muted hover:border-white/30 hover:text-chrome'
@@ -227,7 +227,7 @@ export default function Configurator() {
                     aria-label={`Paint ${p.name}`}
                     aria-pressed={paint === i}
                     onClick={() => setPaint(i)}
-                    className="relative h-9 w-9 rounded-full transition-transform duration-300 hover:scale-110"
+                    className="relative h-9 w-9 rounded-full transition-transform duration-300 hover:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
                     style={{
                       background: p.hex,
                       boxShadow:
@@ -251,7 +251,7 @@ export default function Configurator() {
                     data-cursor="hover"
                     aria-pressed={wheel === i}
                     onClick={() => setWheel(i)}
-                    className={`flex-1 border px-3 py-2.5 font-accent text-caption uppercase tracking-wide-caps transition-colors duration-300 ${
+                    className={`flex-1 border px-3 py-2.5 font-accent text-caption uppercase tracking-wide-caps transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-electric focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] ${
                       wheel === i
                         ? 'border-electric bg-electric/10 text-chrome'
                         : 'border-white/10 text-muted hover:border-white/30 hover:text-chrome'
@@ -274,7 +274,7 @@ export default function Configurator() {
                     data-cursor="hover"
                     aria-pressed={interior === i}
                     onClick={() => setInterior(i)}
-                    className={`flex-1 border px-3 py-2.5 font-accent text-micro uppercase tracking-wide-caps transition-colors duration-300 ${
+                    className={`flex-1 border px-3 py-2.5 font-accent text-micro uppercase tracking-wide-caps transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] ${
                       interior === i
                         ? 'border-gold bg-gold/10 text-chrome'
                         : 'border-white/10 text-muted hover:border-white/30 hover:text-chrome'
@@ -314,13 +314,13 @@ export default function Configurator() {
                   showToast('Configuration saved successfully');
                 }}
                 data-cursor="cta"
-                className="bg-electric px-7 py-3.5 transition-transform duration-300 hover:scale-[1.02]"
+                className="inline-block bg-electric px-7 py-3.5 transition-all duration-300 ease-out hover:scale-105 hover:bg-electric/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-electric focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
               >
                 <span className="font-accent text-caption font-medium uppercase tracking-macro text-carbon">
                   Save Configuration
                 </span>
               </a>
-              <a ref={meetBtn} href="#experience" data-cursor="hover" className="border border-gold/40 px-7 py-3.5 transition-transform duration-300 hover:scale-[1.02]">
+              <a ref={meetBtn} href="#experience" data-cursor="hover" className="inline-block border border-gold/40 px-7 py-3.5 transition-all duration-300 ease-out hover:scale-105 hover:border-gold/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]">
                 <span className="font-accent text-caption font-light uppercase tracking-macro text-offwhite">
                   Schedule a Meeting
                 </span>
