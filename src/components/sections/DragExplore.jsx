@@ -175,7 +175,7 @@ export default function DragExplore() {
               type="button"
               data-cursor="hover"
               aria-label={`${h.label}: ${h.detail}`}
-              className="group absolute z-20 -translate-x-1/2 -translate-y-1/2"
+              className="group absolute z-20 -translate-x-1/2 -translate-y-1/2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-electric focus-visible:ring-offset-2 focus-visible:ring-offset-carbon transition-all duration-300 ease-out hover:scale-110"
               style={{ left: `${h.x}%`, top: `${h.y}%` }}
             >
               <span className="relative block h-3 w-3 rounded-full bg-electric">
@@ -207,11 +207,11 @@ export default function DragExplore() {
           {/* Arrow controls (always present; the only control under reduced-motion) */}
           <div className="absolute bottom-5 right-5 flex gap-2">
             <button type="button" data-cursor="hover" aria-label="Rotate left" onClick={() => nudge(-1)}
-              className="flex h-9 w-9 items-center justify-center border border-white/15 text-chrome/70 transition-colors hover:border-electric hover:text-electric">
+              className="flex h-9 w-9 items-center justify-center border border-white/15 text-chrome/70 transition-all duration-300 ease-out hover:scale-105 hover:border-electric hover:text-electric focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-electric focus-visible:ring-offset-2 focus-visible:ring-offset-carbon">
               ←
             </button>
             <button type="button" data-cursor="hover" aria-label="Rotate right" onClick={() => nudge(1)}
-              className="flex h-9 w-9 items-center justify-center border border-white/15 text-chrome/70 transition-colors hover:border-electric hover:text-electric">
+              className="flex h-9 w-9 items-center justify-center border border-white/15 text-chrome/70 transition-all duration-300 ease-out hover:scale-105 hover:border-electric hover:text-electric focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-electric focus-visible:ring-offset-2 focus-visible:ring-offset-carbon">
               →
             </button>
           </div>
