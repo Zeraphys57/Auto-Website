@@ -166,7 +166,7 @@ export default function Testimonials() {
               data-magnetic-strength="0.6"
               aria-label={`Show testimonial ${i + 1}`}
               onClick={() => setIndex(i)}
-              className="h-1.5 rounded-full transition-all duration-500"
+              className="h-1.5 rounded-full transition-all duration-500 ease-out hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-electric focus-visible:ring-offset-2 focus-visible:ring-offset-carbon"
               style={{
                 width: i === index ? 28 : 8,
                 backgroundColor: i === index ? '#C9A96E' : 'rgba(201,169,110,0.3)',
