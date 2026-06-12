@@ -47,7 +47,7 @@
   }
 
   :focus-visible {
-    outline: 1px solid theme('colors.crimson');
+    outline: 1px solid theme('colors.electric');
     outline-offset: 3px;
   }
 
