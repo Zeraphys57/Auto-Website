@@ -54,7 +54,7 @@ export default function Footer() {
                     href={l.target}
                     onClick={(e) => handleNav(e, l.target)}
                     data-cursor="hover"
-                    className="font-accent text-caption font-extralight uppercase tracking-macro text-chrome/60 transition-colors duration-300 hover:text-gold"
+                    className="font-accent text-caption font-extralight uppercase tracking-macro text-chrome/60 transition-all duration-300 hover:text-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-carbon"
                   >
                     {l.label}
                   </a>
@@ -68,7 +68,7 @@ export default function Footer() {
                     href={l.target}
                     onClick={(e) => handleNav(e, l.target)}
                     data-cursor="hover"
-                    className="font-accent text-caption font-extralight uppercase tracking-macro text-chrome/60 transition-colors duration-300 hover:text-gold"
+                    className="font-accent text-caption font-extralight uppercase tracking-macro text-chrome/60 transition-all duration-300 hover:text-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-carbon"
                   >
                     {l.label}
                   </a>
@@ -88,7 +88,7 @@ export default function Footer() {
                 data-cursor="hover"
                 data-magnetic
                 data-magnetic-strength="0.5"
-                className="text-chrome/60 transition-colors duration-300 hover:text-gold"
+                className="text-chrome/60 transition-all duration-300 hover:text-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 focus-visible:ring-offset-carbon"
               >
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                   <path d={s.path} />
