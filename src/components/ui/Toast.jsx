@@ -125,7 +125,7 @@ export default function Toast() {
         {/* Optional close button */}
         <button
           onClick={hideToast}
-          className="ml-6 text-muted transition-colors hover:text-white"
+          className="ml-6 text-muted transition-all duration-300 hover:text-white hover:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-carbon"
           aria-label="Close notification"
         >
           <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
